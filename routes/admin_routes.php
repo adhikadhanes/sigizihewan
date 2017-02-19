@@ -76,4 +76,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Trucks ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/trucks', 'LA\TrucksController');
 	Route::get(config('laraadmin.adminRoute') . '/truck_dt_ajax', 'LA\TrucksController@dtajax');
+
+	/* ================== Relations ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/relations', 'LA\RelationsController');
+	Route::get(config('laraadmin.adminRoute') . '/relation_dt_ajax', 'LA\RelationsController@dtajax');
 });
