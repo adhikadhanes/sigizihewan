@@ -89,4 +89,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Items ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/items', 'LA\ItemsController');
 	Route::get(config('laraadmin.adminRoute') . '/item_dt_ajax', 'LA\ItemsController@dtajax');
+
+	/* ================== Warehouses ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/warehouses', 'LA\WarehousesController');
+	Route::get(config('laraadmin.adminRoute') . '/warehouse_dt_ajax', 'LA\WarehousesController@dtajax');
 });
