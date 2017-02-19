@@ -77,7 +77,22 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/trucks', 'LA\TrucksController');
 	Route::get(config('laraadmin.adminRoute') . '/truck_dt_ajax', 'LA\TrucksController@dtajax');
 
+<<<<<<< HEAD
 	/* ================== Relations ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/relations', 'LA\RelationsController');
 	Route::get(config('laraadmin.adminRoute') . '/relation_dt_ajax', 'LA\RelationsController@dtajax');
+=======
+	/* ================== Jenis ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/jenis', 'LA\JenisController');
+	Route::get(config('laraadmin.adminRoute') . '/jeni_dt_ajax', 'LA\JenisController@dtajax');
+
+
+	/* ================== Merks ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/merks', 'LA\MerksController');
+	Route::get(config('laraadmin.adminRoute') . '/merk_dt_ajax', 'LA\MerksController@dtajax');
+
+	/* ================== Items ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/items', 'LA\ItemsController');
+	Route::get(config('laraadmin.adminRoute') . '/item_dt_ajax', 'LA\ItemsController@dtajax');
+>>>>>>> master
 });
