@@ -87,7 +87,6 @@
 						@la_display($module, 'date_birth')
 						@la_display($module, 'date_hire')
 						@la_display($module, 'date_left')
-						@la_display($module, 'salary_cur')
 					</div>
 				</div>
 			</div>
