@@ -64,7 +64,12 @@ class PenjualansController extends Controller
 	 */
 	public function create()
 	{
-		//
+		//tambahpenjualan
+	}
+
+		public function tambahpenjualan()
+	{
+		return view('la.penjualans.add');
 	}
 
 	/**

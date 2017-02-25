@@ -91,6 +91,7 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::get(config('laraadmin.adminRoute') . '/item_dt_ajax', 'LA\ItemsController@dtajax');
 
 	/* ================== Penjualans ================== */
+	Route::get('admin/tambahpenjualan','LA\PenjualansController@tambahpenjualan');
 	Route::resource(config('laraadmin.adminRoute') . '/penjualans', 'LA\PenjualansController');
 	Route::get(config('laraadmin.adminRoute') . '/penjualan_dt_ajax', 'LA\PenjualansController@dtajax');
 });
