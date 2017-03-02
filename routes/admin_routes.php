@@ -94,4 +94,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::get('admin/tambahpenjualan','LA\PenjualansController@tambahpenjualan');
 	Route::resource(config('laraadmin.adminRoute') . '/penjualans', 'LA\PenjualansController');
 	Route::get(config('laraadmin.adminRoute') . '/penjualan_dt_ajax', 'LA\PenjualansController@dtajax');
+
+	/* ================== Gudangs ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/gudangs', 'LA\GudangsController');
+	Route::get(config('laraadmin.adminRoute') . '/gudang_dt_ajax', 'LA\GudangsController@dtajax');
 });

@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Penjualans")
-@section("contentheader_description", "Penjualans listing")
-@section("section", "Penjualans")
+@section("contentheader_title", "Gudangs")
+@section("contentheader_description", "Gudangs listing")
+@section("section", "Gudangs")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "Penjualans Listing")
+@section("htmlheader_title", "Gudangs Listing")
 
 @section("headerElems")
-@la_access("Penjualans", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Penjualan</button>
+@la_access("Gudangs", "create")
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Gudang</button>
 @endla_access
 @endsection
 
@@ -45,27 +45,25 @@
 	</div>
 </div>
 
-@la_access("Penjualans", "create")
+@la_access("Gudangs", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Penjualan</h4>
+				<h4 class="modal-title" id="myModalLabel">Add Gudang</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!}
+			{!! Form::open(['action' => 'LA\GudangsController@store', 'id' => 'gudang-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
 					
 					{{--
-					@la_input($module, 'tgl_penjualan')
-					@la_input($module, 'nama_pembeli')
-					@la_input($module, 'nama_pembeli_retail')
-					@la_input($module, 'tanggal_penerimaan')
-					@la_input($module, 'cara_penerimaan')
-					@la_input($module, 'cara_pembayaran')
-					@la_input($module, 'tgl_jatuh_tempo')
+					@la_input($module, 'gambar')
+					@la_input($module, 'name')
+					@la_input($module, 'stok')
+					@la_input($module, 'telefon')
+					@la_input($module, 'alamat')
 					--}}
 				</div>
 			</div>
@@ -92,7 +90,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/penjualan_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/gudang_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -102,7 +100,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#penjualan-add-form").validate({
+	$("#gudang-add-form").validate({
 		
 	});
 });

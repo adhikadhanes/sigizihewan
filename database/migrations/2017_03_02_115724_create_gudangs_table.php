@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreatePenjualansTable extends Migration
+class CreateGudangsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,14 +17,12 @@ class CreatePenjualansTable extends Migration
      */
     public function up()
     {
-        Module::generate("Penjualans", 'penjualans', 'item', 'fa-money', [
-            ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
-            ["nama_pembeli", "Nama Pembeli", "Name", false, "", 0, 256, false],
-            ["nama_pembeli_retail", "Nama Pembeli Retail", "Name", false, "", 0, 256, false],
-            ["tanggal_penerimaan", "Tgl Penerimaan", "Date", false, "", 0, 0, true],
-            ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
-            ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
-            ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
+        Module::generate("Gudangs", 'gudangs', 'name', 'fa-dropbox', [
+            ["gambar", "Gambar", "Image", false, "", 0, 0, false],
+            ["name", "Nama", "Name", true, "", 0, 256, true],
+            ["stok", "Stok", "Decimal", false, "", 0, 11, false],
+            ["telefon", "Telefon", "String", false, "", 0, 256, false],
+            ["alamat", "Alamat", "Address", false, "", 0, 256, true],
         ]);
 		
 		/*
@@ -70,8 +68,8 @@ class CreatePenjualansTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('penjualans')) {
-            Schema::drop('penjualans');
+        if (Schema::hasTable('gudangs')) {
+            Schema::drop('gudangs');
         }
     }
 }
