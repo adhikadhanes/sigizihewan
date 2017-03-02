@@ -98,4 +98,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Gudangs ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/gudangs', 'LA\GudangsController');
 	Route::get(config('laraadmin.adminRoute') . '/gudang_dt_ajax', 'LA\GudangsController@dtajax');
+
+	/* ================== Tallies ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/tallies', 'LA\TalliesController');
+	Route::get(config('laraadmin.adminRoute') . '/tally_dt_ajax', 'LA\TalliesController@dtajax');
 });

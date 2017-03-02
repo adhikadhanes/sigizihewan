@@ -40,6 +40,8 @@
 					@la_input($module, 'cara_penerimaan')
 					@la_input($module, 'cara_pembayaran')
 					@la_input($module, 'tgl_jatuh_tempo')
+					@la_input($module, 'Gdg Pengiriman')
+					@la_input($module, 'order_id')
 					--}}
                     <br>
 					<div class="form-group">

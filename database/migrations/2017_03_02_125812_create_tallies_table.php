@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreatePenjualansTable extends Migration
+class CreateTalliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,16 +17,15 @@ class CreatePenjualansTable extends Migration
      */
     public function up()
     {
-        Module::generate("Penjualans", 'penjualans', 'order_id', 'fa-money', [
-            ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
-            ["nama_pembeli", "Nama Pembeli", "Name", false, "", 0, 256, false],
-            ["nama_pembeli_retail", "Nama Pembeli Retail", "Name", false, "", 0, 256, false],
-            ["tanggal_penerimaan", "Tgl Penerimaan", "Date", false, "", 0, 0, true],
-            ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
-            ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
-            ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
-            ["Gdg Pengiriman", "Gudang Pengiriman", "Dropdown", false, "", 0, 0, true, "@gudangs"],
-            ["order_id", "IDPO", "String", false, "", 0, 256, false],
+        Module::generate("Tallies", 'tallies', 'jenis_daging', 'fa-book', [
+            ["jenis_daging", "Jenis Daging", "Dropdown", false, "", 0, 0, true, "@jenis"],
+            ["merk_daging", "Merk Daging", "Dropdown", false, "", 0, 0, false, "@merks"],
+            ["berat", "Berat (KG)", "Decimal", false, "", 0, 11, false],
+            ["karton", "Karton", "Integer", false, "", 0, 11, false],
+            ["harga_kg", "Harga / KG", "Decimal", false, "", 0, 11, true],
+            ["tipe", "Type", "Dropdown", false, "", 0, 0, false, ["Penjualan"]],
+            ["penjualan", "Penjualan", "Dropdown", false, "", 0, 0, false, "@penjualans"],
+            ["pembelian", "Pembelian", "Dropdown", false, "", 0, 0, false, ["1","2","3"]],
         ]);
 		
 		/*
@@ -72,8 +71,8 @@ class CreatePenjualansTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('penjualans')) {
-            Schema::drop('penjualans');
+        if (Schema::hasTable('tallies')) {
+            Schema::drop('tallies');
         }
     }
 }
