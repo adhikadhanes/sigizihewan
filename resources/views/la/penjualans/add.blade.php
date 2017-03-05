@@ -169,7 +169,7 @@ function addinputFields(){
       $('#add').click(function(){  
            i++;  
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           	'<tr id="row'+i+'"><td>'+'{{ Form::select("item", $jenisList, null, ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true"]) }}'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       });  
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");   
