@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreateMerksTable extends Migration
+class CreateWarehousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,8 +17,11 @@ class CreateMerksTable extends Migration
      */
     public function up()
     {
-        Module::generate("Merks", 'merks', 'nama', 'fa-tag', [
-            ["nama", "Nama", "Name", false, "", 0, 256, true],
+        Module::generate("Warehouses", 'warehouses', 'nama_gudang', 'fa-home', [
+            ["nama_gudang", "Nama Gudang", "Name", true, "", 0, 256, true],
+            ["alamat", "Alamat", "Address", true, "", 0, 256, true],
+            ["telepon", "Telepon", "String", true, "", 0, 256, true],
+            ["kapasitas", "Kapasitas", "Decimal", false, "", 0, 11, true],
         ]);
 		
 		/*
@@ -64,8 +67,8 @@ class CreateMerksTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('merks')) {
-            Schema::drop('merks');
+        if (Schema::hasTable('warehouses')) {
+            Schema::drop('warehouses');
         }
     }
 }

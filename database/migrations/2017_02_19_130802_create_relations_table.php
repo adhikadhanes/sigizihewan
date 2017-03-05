@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreateMerksTable extends Migration
+class CreateRelationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,8 +17,13 @@ class CreateMerksTable extends Migration
      */
     public function up()
     {
-        Module::generate("Merks", 'merks', 'nama', 'fa-tag', [
+        Module::generate("Relations", 'relations', 'nama', 'fa-link', [
             ["nama", "Nama", "Name", false, "", 0, 256, true],
+            ["relation", "Relation", "Dropdown", false, "", 0, 0, true, ["Customer","Supplier","Customer & Supplier","Retail"]],
+            ["alamat", "Alamat", "Address", false, "", 0, 256, true],
+            ["no_telepon", "No. Telepon", "Mobile", true, "", 0, 20, true],
+            ["nama_bank", "Nama Bank", "Name", false, "", 0, 256, true],
+            ["no_rekening", "No. Rekening", "String", false, "", 0, 256, true],
         ]);
 		
 		/*
@@ -64,8 +69,8 @@ class CreateMerksTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('merks')) {
-            Schema::drop('merks');
+        if (Schema::hasTable('relations')) {
+            Schema::drop('relations');
         }
     }
 }
