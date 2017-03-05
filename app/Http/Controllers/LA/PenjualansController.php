@@ -18,7 +18,6 @@ use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
 use App\Models\Penjualan;
-use App\Models\Item;
 
 class PenjualansController extends Controller
 {
@@ -74,12 +73,6 @@ class PenjualansController extends Controller
 	public function create()
 	{
 		//
-	}
-
-	public function penjualantest()
-	{
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
-		return view('la.penjualans.penjualan123', compact('jenisList'));
 	}
 
 	/**
