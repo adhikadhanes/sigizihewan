@@ -90,6 +90,20 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/items', 'LA\ItemsController');
 	Route::get(config('laraadmin.adminRoute') . '/item_dt_ajax', 'LA\ItemsController@dtajax');
 
+	/* ================== Penjualans ================== */
+	Route::get('admin/tambahpenjualan','LA\PenjualansController@tambahpenjualan');
+	Route::resource(config('laraadmin.adminRoute') . '/penjualans', 'LA\PenjualansController');
+	Route::get(config('laraadmin.adminRoute') . '/penjualan_dt_ajax', 'LA\PenjualansController@dtajax');
+
+	/* ================== Gudangs ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/gudangs', 'LA\GudangsController');
+	Route::get(config('laraadmin.adminRoute') . '/gudang_dt_ajax', 'LA\GudangsController@dtajax');
+
+	/* ================== Tallies ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/tallies', 'LA\TalliesController');
+	Route::get(config('laraadmin.adminRoute') . '/tally_dt_ajax', 'LA\TalliesController@dtajax');
+
+
 	/* ================== Warehouses ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/warehouses', 'LA\WarehousesController');
 	Route::get(config('laraadmin.adminRoute') . '/warehouse_dt_ajax', 'LA\WarehousesController@dtajax');
