@@ -1,0 +1,194 @@
+@extends("la.layouts.app")
+
+@section("contentheader_title", "Penjualans")
+@section("contentheader_description", "Penjualans listing")
+@section("section", "Penjualans")
+@section("sub_section", "Listing")
+@section("htmlheader_title", "Penjualans Listing")
+
+@section("headerElems")
+@la_access("Penjualans", "create")
+
+@endla_access
+@endsection
+
+@section("main-content")
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<div class="box box-success box-solid">
+	<div class="box-header ">TAMBAH PENJUALAN</div>
+	<div class="box-body ">
+	<div class="row">
+		<div class="col-md-6">
+
+<table>
+  <tr>
+    <td><strong>IDPO </strong></td>
+        <td width="20%"> : </td>
+        <td>#SO0001</td>
+  </tr>
+  <tr>
+    <td><strong>Tanggal Penjualan </strong> </td><td width="20%"> : </td>
+    <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!} </td>
+  </tr>
+  <tr>
+    <td><strong>Nama Pembeli </strong> </td><td width="20%"> : </td>
+    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+  </tr>
+  <tr>
+    <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
+        <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S' , ['class' => 'form-control']) }}</td>
+  </tr>
+    <tr>
+<td><strong>Tanggal Penerimaan </strong> </td><td width="20%"> : </td>
+    <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}</td>
+  </tr>
+  <tr>
+</table>
+		
+		</div>
+		
+<div class="col-md-6">
+<table>
+  <tr>
+    <td><strong>Cara Penerimaan </strong> </td><td width="20%"> : </td>
+    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+  </tr>
+   <tr>
+    <td><strong>Gudang Penerimaan </strong> </td><td width="20%"> : </td>
+    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+  </tr>
+     <tr>
+    <td><strong>Cara Pembayaran </strong> </td><td width="20%"> : </td>
+    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+  </tr>
+     <tr>
+    <td><strong>Tgl Jatuh Tempo </strong> </td><td width="20%"> : </td>
+    <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}</td>
+  <tr>
+</table>
+		
+		</div>
+
+	</div>
+</div>
+</div>
+
+<div class="box box-info box-solid">
+	<div class="box-header ">TAMBAH TALLY</div>
+	<div class="box-body ">
+	<div class="row">
+		<div class="col-md-12">
+			Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
+		</div>
+	</div>
+	<br />
+
+	<div id="container"/>
+	</div>
+
+                <div class="form-group">  
+                     <form name="add_name" id="add_name">  
+                          <div class="table-responsive">  
+                               <table class="table" id="dynamic_field">  
+                                    <tr>
+                                    	<td>Jenis Daging</td>
+                                    	<td>Merk Daging</td>
+                                    	<td>Berat (KG)</td>
+                                    	<td>Karton</td>
+                                    	<td>Harga / KG</td>
+                                    	<td>Aksi</td>
+                                    </tr>
+
+                               </table>  
+                               <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />  
+                          </div>  
+                     </form>  
+                </div>  
+
+
+
+@la_access("Penjualans", "create")
+<div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Add Penjualan</h4>
+			</div>
+			{!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!}
+			<div class="modal-body">
+				<div class="box-body">
+                    
+	                {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S') }}
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
+			</div>
+			{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+@endla_access
+
+@endsection
+
+@push('scripts')
+
+<script>
+function addinputFields(){
+    var number = document.getElementById("member").value;
+
+    for (i=0;i<number;i++){
+ 
+           $('#dynamic_field').append(
+           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+
+    }
+}
+
+
+
+</script>
+<script>  
+ $(document).ready(function(){  
+
+      var i=0;  
+      $('#add').click(function(){  
+           i++;  
+           $('#dynamic_field').append(
+           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+      });  
+      $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      }); 
+
+      $('#submit').click(function(){            
+           $.ajax({  
+                url:"name.php",  
+                method:"POST",  
+                data:$('#add_name').serialize(),  
+                success:function(data)  
+                {  
+                     alert(data);  
+                     $('#add_name')[0].reset();  
+                }  
+           });  
+      });
+
+ });  
+ </script>
+@endpush
