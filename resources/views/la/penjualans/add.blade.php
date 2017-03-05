@@ -84,36 +84,36 @@
 </div>
 
 <div class="box box-info box-solid">
-	<div class="box-header ">TAMBAH TALLY</div>
+	<div class="box-header ">TAMBAH PENJUALAN</div>
 	<div class="box-body ">
 	<div class="row">
 		<div class="col-md-12">
-			Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
+			Masukkan Jumlah Barang yang akan dijual:<input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Button</button> | <button type="button" class="btn btn-success" onclick="add()">Tambah</button>
 		</div>
 	</div>
-	<br />
-
+<hr />
+	<div class="row">
+		<div class="col-md-2">
+		No.
+		</div>
+		<div class="col-md-2">
+		Jenis Daging
+		</div>
+		<div class="col-md-2">
+		Merk Daging
+		</div>
+		<div class="col-md-2">
+		Berat(KG)
+		</div>
+		<div class="col-md-2">
+		Karton
+		</div>
+		<div class="col-md-2">
+		Harga / KG
+		</div>
+	</div>
 	<div id="container"/>
 	</div>
-
-                <div class="form-group">  
-                     <form name="add_name" id="add_name">  
-                          <div class="table-responsive">  
-                               <table class="table" id="dynamic_field">  
-                                    <tr>
-                                    	<td>Jenis Daging</td>
-                                    	<td>Merk Daging</td>
-                                    	<td>Berat (KG)</td>
-                                    	<td>Karton</td>
-                                    	<td>Harga / KG</td>
-                                    	<td>Aksi</td>
-                                    </tr>
-
-                               </table>  
-                               <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />  
-                          </div>  
-                     </form>  
-                </div>  
 
 
 
@@ -152,43 +152,23 @@ function addinputFields(){
     var number = document.getElementById("member").value;
 
     for (i=0;i<number;i++){
- 
-           $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
 
+        var input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Jenis Daging";
+        container.appendChild(input);
+        container.appendChild(document.createElement("br"));
     }
 }
 
+function add(){
 
+        var input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Jenis Daging";
+        container.appendChild(input);
+        container.appendChild(document.createElement("br"));
+}
 
 </script>
-<script>  
- $(document).ready(function(){  
-
-      var i=0;  
-      $('#add').click(function(){  
-           i++;  
-           $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
-      });  
-      $(document).on('click', '.btn_remove', function(){  
-           var button_id = $(this).attr("id");   
-           $('#row'+button_id+'').remove();  
-      }); 
-
-      $('#submit').click(function(){            
-           $.ajax({  
-                url:"name.php",  
-                method:"POST",  
-                data:$('#add_name').serialize(),  
-                success:function(data)  
-                {  
-                     alert(data);  
-                     $('#add_name')[0].reset();  
-                }  
-           });  
-      });
-
- });  
- </script>
 @endpush
