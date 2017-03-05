@@ -8,8 +8,7 @@
 
 @section("headerElems")
 @la_access("Penjualans", "create")
-	<button class="btn btn-success btn-sm " data-toggle="modal" data-target="#AddModal">Add Penjualan</button> | 
-	<a href="tambahpenjualan" class="btn btn-info" role="button">Tambah Penjualan</a>
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Penjualan</button>
 @endla_access
 @endsection
 
@@ -57,9 +56,19 @@
 			{!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
-                    
-	                {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S') }}
-
+                    @la_form($module)
+					
+					{{--
+					@la_input($module, 'tgl_penjualan')
+					@la_input($module, 'nama_pembeli')
+					@la_input($module, 'nama_pembeli_retail')
+					@la_input($module, 'tanggal_penerimaan')
+					@la_input($module, 'cara_penerimaan')
+					@la_input($module, 'cara_pembayaran')
+					@la_input($module, 'tgl_jatuh_tempo')
+					@la_input($module, 'Gdg Pengiriman')
+					@la_input($module, 'order_id')
+					--}}
 				</div>
 			</div>
 			<div class="modal-footer">

@@ -33,7 +33,15 @@
 					@la_form($module)
 					
 					{{--
-					@la_input($module, 'item')
+					@la_input($module, 'tgl_penjualan')
+					@la_input($module, 'nama_pembeli')
+					@la_input($module, 'nama_pembeli_retail')
+					@la_input($module, 'tanggal_penerimaan')
+					@la_input($module, 'cara_penerimaan')
+					@la_input($module, 'cara_pembayaran')
+					@la_input($module, 'tgl_jatuh_tempo')
+					@la_input($module, 'Gdg Pengiriman')
+					@la_input($module, 'order_id')
 					--}}
                     <br>
 					<div class="form-group">
