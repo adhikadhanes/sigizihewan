@@ -36,6 +36,11 @@ class PenjualansController extends Controller
 			$this->listing_cols = ModuleFields::listingColumnAccessScan('Penjualans', $this->listing_cols);
 		}
 	}
+
+	public function tambahpenjualan()
+	{
+		return view('la.penjualans.add');
+	}
 	
 	/**
 	 * Display a listing of the Penjualans.

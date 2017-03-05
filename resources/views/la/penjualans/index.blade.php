@@ -8,7 +8,8 @@
 
 @section("headerElems")
 @la_access("Penjualans", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Penjualan</button>
+<button class="btn btn-success btn-sm " data-toggle="modal" data-target="#AddModal">Add Penjualan</button> | 
+	<a href="tambahpenjualan" class="btn btn-info" role="button">Tambah Penjualan</a>
 @endla_access
 @endsection
 

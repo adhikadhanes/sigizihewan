@@ -25,6 +25,7 @@ class CreateItemsTable extends Migration
             ["wholesale_carton", "Wholesale Carton", "Integer", false, "0", 0, 11, true],
             ["retail_kg", "Retail KG", "Decimal", false, "0", 0, 11, true],
             ["tipe", "Tipe", "Dropdown", false, "", 0, 0, true, ["Wholesale","Retail"]],
+            ["nama_jenis", "Nama Jenis", "Name", false, "", 0, 256, false],
         ]);
 		
 		/*
