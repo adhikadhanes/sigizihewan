@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreateItemsTable extends Migration
+class CreateGudangsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,15 +17,12 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Items", 'items', 'jenis', 'fa-cube', [
-            ["jenis", "Jenis", "Dropdown", false, "", 0, 0, true, "@jenis"],
-            ["merk", "Merk", "Dropdown", false, "", 0, 0, true, "@merks"],
-            ["kg_carton", "KG / carton", "Decimal", false, "", 0, 11, false],
-            ["wholesale_kg", "Wholesale KG", "Decimal", false, "0", 0, 11, true],
-            ["wholesale_carton", "Wholesale Carton", "Integer", false, "0", 0, 11, true],
-            ["retail_kg", "Retail KG", "Decimal", false, "0", 0, 11, true],
-            ["tipe", "Tipe", "Dropdown", false, "", 0, 0, true, ["Wholesale","Retail"]],
-            ["nama_jenis", "Nama Jenis", "Name", false, "", 0, 256, false],
+        Module::generate("Gudangs", 'gudangs', 'name', 'fa-dropbox', [
+            ["gambar", "Gambar", "Image", false, "", 0, 0, false],
+            ["name", "Nama", "Name", true, "", 0, 256, true],
+            ["stok", "Stok", "Decimal", false, "", 0, 11, false],
+            ["telefon", "Telefon", "String", false, "", 0, 256, false],
+            ["alamat", "Alamat", "Address", false, "", 0, 256, true],
         ]);
 		
 		/*
@@ -71,8 +68,8 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('items')) {
-            Schema::drop('items');
+        if (Schema::hasTable('gudangs')) {
+            Schema::drop('gudangs');
         }
     }
 }

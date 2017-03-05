@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Items")
-@section("contentheader_description", "Items listing")
-@section("section", "Items")
+@section("contentheader_title", "Tallies")
+@section("contentheader_description", "Tallies listing")
+@section("section", "Tallies")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "Items Listing")
+@section("htmlheader_title", "Tallies Listing")
 
 @section("headerElems")
-@la_access("Items", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Item</button>
+@la_access("Tallies", "create")
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Tally</button>
 @endla_access
 @endsection
 
@@ -45,28 +45,28 @@
 	</div>
 </div>
 
-@la_access("Items", "create")
+@la_access("Tallies", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Item</h4>
+				<h4 class="modal-title" id="myModalLabel">Add Tally</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\ItemsController@store', 'id' => 'item-add-form']) !!}
+			{!! Form::open(['action' => 'LA\TalliesController@store', 'id' => 'tally-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
 					
 					{{--
-					@la_input($module, 'jenis')
-					@la_input($module, 'merk')
-					@la_input($module, 'kg_carton')
-					@la_input($module, 'wholesale_kg')
-					@la_input($module, 'wholesale_carton')
-					@la_input($module, 'retail_kg')
+					@la_input($module, 'jenis_daging')
+					@la_input($module, 'merk_daging')
+					@la_input($module, 'berat')
+					@la_input($module, 'karton')
+					@la_input($module, 'harga_kg')
 					@la_input($module, 'tipe')
-					@la_input($module, 'nama_jenis')
+					@la_input($module, 'penjualan')
+					@la_input($module, 'pembelian')
 					--}}
 				</div>
 			</div>
@@ -93,7 +93,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/item_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/tally_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -103,7 +103,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#item-add-form").validate({
+	$("#tally-add-form").validate({
 		
 	});
 });

@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreateItemsTable extends Migration
+class CreatePenjualansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,15 +17,16 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Items", 'items', 'jenis', 'fa-cube', [
-            ["jenis", "Jenis", "Dropdown", false, "", 0, 0, true, "@jenis"],
-            ["merk", "Merk", "Dropdown", false, "", 0, 0, true, "@merks"],
-            ["kg_carton", "KG / carton", "Decimal", false, "", 0, 11, false],
-            ["wholesale_kg", "Wholesale KG", "Decimal", false, "0", 0, 11, true],
-            ["wholesale_carton", "Wholesale Carton", "Integer", false, "0", 0, 11, true],
-            ["retail_kg", "Retail KG", "Decimal", false, "0", 0, 11, true],
-            ["tipe", "Tipe", "Dropdown", false, "", 0, 0, true, ["Wholesale","Retail"]],
-            ["nama_jenis", "Nama Jenis", "Name", false, "", 0, 256, false],
+        Module::generate("Penjualans", 'penjualans', 'order_id', 'fa-money', [
+            ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
+            ["nama_pembeli", "Nama Pembeli", "Name", false, "", 0, 256, false],
+            ["nama_pembeli_retail", "Nama Pembeli Retail", "Name", false, "", 0, 256, false],
+            ["tanggal_penerimaan", "Tgl Penerimaan", "Date", false, "", 0, 0, true],
+            ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
+            ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
+            ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
+            ["Gdg Pengiriman", "Gudang Pengiriman", "Dropdown", false, "", 0, 0, true, "@gudangs"],
+            ["order_id", "IDPO", "String", false, "", 0, 256, false],
         ]);
 		
 		/*
@@ -71,8 +72,8 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('items')) {
-            Schema::drop('items');
+        if (Schema::hasTable('penjualans')) {
+            Schema::drop('penjualans');
         }
     }
 }

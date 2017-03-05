@@ -1,7 +1,7 @@
 @extends('la.layouts.app')
 
 @section('htmlheader_title')
-	Item View
+	Tally View
 @endsection
 
 
@@ -15,7 +15,7 @@
 					<div class="profile-icon text-primary"><i class="fa {{ $module->fa_icon }}"></i></div>
 				</div>
 				<div class="col-md-9">
-					<h4 class="name">{{ $item->$view_col }}</h4>
+					<h4 class="name">{{ $tally->$view_col }}</h4>
 					<div class="row stats">
 						<div class="col-md-4"><i class="fa fa-facebook"></i> 234</div>
 						<div class="col-md-4"><i class="fa fa-twitter"></i> 12</div>
@@ -81,12 +81,12 @@
 			</div>
 		</div>
 		<div class="col-md-1 actions">
-			@la_access("Items", "edit")
-				<a href="{{ url(config('laraadmin.adminRoute') . '/items/'.$item->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			@la_access("Tallies", "edit")
+				<a href="{{ url(config('laraadmin.adminRoute') . '/tallies/'.$tally->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
 			
-			@la_access("Items", "delete")
-				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.items.destroy', $item->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			@la_access("Tallies", "delete")
+				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.tallies.destroy', $tally->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 				{{ Form::close() }}
 			@endla_access
@@ -94,7 +94,7 @@
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/items') }}" data-toggle="tooltip" data-placement="right" title="Back to Items"><i class="fa fa-chevron-left"></i></a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/tallies') }}" data-toggle="tooltip" data-placement="right" title="Back to Tallies"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="#tab-timeline" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
 	</ul>
@@ -107,14 +107,14 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
-						@la_display($module, 'jenis')
-						@la_display($module, 'merk')
-						@la_display($module, 'kg_carton')
-						@la_display($module, 'wholesale_kg')
-						@la_display($module, 'wholesale_carton')
-						@la_display($module, 'retail_kg')
+						@la_display($module, 'jenis_daging')
+						@la_display($module, 'merk_daging')
+						@la_display($module, 'berat')
+						@la_display($module, 'karton')
+						@la_display($module, 'harga_kg')
 						@la_display($module, 'tipe')
-						@la_display($module, 'nama_jenis')
+						@la_display($module, 'penjualan')
+						@la_display($module, 'pembelian')
 					</div>
 				</div>
 			</div>
