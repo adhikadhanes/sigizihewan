@@ -24,6 +24,11 @@
     </div>
 @endif
 
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+ </head>
+
 <div class="box box-success box-solid">
 	<div class="box-header ">TAMBAH PENJUALAN</div>
 	<div class="box-body ">
@@ -42,7 +47,7 @@
   </tr>
   <tr>
     <td><strong>Nama Pembeli </strong> </td><td width="20%"> : </td>
-    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control', 'name' => 'nama_pembeli']) }}</td>
+    <td>{{ Form::select('Relations', $NamaPembeliList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli']) }}</td>
   </tr>
   <tr>
     <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
@@ -55,6 +60,8 @@
   </tr>
 </table>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 		
 		</div>
 <div class="col-md-6">
@@ -195,7 +202,7 @@ function addinputFields(){
          
           $("#nama_pembeli_retail").prop('disabled', false); 
 
-          $('select[name ="nama_pembeli"]').change(function () {
+          $('select[name="nama_pembeli"]').change(function () {
               $("#nama_pembeli_retail").prop('disabled', true); 
           });
           $("#nama_pembeli_retail").keyup(function () {
