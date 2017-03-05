@@ -61,15 +61,15 @@
 <table>
   <tr>
     <td><strong>Cara Penerimaan </strong> </td><td width="20%"> : </td>
-    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+      <td>{{ Form::select('size', ['Pengiriman' => 'Pengiriman', 'Pengambilan' => 'Pengambilan'], 'S', ['class' => 'form-control']) }}</td>
   </tr>
    <tr>
     <td><strong>Gudang Penerimaan </strong> </td><td width="20%"> : </td>
-    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+   <td>{{ Form::select('size', ['Cakung' => 'Cakung', 'Cimuning' => 'Cimuning'], 'S', ['class' => 'form-control']) }}</td>
   </tr>
      <tr>
     <td><strong>Cara Pembayaran </strong> </td><td width="20%"> : </td>
-    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+  <td>{{ Form::select('size', ['Langsung' => 'Langsung', 'Tempo' => 'Tempo', 'Cicilan' => 'Cicilan'], 'S', ['class' => 'form-control']) }}</td>
   </tr>
      <tr>
     <td><strong>Tgl Jatuh Tempo </strong> </td><td width="20%"> : </td>
