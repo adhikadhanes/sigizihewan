@@ -17,9 +17,9 @@ class CreateRelationsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Relations", 'relations', 'relation', 'fa-link', [
-            ["relation", "Relation", "Dropdown", false, "", 0, 0, true, ["Customer","Supplier","Customer & Supplier","Retail"]],
+        Module::generate("Relations", 'relations', 'nama', 'fa-link', [
             ["nama", "Nama", "Name", false, "", 0, 256, true],
+            ["relation", "Relation", "Dropdown", false, "", 0, 0, true, ["Customer","Supplier","Customer & Supplier","Retail"]],
             ["alamat", "Alamat", "Address", false, "", 0, 256, true],
             ["no_telepon", "No. Telepon", "Mobile", true, "", 0, 20, true],
             ["nama_bank", "Nama Bank", "Name", false, "", 0, 256, true],

@@ -33,8 +33,8 @@
 					@la_form($module)
 					
 					{{--
-					@la_input($module, 'relation')
 					@la_input($module, 'nama')
+					@la_input($module, 'relation')
 					@la_input($module, 'alamat')
 					@la_input($module, 'no_telepon')
 					@la_input($module, 'nama_bank')
