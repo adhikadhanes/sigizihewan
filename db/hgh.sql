@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2017 at 02:55 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Feb 08, 2017 at 09:36 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -91,8 +91,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `name`, `designation`, `gender`, `mobile`, `mobile2`, `email`, `dept`, `city`, `address`, `about`, `date_birth`, `date_hire`, `date_left`, `salary_cur`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Adhika Dhaneswara', 'Super Admin', 'Male', '8888888888', '', 'dhickoh@gmail.com', 1, 'Pune', 'Karve nagar, Pune 411030', 'About user / biography', '2017-02-08', '2017-02-08', '2017-02-08', '0.000', NULL, '2017-02-08 00:30:27', '2017-02-08 00:30:27'),
-(3, 'Andre', 'Admin', 'Male', '1234567890', '', 'andrevalerian@yahoo.com', 1, '', '', '', '1990-01-01', '1970-01-01', '1990-01-01', '0.000', NULL, '2017-02-19 01:38:57', '2017-02-19 01:38:57');
+(1, 'Adhika Dhaneswara', 'Super Admin', 'Male', '8888888888', '', 'dhickoh@gmail.com', 1, 'Pune', 'Karve nagar, Pune 411030', 'About user / biography', '2017-02-08', '2017-02-08', '2017-02-08', '0.000', NULL, '2017-02-08 00:30:27', '2017-02-08 00:30:27');
 
 -- --------------------------------------------------------
 
@@ -159,8 +158,7 @@ INSERT INTO `la_menus` (`id`, `name`, `url`, `icon`, `type`, `parent`, `hierarch
 (6, 'Roles', 'roles', 'fa-user-plus', 'module', 1, 0, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
 (7, 'Organizations', 'organizations', 'fa-university', 'module', 0, 0, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
 (8, 'Permissions', 'permissions', 'fa-magic', 'module', 1, 0, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
-(11, 'Trucks', 'trucks', 'fa fa-truck', 'module', 0, 0, '2017-02-08 01:19:37', '2017-02-08 01:19:37'),
-(13, 'Relations', 'relations', 'fa fa-link', 'module', 0, 0, '2017-02-19 06:15:46', '2017-02-19 06:15:46');
+(11, 'Trucks', 'trucks', 'fa fa-truck', 'module', 0, 0, '2017-02-08 01:19:37', '2017-02-08 01:19:37');
 
 -- --------------------------------------------------------
 
@@ -231,8 +229,7 @@ INSERT INTO `modules` (`id`, `name`, `label`, `name_db`, `view_col`, `model`, `c
 (6, 'Organizations', 'Organizations', 'organizations', 'name', 'Organization', 'OrganizationsController', 'fa-university', 1, '2017-02-08 00:30:14', '2017-02-08 00:30:15'),
 (7, 'Backups', 'Backups', 'backups', 'name', 'Backup', 'BackupsController', 'fa-hdd-o', 1, '2017-02-08 00:30:14', '2017-02-08 00:30:15'),
 (8, 'Permissions', 'Permissions', 'permissions', 'name', 'Permission', 'PermissionsController', 'fa-magic', 1, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
-(11, 'Trucks', 'Trucks', 'trucks', 'name', 'Truck', 'TrucksController', 'fa-truck', 1, '2017-02-08 01:07:48', '2017-02-08 01:19:37'),
-(14, 'Relations', 'Relations', 'relations', 'relation', 'Relation', 'RelationsController', 'fa-link', 1, '2017-02-19 06:04:48', '2017-02-19 06:15:46');
+(11, 'Trucks', 'Trucks', 'trucks', 'name', 'Truck', 'TrucksController', 'fa-truck', 1, '2017-02-08 01:07:48', '2017-02-08 01:19:37');
 
 -- --------------------------------------------------------
 
@@ -316,13 +313,7 @@ INSERT INTO `module_fields` (`id`, `colname`, `label`, `module`, `field_type`, `
 (56, 'name', 'Name', 11, 16, 1, '', 0, 256, 1, '', 0, '2017-02-08 01:17:34', '2017-02-08 01:17:34'),
 (57, 'nomor_polisi', 'Nomor Polisi', 11, 19, 1, '', 0, 256, 1, '', 0, '2017-02-08 01:17:51', '2017-02-08 01:17:51'),
 (58, 'kapasitas', 'Kapasitas', 11, 13, 1, '', 0, 11, 1, '', 0, '2017-02-08 01:18:07', '2017-02-08 01:18:07'),
-(59, 'status', 'Status', 11, 7, 0, '', 0, 0, 1, '["Tersedia","Digunakan"]', 0, '2017-02-08 01:19:32', '2017-02-08 01:19:32'),
-(67, 'relation', 'Relation', 14, 7, 0, '', 0, 0, 1, '["Customer","Supplier","Customer & Supplier","Retail"]', 0, '2017-02-19 06:06:21', '2017-02-19 06:12:48'),
-(68, 'nama', 'Nama', 14, 16, 0, '', 0, 256, 1, '', 0, '2017-02-19 06:06:38', '2017-02-19 06:06:38'),
-(69, 'alamat', 'Alamat', 14, 1, 0, '', 0, 256, 1, '', 0, '2017-02-19 06:06:52', '2017-02-19 06:06:52'),
-(70, 'no_telepon', 'No. Telepon', 14, 14, 1, '', 0, 20, 1, '', 0, '2017-02-19 06:07:20', '2017-02-19 06:07:20'),
-(71, 'nama_bank', 'Nama Bank', 14, 16, 0, '', 0, 256, 1, '', 0, '2017-02-19 06:07:39', '2017-02-19 06:07:39'),
-(72, 'no_rekening', 'No. Rekening', 14, 19, 0, '', 0, 256, 1, '', 0, '2017-02-19 06:07:56', '2017-02-19 06:07:56');
+(59, 'status', 'Status', 11, 7, 0, '', 0, 0, 1, '["Tersedia","Digunakan"]', 0, '2017-02-08 01:19:32', '2017-02-08 01:19:32');
 
 -- --------------------------------------------------------
 
@@ -442,34 +433,7 @@ CREATE TABLE `permission_role` (
 --
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
-(1, 1),
-(1, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `relations`
---
-
-CREATE TABLE `relations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `relation` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `nama` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `alamat` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `no_telepon` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `nama_bank` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `no_rekening` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `relations`
---
-
-INSERT INTO `relations` (`id`, `deleted_at`, `created_at`, `updated_at`, `relation`, `nama`, `alamat`, `no_telepon`, `nama_bank`, `no_rekening`) VALUES
-(1, NULL, '2017-02-19 06:16:20', '2017-02-19 06:16:20', 'Customer', 'Akram', 'Jl. Kenanga Raya', '1234567890', 'BCA', '1234567890');
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -494,8 +458,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `parent`, `dept`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'SUPER_ADMIN', 'Super Admin', 'Full Access Role', 1, 1, NULL, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
-(2, 'ADMIN_SUPER', 'Admin Super', '', 1, 1, NULL, '2017-02-08 01:51:17', '2017-02-08 01:51:17');
+(1, 'SUPER_ADMIN', 'Super Admin', 'Full Access Role', 1, 1, NULL, '2017-02-08 00:30:15', '2017-02-08 00:30:15');
 
 -- --------------------------------------------------------
 
@@ -528,17 +491,7 @@ INSERT INTO `role_module` (`id`, `role_id`, `module_id`, `acc_view`, `acc_create
 (6, 1, 6, 1, 1, 1, 1, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
 (7, 1, 7, 1, 1, 1, 1, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
 (8, 1, 8, 1, 1, 1, 1, '2017-02-08 00:30:15', '2017-02-08 00:30:15'),
-(11, 1, 11, 1, 1, 1, 1, '2017-02-08 01:19:37', '2017-02-08 01:19:37'),
-(12, 2, 1, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(13, 2, 2, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(14, 2, 3, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(15, 2, 4, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(16, 2, 5, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(17, 2, 6, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(18, 2, 7, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(19, 2, 8, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(20, 2, 11, 1, 0, 0, 0, '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(22, 1, 14, 1, 1, 1, 1, '2017-02-19 06:15:46', '2017-02-19 06:15:46');
+(11, 1, 11, 1, 1, 1, 1, '2017-02-08 01:19:37', '2017-02-08 01:19:37');
 
 -- --------------------------------------------------------
 
@@ -614,68 +567,7 @@ INSERT INTO `role_module_fields` (`id`, `role_id`, `field_id`, `access`, `create
 (56, 1, 56, 'write', '2017-02-08 01:17:35', '2017-02-08 01:17:35'),
 (57, 1, 57, 'write', '2017-02-08 01:17:51', '2017-02-08 01:17:51'),
 (58, 1, 58, 'write', '2017-02-08 01:18:07', '2017-02-08 01:18:07'),
-(59, 1, 59, 'write', '2017-02-08 01:19:32', '2017-02-08 01:19:32'),
-(60, 2, 1, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(61, 2, 2, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(62, 2, 3, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(63, 2, 4, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(64, 2, 5, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(65, 2, 6, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(66, 2, 7, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(67, 2, 8, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(68, 2, 9, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(69, 2, 10, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(70, 2, 11, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(71, 2, 12, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(72, 2, 13, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(73, 2, 14, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(74, 2, 15, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(75, 2, 16, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(76, 2, 17, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(77, 2, 18, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(78, 2, 19, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(79, 2, 20, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(80, 2, 21, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(81, 2, 22, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(82, 2, 23, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(83, 2, 24, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(84, 2, 25, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(85, 2, 26, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(86, 2, 27, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(87, 2, 28, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(88, 2, 29, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(89, 2, 30, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(90, 2, 31, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(91, 2, 32, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(92, 2, 33, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(93, 2, 34, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(94, 2, 35, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(95, 2, 36, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(96, 2, 37, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(97, 2, 38, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(98, 2, 39, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(99, 2, 40, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(100, 2, 41, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(101, 2, 42, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(102, 2, 43, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(103, 2, 44, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(104, 2, 45, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(105, 2, 46, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(106, 2, 47, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(107, 2, 48, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(108, 2, 49, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(109, 2, 50, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(110, 2, 51, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(111, 2, 56, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(112, 2, 57, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(113, 2, 58, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(114, 2, 59, 'readonly', '2017-02-08 01:51:17', '2017-02-08 01:51:17'),
-(122, 1, 67, 'write', '2017-02-19 06:06:21', '2017-02-19 06:06:21'),
-(123, 1, 68, 'write', '2017-02-19 06:06:38', '2017-02-19 06:06:38'),
-(124, 1, 69, 'write', '2017-02-19 06:06:52', '2017-02-19 06:06:52'),
-(125, 1, 70, 'write', '2017-02-19 06:07:20', '2017-02-19 06:07:20'),
-(126, 1, 71, 'write', '2017-02-19 06:07:40', '2017-02-19 06:07:40'),
-(127, 1, 72, 'write', '2017-02-19 06:07:56', '2017-02-19 06:07:56');
+(59, 1, 59, 'write', '2017-02-08 01:19:32', '2017-02-08 01:19:32');
 
 -- --------------------------------------------------------
 
@@ -696,8 +588,7 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, NULL),
-(5, 2, 3, NULL, NULL);
+(1, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -767,8 +658,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `context_id`, `email`, `password`, `type`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Adhika Dhaneswara', 1, 'dhickoh@gmail.com', '$2y$10$dkq9zbxi72jdXMRi166KceyNsKphLJnBedAYYZQnulix556lyG2.O', 'Employee', 'I3JD0Yya59JkYqh8k7qMFwtI4Zh5Cd8AuHPBlGYZTVatKQgBfEILT1QQ3cCG', NULL, '2017-02-08 00:30:27', '2017-02-19 01:39:34'),
-(3, 'Andre', 3, 'andrevalerian@yahoo.com', '$2y$10$3vxnRS1MBKa5n7JwYIv88eVXjM33CbnDMBvfEFYn/eVn7KCeLxzqG', 'Employee', 'fqce6wWBzKIL3CauiCveA7afvwTCPP1S4LtJM0TS3xr7AkUhM76Dxac43382', NULL, '2017-02-19 01:38:57', '2017-02-19 02:30:45');
+(1, 'Adhika Dhaneswara', 1, 'dhickoh@gmail.com', '$2y$10$dkq9zbxi72jdXMRi166KceyNsKphLJnBedAYYZQnulix556lyG2.O', 'Employee', NULL, NULL, '2017-02-08 00:30:27', '2017-02-08 00:30:27');
 
 --
 -- Indexes for dumped tables
@@ -866,13 +756,6 @@ ALTER TABLE `permission_role`
   ADD KEY `permission_role_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `relations`
---
-ALTER TABLE `relations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `relations_no_telepon_unique` (`no_telepon`);
-
---
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -944,7 +827,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `la_configs`
 --
@@ -954,7 +837,7 @@ ALTER TABLE `la_configs`
 -- AUTO_INCREMENT for table `la_menus`
 --
 ALTER TABLE `la_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -964,12 +847,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `module_fields`
 --
 ALTER TABLE `module_fields`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `module_field_types`
 --
@@ -986,30 +869,25 @@ ALTER TABLE `organizations`
 ALTER TABLE `permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `relations`
---
-ALTER TABLE `relations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `role_module`
 --
 ALTER TABLE `role_module`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `role_module_fields`
 --
 ALTER TABLE `role_module_fields`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `role_user`
 --
 ALTER TABLE `role_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `trucks`
 --
@@ -1024,7 +902,7 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
