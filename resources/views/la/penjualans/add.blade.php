@@ -34,7 +34,7 @@
   <tr>
     <td><strong>IDPO </strong></td>
         <td width="20%"> : </td>
-        <td>#SO0001</td>
+        <td style="font-weight: bold;">#SO0001</td>
   </tr>
   <tr>
     <td><strong>Tanggal Penjualan </strong> </td><td width="20%"> : </td>
@@ -42,21 +42,21 @@
   </tr>
   <tr>
     <td><strong>Nama Pembeli </strong> </td><td width="20%"> : </td>
-    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control']) }}</td>
+    <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S', ['class' => 'form-control', 'name' => 'nama_pembeli']) }}</td>
   </tr>
   <tr>
     <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
-        <td>{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S' , ['class' => 'form-control']) }}</td>
+        <td>{{ Form::text('hello', '', ['placeholder' => 'Masukkan Nama Pembeli', 'class' => 'form-control', 'id' => 'nama_pembeli_retail'])}}
+        </td>
   </tr>
     <tr>
 <td><strong>Tanggal Penerimaan </strong> </td><td width="20%"> : </td>
     <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}</td>
   </tr>
-  <tr>
 </table>
+
 		
 		</div>
-		
 <div class="col-md-6">
 <table>
   <tr>
@@ -125,7 +125,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Penjualan</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!}
+			<!-- {!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!} -->
 			<div class="modal-body">
 				<div class="box-body">
                     
@@ -189,6 +189,25 @@ function addinputFields(){
            });  
       });
 
+      $(function () {
+          var np = $('select[name="nama_pembeli"]');
+          np.prop('disabled', false); 
+         
+          $("#nama_pembeli_retail").prop('disabled', false); 
+
+          $('select[name ="nama_pembeli"]').change(function () {
+              $("#nama_pembeli_retail").prop('disabled', true); 
+          });
+          $("#nama_pembeli_retail").keyup(function () {
+              np.prop('disabled', true); 
+          });
+
+      });
+
+             // document.getElementById("nama_pembeli").attr('disabled',true);
+             // document.getElementById("nama_pembeli_retail").attr('disabled',true);
  });  
+ 
+   
  </script>
 @endpush

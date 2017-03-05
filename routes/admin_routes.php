@@ -102,4 +102,5 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Tallies ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/tallies', 'LA\TalliesController');
 	Route::get(config('laraadmin.adminRoute') . '/tally_dt_ajax', 'LA\TalliesController@dtajax');
+
 });
