@@ -66,7 +66,6 @@
 					@la_input($module, 'wholesale_carton')
 					@la_input($module, 'retail_kg')
 					@la_input($module, 'tipe')
-					@la_input($module, 'tes')
 					--}}
 				</div>
 			</div>

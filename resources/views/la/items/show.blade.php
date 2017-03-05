@@ -114,7 +114,6 @@
 						@la_display($module, 'wholesale_carton')
 						@la_display($module, 'retail_kg')
 						@la_display($module, 'tipe')
-						@la_display($module, 'tes')
 					</div>
 				</div>
 			</div>
