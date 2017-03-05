@@ -43,7 +43,9 @@ class PenjualansController extends Controller
 
 	public function tambahpenjualan()
 	{
-		return view('la.penjualans.add');
+
+		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		return view('la.penjualans.add', compact('jenisList'));
 		
 	}
 	
