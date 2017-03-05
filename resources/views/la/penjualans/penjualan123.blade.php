@@ -31,7 +31,7 @@
 	<!--<div class="box-header"></div>-->
 	<div class="box-body">
 		 <div class="row-fluid">
-		 {{ Form::select('item', $jenisList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true']) }
+		 {{ Form::select('item', $jenisList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true']) }}
 
     	</div> 
 	</div>
