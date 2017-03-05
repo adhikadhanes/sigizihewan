@@ -107,8 +107,8 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
-						@la_display($module, 'nama')
 						@la_display($module, 'relation')
+						@la_display($module, 'nama')
 						@la_display($module, 'alamat')
 						@la_display($module, 'no_telepon')
 						@la_display($module, 'nama_bank')

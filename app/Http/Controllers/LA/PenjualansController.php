@@ -25,7 +25,10 @@ class PenjualansController extends Controller
 	public $show_action = true;
 	public $view_col = 'order_id';
 	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_penerimaan', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'Gdg Pengiriman', 'order_id'];
-	
+	// public static $add_rules = array(
+	// 	'nama_pembeli' => 'required',
+	// 	'nama_pembeli_retail' => 'required'
+	// 	);
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {

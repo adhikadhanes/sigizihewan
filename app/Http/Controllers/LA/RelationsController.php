@@ -22,8 +22,8 @@ use App\Models\Relation;
 class RelationsController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'nama';
-	public $listing_cols = ['id', 'nama', 'relation', 'alamat', 'no_telepon', 'nama_bank', 'no_rekening'];
+	public $view_col = 'relation';
+	public $listing_cols = ['id', 'relation', 'nama', 'alamat', 'no_telepon', 'nama_bank', 'no_rekening'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
