@@ -7,7 +7,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBoxesTable extends Migration
+class CreateTestAkramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,8 +19,8 @@ class CreateBoxesTable extends Migration
         // This Module has been deleted.
         // You can remove this file after migrate:reset
         
-		if (Schema::hasTable('boxes')) {
-            Schema::drop('boxes');
+		if (Schema::hasTable('test_akrams')) {
+            Schema::drop('test_akrams');
         }
     }
 
@@ -31,8 +31,8 @@ class CreateBoxesTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('boxes')) {
-            Schema::drop('boxes');
+        if (Schema::hasTable('test_akrams')) {
+            Schema::drop('test_akrams');
         }
     }
 }
