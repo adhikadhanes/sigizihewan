@@ -44,6 +44,7 @@ class PenjualansController extends Controller
 	public function tambahpenjualan()
 	{
 		return view('la.penjualans.add');
+		
 	}
 	
 	/**
