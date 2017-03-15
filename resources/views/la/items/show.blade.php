@@ -114,6 +114,7 @@
 						@la_display($module, 'wholesale_carton')
 						@la_display($module, 'retail_kg')
 						@la_display($module, 'tipe')
+						@la_display($module, 'nama_jenis')
 					</div>
 				</div>
 			</div>
