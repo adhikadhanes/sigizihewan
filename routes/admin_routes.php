@@ -107,5 +107,9 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/warehouses', 'LA\WarehousesController');
 	Route::get(config('laraadmin.adminRoute') . '/warehouse_dt_ajax', 'LA\WarehousesController@dtajax');
 
+	/* ================== Relations ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/relations', 'LA\RelationsController');
+	Route::get(config('laraadmin.adminRoute') . '/relation_dt_ajax', 'LA\RelationsController@dtajax');
+
 
 });
