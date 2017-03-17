@@ -46,9 +46,9 @@ class PenjualansController extends Controller
 
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
 		return view('la.penjualans.add', compact('jenisList'));
-		
+
 	}
-	
+
 	/**
 	 * Display a listing of the Penjualans.
 	 *
@@ -57,7 +57,7 @@ class PenjualansController extends Controller
 	public function index()
 	{
 		$module = Module::get('Penjualans');
-		
+
 		if(Module::hasAccess($module->id)) {
 			return View('la.penjualans.index', [
 				'show_actions' => $this->show_action,
@@ -81,8 +81,8 @@ class PenjualansController extends Controller
 
 	public function penjualantest()
 	{
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
-		return view('la.penjualans.penjualan123', compact('jenisList'));
+		$jenisList = Item::all();
+		return $jenisList;
 	}
 
 	/**
@@ -94,19 +94,19 @@ class PenjualansController extends Controller
 	public function store(Request $request)
 	{
 		if(Module::hasAccess("Penjualans", "create")) {
-		
+
 			$rules = Module::validateRules("Penjualans", $request);
-			
+
 			$validator = Validator::make($request->all(), $rules);
-			
+
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
-			
+
 			$insert_id = Module::insert("Penjualans", $request);
-			
+
 			return redirect()->route(config('laraadmin.adminRoute') . '.penjualans.index');
-			
+
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -121,12 +121,12 @@ class PenjualansController extends Controller
 	public function show($id)
 	{
 		if(Module::hasAccess("Penjualans", "view")) {
-			
+
 			$penjualan = Penjualan::find($id);
 			if(isset($penjualan->id)) {
 				$module = Module::get('Penjualans');
 				$module->row = $penjualan;
-				
+
 				return view('la.penjualans.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
@@ -152,13 +152,13 @@ class PenjualansController extends Controller
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("Penjualans", "edit")) {			
+		if(Module::hasAccess("Penjualans", "edit")) {
 			$penjualan = Penjualan::find($id);
-			if(isset($penjualan->id)) {	
+			if(isset($penjualan->id)) {
 				$module = Module::get('Penjualans');
-				
+
 				$module->row = $penjualan;
-				
+
 				return view('la.penjualans.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
@@ -184,19 +184,19 @@ class PenjualansController extends Controller
 	public function update(Request $request, $id)
 	{
 		if(Module::hasAccess("Penjualans", "edit")) {
-			
+
 			$rules = Module::validateRules("Penjualans", $request, true);
-			
+
 			$validator = Validator::make($request->all(), $rules);
-			
+
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
-			
+
 			$insert_id = Module::updateRow("Penjualans", $request, $id);
-			
+
 			return redirect()->route(config('laraadmin.adminRoute') . '.penjualans.index');
-			
+
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -212,14 +212,14 @@ class PenjualansController extends Controller
 	{
 		if(Module::hasAccess("Penjualans", "delete")) {
 			Penjualan::find($id)->delete();
-			
+
 			// Redirecting to index() method
 			return redirect()->route(config('laraadmin.adminRoute') . '.penjualans.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
 	}
-	
+
 	/**
 	 * Datatable Ajax fetch
 	 *
@@ -232,9 +232,9 @@ class PenjualansController extends Controller
 		$data = $out->getData();
 
 		$fields_popup = ModuleFields::getModuleFields('Penjualans');
-		
+
 		for($i=0; $i < count($data->data); $i++) {
-			for ($j=0; $j < count($this->listing_cols); $j++) { 
+			for ($j=0; $j < count($this->listing_cols); $j++) {
 				$col = $this->listing_cols[$j];
 				if($fields_popup[$col] != null && starts_with($fields_popup[$col]->popup_vals, "@")) {
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
@@ -246,13 +246,13 @@ class PenjualansController extends Controller
 				//    $data->data[$i][$j];
 				// }
 			}
-			
+
 			if($this->show_action) {
 				$output = '';
 				if(Module::hasAccess("Penjualans", "edit")) {
 					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/penjualans/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
-				
+
 				if(Module::hasAccess("Penjualans", "delete")) {
 					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.penjualans.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
