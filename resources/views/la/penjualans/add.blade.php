@@ -29,7 +29,6 @@
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
  </head>
 
-
 <div class="box box-success box-solid">
 	<div class="box-header ">TAMBAH PENJUALAN</div>
 	<div class="box-body ">
@@ -95,22 +94,21 @@
 </div>
 
 <div class="box box-info box-solid">
-	<div class="box-header ">TAMBAH TALLY</div>
+	<div class="box-header ">DAFTAR BARANG</div>
 	<div class="box-body ">
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-12">
 			Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
 		</div>
-	</div>
-	<br />
+	</div> -->
 
 	<div id="container"/>
 	</div>
 
-                <div class="form-group">
-                     <form name="add_name" id="add_name">
-                          <div class="table-responsive">
-                               <table class="table" id="dynamic_field">
+                <div class="form-group">  
+                     <form name="add_name" id="add_name">  
+                          <div class="table-responsive">  
+                               <table class="table">  
                                     <tr>
                                     	<td>Jenis Daging</td>
                                     	<td>Merk Daging</td>
@@ -120,11 +118,26 @@
                                     	<td>Aksi</td>
                                     </tr>
 
+                                    <?php $i = 1; ?>
+                                    <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
+
                                </table>
-                               <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
-                          </div>
-                     </form>
-                </div>
+                               <table class="table" id="dynamic_field">  
+                                  <tr>
+                                      <td>Jenis Daging</td>
+                                      <td>Merk Daging</td>
+                                      <td>Berat (KG)</td>
+                                      <td>Karton</td>
+                                      <td>Harga / KG</td>
+                                      <td>Aksi</td>
+                                    </tr>
+
+                               </table>
+
+                               <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />  
+                          </div>  
+                     </form>  
+                </div>  
 
 
 
@@ -154,15 +167,16 @@
 	</div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 @endla_access
 
+
 @endsection
 
-@push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
+@push('scripts')
 <script>
  $(document).ready(function(){
       var i = 0;
@@ -180,23 +194,32 @@
            $('#dynamic_field').append(
            	'<tr id="row'+i+'"><td>'+dropdown+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
       });
+
       $(document).on('click', '.btn_remove', function(){
            var button_id = $(this).attr("id");
            $('#row'+button_id+'').remove();
       });
 
-      $('#submit').click(function(){
-           $.ajax({
-                url:"name.php",
-                method:"POST",
-                data:$('#add_name').serialize(),
-                success:function(data)
-                {
-                     alert(data);
-                     $('#add_name')[0].reset();
-                }
-           });
-      });
+      var i=0;
+
+      $('#test').click(function(){  
+              var jd =  document.getElementById("jd").value;  
+              console.log(jd);
+              var md = document.getElementById("md").value;
+              var br = document.getElementById("br").value;
+              var kr = document.getElementById("kr").value;
+              var hk = document.getElementById("hk").value;
+
+              document.getElementById("jd").value = "";
+              document.getElementById("md").value = "";
+              document.getElementById("br").value = "";
+              document.getElementById("kr").value = "";
+              document.getElementById("hk").value = "";
+
+           i++;  
+           $('#dynamic_field').append(
+            '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td>  <td><input type="text" value="'+br+'"  name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" value="'+kr+'"  name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" value="'+hk+'" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+      }); 
 
       $(function () {
           var np = $('select[name="nama_pembeli"]');
@@ -218,7 +241,5 @@
  });
 
  </script>
-
-
 
 @endpush
