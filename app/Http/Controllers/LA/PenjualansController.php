@@ -13,11 +13,13 @@ use Auth;
 use DB;
 use Validator;
 use Datatables;
+use App\Models\Tally;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
 use App\Models\Penjualan;
+use Illuminate\Support\Facades\Input;
 use App\Models\Item;
 
 class PenjualansController extends Controller
@@ -110,6 +112,29 @@ class PenjualansController extends Controller
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
+	}
+
+	public function storeTally(Request $request)
+	{
+		// $requestData = $request->all();
+        
+		$number = 10;
+
+		// for (i=0; i<$number; i++){
+		$data = array(
+			'jenis_daging' => Input::get('jenis_daging'),
+			'merk_daging' => Input::get('merk_daging'),
+			'berat' => Input::get('berat'),
+			'karton' => Input::get('karton'),
+			'harga_kg' => '1',
+		);
+
+		DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['jenis_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+
+		// };
+
+        return "success";
+        // return var_dump($requestData);
 	}
 
 	/**

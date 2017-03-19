@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::post('/storeTally','LA\PenjualansController@storeTally');
 Route::get('/penjualantest', 'LA\PenjualansController@penjualantest');
 
 /* ================== Homepage + Admin Routes ================== */

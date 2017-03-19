@@ -24,6 +24,8 @@
     </div>
 @endif
 
+
+
 <div class="box box-success box-solid">
 	<div class="box-header ">TAMBAH PENJUALAN</div>
 	<div class="box-body ">
@@ -95,11 +97,13 @@
 
 	<div id="container"/>
 	</div>
+{!! Form::open(['url' => '/storeTally', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group">  
                      <form name="add_name" id="add_name">  
                           <div class="table-responsive">  
                                <table class="table" id="dynamic_field">  
+                                    
                                     <tr>
                                     	<td>Jenis Daging</td>
                                     	<td>Merk Daging</td>
@@ -110,38 +114,13 @@
                                     </tr>
 
                                </table>  
-                               <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />  
+                               <!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />   -->
+                               {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
                           </div>  
                      </form>  
                 </div>  
 
-
-
-@la_access("Penjualans", "create")
-<div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Penjualan</h4>
-			</div>
-			<!-- {!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!} -->
-			<div class="modal-body">
-				<div class="box-body">
-                    
-	                {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S') }}
-
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
-			</div>
-			{!! Form::close() !!}
-		</div>
-	</div>
-</div>
-@endla_access
+{!! Form::close() !!}
 
 @endsection
 
@@ -154,13 +133,10 @@ function addinputFields(){
     for (i=0;i<number;i++){
  
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           	'<tr id="row'+i+'"><td><input type="text" name="jenis_daging" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="merk_daging" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="berat" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="karton" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="harga_kg" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
 
     }
 }
-
-
-
 </script>
 <script>  
  $(document).ready(function(){  
