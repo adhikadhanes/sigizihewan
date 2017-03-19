@@ -116,25 +116,35 @@ class PenjualansController extends Controller
 
 	public function storeTally(Request $request)
 	{
-		// $requestData = $request->all();
-        
-		$number = 10;
 
-		// for (i=0; i<$number; i++){
-		$data = array(
-			'jenis_daging' => Input::get('jenis_daging'),
-			'merk_daging' => Input::get('merk_daging'),
-			'berat' => Input::get('berat'),
-			'karton' => Input::get('karton'),
-			'harga_kg' => '1',
-		);
+		// for ($i=0; $i <= $request->jenis_daging; $i++) {
+		// 	$tally = new Tally;
+		// 	$tally->jenis_daging = $request->get("jenis_daging");
+		// 	$tally->merk_daging = $request->get("merk_daging");
+		// 	$tally->berat = $request->get("berat");
+		// 	$tally->karton = $request->get("karton");
+		// 	$tally->save();
+		// 	return var_dump($tally);
+		// }
 
-		DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['jenis_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+		$nomor = $request->nomor;
 
-		// };
+		for ($i=0; $i <= $nomor; $i++) {
+			$data = array(
+				'jenis_daging' => Input::get('jenis_daging'.$i),
+				'merk_daging' => Input::get('merk_daging'.$i),
+				'berat' => Input::get('berat'.$i),
+				'karton' => Input::get('karton'.$i),
+				'harga_kg' => '1',
+			);
 
-        return "success";
-        // return var_dump($requestData);
+        // return var_dump($data);
+
+		DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+
+		return "success";
+
+		}
 	}
 
 	/**
