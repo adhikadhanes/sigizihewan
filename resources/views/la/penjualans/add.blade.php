@@ -203,7 +203,7 @@
 
            i++;  
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td>  <td><input type="text" value="'+br+'"  name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" value="'+kr+'"  name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" value="'+hk+'" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="jenis_daging'+i+'" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="merk_daging'+i+'" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td><td><input type="text" name="berat'+i+'" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="text" name="karton'+i+'" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="text" name="harga_kg'+i+'" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       }); 
 
  });
