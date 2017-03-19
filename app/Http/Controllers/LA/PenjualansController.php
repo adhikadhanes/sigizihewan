@@ -123,16 +123,6 @@ class PenjualansController extends Controller
 	public function storeTally(Request $request)
 	{
 
-		// for ($i=0; $i <= $request->jenis_daging; $i++) {
-		// 	$tally = new Tally;
-		// 	$tally->jenis_daging = $request->get("jenis_daging");
-		// 	$tally->merk_daging = $request->get("merk_daging");
-		// 	$tally->berat = $request->get("berat");
-		// 	$tally->karton = $request->get("karton");
-		// 	$tally->save();
-		// 	return var_dump($tally);
-		// }
-
 		$nomor = $request->nomor;
 
 		for ($i=0; $i <= $nomor; $i++) {
@@ -143,8 +133,6 @@ class PenjualansController extends Controller
 				'karton' => Input::get('karton'.$i),
 				'harga_kg' => '1',
 			);
-
-        // return var_dump($data);
 
 		DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
 

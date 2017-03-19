@@ -96,17 +96,8 @@
 <div class="box box-info box-solid">
 	<div class="box-header ">DAFTAR BARANG</div>
 	<div class="box-body ">
-	<!-- <div class="row">
-		<div class="col-md-12">
-			Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
-		</div>
-	</div> -->
 
-	<div id="container"/>
-	</div>
-
-                <div class="form-group">  
-                     <form name="add_name" id="add_name">  
+                
                           <div class="table-responsive">  
                                <table class="table">  
                                     <tr>
@@ -119,11 +110,12 @@
                                     </tr>
 
                                     <?php $i = 1; ?>
-                                    <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
+                                    <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td>
+                                    {{ Form::select("item", $merkList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "md", "name" => "md"]) }}</td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
                                </table>
 
-{!! Form::open(['url' => '/storeTally', 'class' => 'form-horizontal']) !!}
+                          {!! Form::open(['url' => '/storeTally', 'class' => 'form-horizontal']) !!}
                                <table class="table" id="dynamic_field">  
                                   <tr>
                                       <td>Jenis Daging</td>
@@ -136,12 +128,13 @@
 
                                </table>
 
-                               <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />  
-                          </div>  
-                     </form>  
-                </div>  
+                               {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control pull-right']) !!}
 
-{!! Form::close() !!}
+                          </div>  
+                          {!! Form::close() !!}
+                     </form>  
+                 
+
 
 
 @la_access("Penjualans", "create")
@@ -152,7 +145,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Penjualan</h4>
 			</div>
-			<!-- {!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!} -->
+			{!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
 
@@ -192,7 +185,6 @@
 
       $('#test').click(function(){  
               var jd =  document.getElementById("jd").value;  
-              console.log(jd);
               var md = document.getElementById("md").value;
               var br = document.getElementById("br").value;
               var kr = document.getElementById("kr").value;
@@ -206,7 +198,7 @@
 
            i++;  
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="jenis_daging'+i+'" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="merk_daging'+i+'" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td><td><input type="text" name="berat'+i+'" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="text" name="karton'+i+'" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="text" name="harga_kg'+i+'" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="jenis_daging'+i+'" value="'+jd+'" placeholder="Jenis Daging" class="form-control" disabled/>'+'</td><td><input type="text" name="merk_daging'+i+'" value="'+md+'" placeholder="Merk Daging" class="form-control name_list" disabled/></td><td><input type="text" name="berat'+i+'" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="text" name="karton'+i+'" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="text" name="harga_kg'+i+'" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       }); 
 
  });
