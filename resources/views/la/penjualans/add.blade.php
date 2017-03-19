@@ -179,21 +179,6 @@
 @push('scripts')
 <script>
  $(document).ready(function(){
-      var i = 0;
-      var jenisList = {!! json_encode($jenisList) !!};
-      var dropdown = "<select name = 'coba' class = 'selectpicker form-control'  data-show-subtext = 'true' data-live-search = 'true'> ";
-
-      for (var n in jenisList) {
-        dropdown += "<option value='"+n[0]+"'>"+n+"</option>";
-      }
-      dropdown = dropdown + "</select>";
-      document.getElementById("demo").innerHTML = dropdown;
-
-      $('#add').click(function(){
-           i++;
-           $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td>'+dropdown+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-      });
 
       $(document).on('click', '.btn_remove', function(){
            var button_id = $(this).attr("id");
@@ -221,23 +206,6 @@
             '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td>  <td><input type="text" value="'+br+'"  name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" value="'+kr+'"  name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" value="'+hk+'" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       }); 
 
-      $(function () {
-          var np = $('select[name="nama_pembeli"]');
-          np.prop('disabled', false);
-
-          $("#nama_pembeli_retail").prop('disabled', false);
-
-          $('select[name ="nama_pembeli"]').change(function () {
-              $("#nama_pembeli_retail").prop('disabled', true);
-          });
-          $("#nama_pembeli_retail").keyup(function () {
-              np.prop('disabled', true);
-          });
-
-      });
-
-             // document.getElementById("nama_pembeli").attr('disabled',true);
-             // document.getElementById("nama_pembeli_retail").attr('disabled',true);
  });
 
  </script>
