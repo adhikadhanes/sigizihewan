@@ -38,7 +38,12 @@
 					@la_input($module, 'kg_carton')
 					@la_input($module, 'wholesale_kg')
 					@la_input($module, 'wholesale_carton')
+					@la_input($module, 'wr_cakung')
 					@la_input($module, 'retail_kg')
+					@la_input($module, 'whole_kg_cimuning')
+					@la_input($module, 'whole_crt_cimuning')
+					@la_input($module, 'wr_cimuning')
+					@la_input($module, 'retail_kg_cimuning')
 					@la_input($module, 'tipe')
 					@la_input($module, 'nama_jenis')
 					--}}
