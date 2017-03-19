@@ -53,6 +53,12 @@ class PenjualansController extends Controller
 		
 	}
 	
+		public function autocomplete(Request $request)
+    {
+        $data = Item::select("title as name")->where("nama_jenis","LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);
+    }
+
 	/**
 	 * Display a listing of the Penjualans.
 	 *
