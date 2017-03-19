@@ -20,6 +20,7 @@ use Dwij\Laraadmin\Models\ModuleFields;
 use App\Models\Penjualan;
 use App\Models\Item;
 
+
 class PenjualansController extends Controller
 {
 	public $show_action = true;
@@ -85,6 +86,7 @@ class PenjualansController extends Controller
 		//
 	}
 
+	//buat belajar
 	public function penjualantest()
 	{
 		$jenisList = Item::all();
