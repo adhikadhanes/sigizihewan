@@ -142,9 +142,9 @@ class PenjualansController extends Controller
 
 		DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
 
-		return "success";
-
 		}
+
+		return "success";
 	}
 
 	/**

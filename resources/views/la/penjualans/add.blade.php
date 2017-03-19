@@ -133,7 +133,7 @@ function addinputFields(){
     for (i=0;i<number;i++){
  
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /></td><td><input type="text" name="jenis_daging'+i+'" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="merk_daging'+i+'" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="berat'+i+'" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="karton'+i+'" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="harga_kg'+i+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           	'<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td><input type="text" name="jenis_daging'+i+'" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="merk_daging'+i+'" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="berat'+i+'" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="karton'+i+'" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="harga_kg'+i+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
 
     }
 }
