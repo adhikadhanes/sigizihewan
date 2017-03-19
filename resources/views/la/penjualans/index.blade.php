@@ -8,8 +8,10 @@
 
 @section("headerElems")
 @la_access("Penjualans", "create")
-<button class="btn btn-success btn-sm " data-toggle="modal" data-target="#AddModal">Add Penjualan</button> | 
+<button class="btn btn-success btn-sm " data-toggle="modal" data-target="#AddModal">Add Penjualan</button> |
 	<a href="tambahpenjualan" class="btn btn-info" role="button">Tambah Penjualan</a>
+	<a href="tambahpenjualanretail" class="btn btn-info" role="button">Tambah Penjualan Retail</a>
+
 @endla_access
 @endsection
 
@@ -40,7 +42,7 @@
 		</tr>
 		</thead>
 		<tbody>
-			
+
 		</tbody>
 		</table>
 	</div>
@@ -58,7 +60,7 @@
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
-					
+
 					{{--
 					@la_input($module, 'tgl_penjualan')
 					@la_input($module, 'nama_pembeli')
@@ -106,7 +108,7 @@ $(function () {
 		@endif
 	});
 	$("#penjualan-add-form").validate({
-		
+
 	});
 });
 </script>
