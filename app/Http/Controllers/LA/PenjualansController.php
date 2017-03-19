@@ -18,7 +18,7 @@ use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
 use App\Models\Penjualan;
-use App\Models\Item;
+use App\Models\Jeni;
 
 
 class PenjualansController extends Controller
@@ -45,7 +45,7 @@ class PenjualansController extends Controller
 	public function tambahpenjualan()
 	{
 
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$jenisList = Jeni::pluck('nama', 'id')->all();
 		return view('la.penjualans.add', compact('jenisList'));
 
 	}

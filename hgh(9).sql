@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 05 Mar 2017 pada 16.34
--- Versi Server: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Mar 19, 2017 at 06:04 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `backups`
+-- Table structure for table `backups`
 --
 
 CREATE TABLE `backups` (
@@ -39,7 +39,7 @@ CREATE TABLE `backups` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `departments`
+-- Table structure for table `departments`
 --
 
 CREATE TABLE `departments` (
@@ -53,7 +53,7 @@ CREATE TABLE `departments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `departments`
+-- Dumping data for table `departments`
 --
 
 INSERT INTO `departments` (`id`, `name`, `tags`, `color`, `deleted_at`, `created_at`, `updated_at`) VALUES
@@ -67,7 +67,7 @@ INSERT INTO `departments` (`id`, `name`, `tags`, `color`, `deleted_at`, `created
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `employees`
+-- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
@@ -91,7 +91,7 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `employees`
+-- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`id`, `name`, `designation`, `gender`, `mobile`, `mobile2`, `email`, `dept`, `city`, `address`, `about`, `date_birth`, `date_hire`, `date_left`, `deleted_at`, `created_at`, `updated_at`) VALUES
@@ -102,7 +102,7 @@ INSERT INTO `employees` (`id`, `name`, `designation`, `gender`, `mobile`, `mobil
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gudangs`
+-- Table structure for table `gudangs`
 --
 
 CREATE TABLE `gudangs` (
@@ -118,7 +118,7 @@ CREATE TABLE `gudangs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `gudangs`
+-- Dumping data for table `gudangs`
 --
 
 INSERT INTO `gudangs` (`id`, `deleted_at`, `created_at`, `updated_at`, `name`, `alamat`, `stok`, `telefon`, `gambar`) VALUES
@@ -128,7 +128,7 @@ INSERT INTO `gudangs` (`id`, `deleted_at`, `created_at`, `updated_at`, `name`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `items`
+-- Table structure for table `items`
 --
 
 CREATE TABLE `items` (
@@ -143,24 +143,31 @@ CREATE TABLE `items` (
   `wholesale_carton` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `retail_kg` decimal(15,3) NOT NULL DEFAULT '0.000',
   `tipe` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `nama_jenis` varchar(256) COLLATE utf8_unicode_ci NOT NULL
+  `nama_jenis` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `whole_kg_cimuning` decimal(15,3) NOT NULL,
+  `whole_crt_cimuning` int(10) UNSIGNED NOT NULL,
+  `retail_kg_cimuning` decimal(15,3) NOT NULL,
+  `wr_cakung` decimal(15,3) NOT NULL,
+  `wr_cimuning` decimal(15,3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `items`
+-- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `deleted_at`, `created_at`, `updated_at`, `jenis`, `merk`, `kg_carton`, `wholesale_kg`, `wholesale_carton`, `retail_kg`, `tipe`, `nama_jenis`) VALUES
-(1, NULL, '2017-02-19 06:47:59', '2017-02-19 06:52:12', 1, 2, '18.000', '0.000', 0, '0.000', 'Wholesale', ''),
-(2, NULL, '2017-03-05 01:14:42', '2017-03-05 01:14:42', 2, 4, '100.000', '100.000', 100, '100.000', 'Wholesale', ''),
-(3, NULL, '2017-03-05 01:24:40', '2017-03-05 01:24:40', 1, 1, '0.000', '0.000', 0, '0.000', 'Wholesale', 'B 11 FQ Slice'),
-(4, '2017-03-05 01:55:58', '2017-03-05 01:55:51', '2017-03-05 01:55:58', 1, 1, '0.000', '0.000', 0, '0.000', 'Wholesale', ''),
-(5, '2017-03-05 01:56:08', '2017-03-05 01:56:05', '2017-03-05 01:56:08', 1, 1, '0.000', '0.000', 0, '0.000', 'Wholesale', '');
+INSERT INTO `items` (`id`, `deleted_at`, `created_at`, `updated_at`, `jenis`, `merk`, `kg_carton`, `wholesale_kg`, `wholesale_carton`, `retail_kg`, `tipe`, `nama_jenis`, `whole_kg_cimuning`, `whole_crt_cimuning`, `retail_kg_cimuning`, `wr_cakung`, `wr_cimuning`) VALUES
+(1, NULL, '2017-02-19 06:47:59', '2017-02-19 06:52:12', 1, 2, '18.000', '0.000', 0, '0.000', 'Wholesale', '', '0.000', 0, '0.000', '0.000', '0.000'),
+(2, NULL, '2017-03-05 01:14:42', '2017-03-05 01:14:42', 2, 4, '100.000', '100.000', 100, '100.000', 'Wholesale', '', '0.000', 0, '0.000', '0.000', '0.000'),
+(3, NULL, '2017-03-05 01:24:40', '2017-03-05 01:24:40', 1, 1, '0.000', '0.000', 0, '0.000', 'Wholesale', 'B 11 FQ Slice', '0.000', 0, '0.000', '0.000', '0.000'),
+(4, '2017-03-05 01:55:58', '2017-03-05 01:55:51', '2017-03-05 01:55:58', 1, 1, '0.000', '0.000', 0, '0.000', 'Wholesale', '', '0.000', 0, '0.000', '0.000', '0.000'),
+(5, '2017-03-05 01:56:08', '2017-03-05 01:56:05', '2017-03-05 01:56:08', 1, 1, '0.000', '0.000', 0, '0.000', 'Wholesale', '', '0.000', 0, '0.000', '0.000', '0.000'),
+(6, NULL, '2017-03-15 00:22:18', '2017-03-15 00:22:18', 1, 1, '100.000', '100.000', 100, '100.000', 'Wholesale', 'testing', '100.000', 100, '100.000', '0.000', '0.000'),
+(7, NULL, '2017-03-15 00:23:12', '2017-03-15 00:23:12', 1, 1, '1000.000', '1000.000', 998, '0.000', 'Wholesale', '', '0.000', 0, '0.000', '0.000', '0.000');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis`
+-- Table structure for table `jenis`
 --
 
 CREATE TABLE `jenis` (
@@ -172,7 +179,7 @@ CREATE TABLE `jenis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `jenis`
+-- Dumping data for table `jenis`
 --
 
 INSERT INTO `jenis` (`id`, `deleted_at`, `created_at`, `updated_at`, `nama`) VALUES
@@ -182,7 +189,7 @@ INSERT INTO `jenis` (`id`, `deleted_at`, `created_at`, `updated_at`, `nama`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `la_configs`
+-- Table structure for table `la_configs`
 --
 
 CREATE TABLE `la_configs` (
@@ -195,7 +202,7 @@ CREATE TABLE `la_configs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `la_configs`
+-- Dumping data for table `la_configs`
 --
 
 INSERT INTO `la_configs` (`id`, `key`, `section`, `value`, `created_at`, `updated_at`) VALUES
@@ -216,7 +223,7 @@ INSERT INTO `la_configs` (`id`, `key`, `section`, `value`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `la_menus`
+-- Table structure for table `la_menus`
 --
 
 CREATE TABLE `la_menus` (
@@ -232,7 +239,7 @@ CREATE TABLE `la_menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `la_menus`
+-- Dumping data for table `la_menus`
 --
 
 INSERT INTO `la_menus` (`id`, `name`, `url`, `icon`, `type`, `parent`, `hierarchy`, `created_at`, `updated_at`) VALUES
@@ -256,7 +263,7 @@ INSERT INTO `la_menus` (`id`, `name`, `url`, `icon`, `type`, `parent`, `hierarch
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `merks`
+-- Table structure for table `merks`
 --
 
 CREATE TABLE `merks` (
@@ -268,7 +275,7 @@ CREATE TABLE `merks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `merks`
+-- Dumping data for table `merks`
 --
 
 INSERT INTO `merks` (`id`, `deleted_at`, `created_at`, `updated_at`, `nama`) VALUES
@@ -280,7 +287,7 @@ INSERT INTO `merks` (`id`, `deleted_at`, `created_at`, `updated_at`, `nama`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -290,7 +297,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -316,7 +323,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `modules`
+-- Table structure for table `modules`
 --
 
 CREATE TABLE `modules` (
@@ -334,7 +341,7 @@ CREATE TABLE `modules` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `modules`
+-- Dumping data for table `modules`
 --
 
 INSERT INTO `modules` (`id`, `name`, `label`, `name_db`, `view_col`, `model`, `controller`, `fa_icon`, `is_gen`, `created_at`, `updated_at`) VALUES
@@ -358,7 +365,7 @@ INSERT INTO `modules` (`id`, `name`, `label`, `name_db`, `view_col`, `model`, `c
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `module_fields`
+-- Table structure for table `module_fields`
 --
 
 CREATE TABLE `module_fields` (
@@ -379,7 +386,7 @@ CREATE TABLE `module_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `module_fields`
+-- Dumping data for table `module_fields`
 --
 
 INSERT INTO `module_fields` (`id`, `colname`, `label`, `module`, `field_type`, `unique`, `defaultvalue`, `minlength`, `maxlength`, `required`, `popup_vals`, `sort`, `created_at`, `updated_at`) VALUES
@@ -439,13 +446,13 @@ INSERT INTO `module_fields` (`id`, `colname`, `label`, `module`, `field_type`, `
 (59, 'status', 'Status', 11, 7, 0, '', 0, 0, 1, '["Tersedia","Digunakan"]', 0, '2017-02-08 01:19:32', '2017-02-08 01:19:32'),
 (60, 'nama', 'Nama', 12, 16, 1, '', 0, 256, 1, '', 0, '2017-02-19 05:58:37', '2017-02-19 05:58:37'),
 (67, 'nama', 'Nama', 15, 16, 0, '', 0, 256, 1, '', 0, '2017-02-19 06:32:08', '2017-02-19 06:32:08'),
-(68, 'jenis', 'Jenis', 16, 7, 0, '', 0, 0, 1, '@jenis', 0, '2017-02-19 06:36:15', '2017-02-19 06:36:15'),
-(69, 'merk', 'Merk', 16, 7, 0, '', 0, 0, 1, '@merks', 0, '2017-02-19 06:37:28', '2017-02-19 06:37:28'),
-(70, 'kg_carton', 'KG / carton', 16, 6, 0, '', 0, 11, 0, '', 0, '2017-02-19 06:38:03', '2017-02-19 06:38:03'),
-(71, 'wholesale_kg', 'Wholesale KG', 16, 6, 0, '0', 0, 11, 1, '', 0, '2017-02-19 06:40:14', '2017-02-19 06:40:14'),
-(72, 'wholesale_carton', 'Wholesale Carton', 16, 13, 0, '0', 0, 11, 1, '', 0, '2017-02-19 06:40:45', '2017-02-19 06:40:45'),
-(73, 'retail_kg', 'Retail KG', 16, 6, 0, '0', 0, 11, 1, '', 0, '2017-02-19 06:41:45', '2017-02-19 06:41:45'),
-(74, 'tipe', 'Tipe', 16, 7, 0, '', 0, 0, 1, '["Wholesale","Retail"]', 0, '2017-02-19 06:51:59', '2017-02-19 06:51:59'),
+(68, 'jenis', 'Jenis', 16, 7, 0, '', 0, 0, 1, '@jenis', 1, '2017-02-19 06:36:15', '2017-02-19 06:36:15'),
+(69, 'merk', 'Merk', 16, 7, 0, '', 0, 0, 1, '@merks', 2, '2017-02-19 06:37:28', '2017-02-19 06:37:28'),
+(70, 'kg_carton', 'Berat per Carton', 16, 6, 0, '', 0, 11, 0, '', 3, '2017-02-19 06:38:03', '2017-03-18 22:03:33'),
+(71, 'wholesale_kg', 'Whole Cakung (KG)', 16, 6, 0, '', 0, 11, 0, '', 4, '2017-02-19 06:40:14', '2017-03-18 21:59:48'),
+(72, 'wholesale_carton', 'Whole Cakung (CRT)', 16, 13, 0, '', 0, 11, 0, '', 5, '2017-02-19 06:40:45', '2017-03-18 22:00:17'),
+(73, 'retail_kg', 'Retail Cakung (KG)', 16, 6, 0, '0', 0, 11, 0, '', 7, '2017-02-19 06:41:45', '2017-03-18 22:00:27'),
+(74, 'tipe', 'Tipe', 16, 7, 0, '', 0, 0, 1, '["Wholesale","Retail"]', 12, '2017-02-19 06:51:59', '2017-02-19 06:51:59'),
 (76, 'tgl_penjualan', 'Tgl Penjualan', 17, 4, 0, '', 0, 0, 0, '', 0, '2017-03-02 04:28:42', '2017-03-02 04:34:49'),
 (77, 'nama_pembeli', 'Nama Pembeli', 17, 16, 0, '', 0, 256, 0, '', 0, '2017-03-02 04:31:10', '2017-03-02 04:36:14'),
 (78, 'nama_pembeli_retail', 'Nama Pembeli Retail', 17, 16, 0, '', 0, 256, 0, '', 0, '2017-03-02 04:31:35', '2017-03-02 04:36:10'),
@@ -468,18 +475,23 @@ INSERT INTO `module_fields` (`id`, `colname`, `label`, `module`, `field_type`, `
 (95, 'penjualan', 'Penjualan', 19, 7, 0, '', 0, 0, 0, '@penjualans', 0, '2017-03-02 05:58:05', '2017-03-02 05:58:05'),
 (96, 'order_id', 'IDPO', 17, 19, 0, '', 0, 256, 0, '', 0, '2017-03-02 05:59:17', '2017-03-02 05:59:17'),
 (97, 'pembelian', 'Pembelian', 19, 7, 0, '', 0, 0, 0, '["1","2","3"]', 0, '2017-03-02 06:01:31', '2017-03-02 06:01:31'),
-(98, 'nama_jenis', 'Nama Jenis', 16, 16, 0, '', 0, 256, 0, '', 0, '2017-03-05 01:22:47', '2017-03-05 01:22:47'),
+(98, 'nama_jenis', 'Nama Jenis', 16, 16, 0, '', 0, 256, 0, '', 13, '2017-03-05 01:22:47', '2017-03-05 01:22:47'),
 (99, 'relation', 'Relation', 14, 7, 0, '', 0, 0, 1, '["Customer","Supplier","Customer & Supplier","Retail"]', 2, '2017-02-18 23:06:21', '2017-02-18 23:12:48'),
 (100, 'nama', 'Nama', 14, 16, 0, '', 0, 256, 1, '', 1, '2017-02-18 23:06:38', '2017-02-18 23:06:38'),
 (101, 'alamat', 'Alamat', 14, 1, 0, '', 0, 256, 1, '', 3, '2017-02-18 23:06:52', '2017-02-18 23:06:52'),
 (102, 'no_telepon', 'No. Telepon', 14, 14, 1, '', 0, 20, 1, '', 4, '2017-02-18 23:07:20', '2017-02-18 23:07:20'),
 (103, 'nama_bank', 'Nama Bank', 14, 16, 0, '', 0, 256, 1, '', 5, '2017-02-18 23:07:39', '2017-02-18 23:07:39'),
-(104, 'no_rekening', 'No. Rekening', 14, 19, 0, '', 0, 256, 1, '', 6, '2017-02-18 23:07:56', '2017-02-18 23:07:56');
+(104, 'no_rekening', 'No. Rekening', 14, 19, 0, '', 0, 256, 1, '', 6, '2017-02-18 23:07:56', '2017-02-18 23:07:56'),
+(105, 'whole_kg_cimuning', 'Whole Cimuning (KG)', 16, 6, 0, '', 0, 11, 0, '', 8, '2017-03-15 00:11:02', '2017-03-18 21:59:38'),
+(106, 'whole_crt_cimuning', 'Whole Cimuning (CRT)', 16, 13, 0, '', 0, 11, 0, '', 9, '2017-03-15 00:12:05', '2017-03-18 22:00:35'),
+(107, 'retail_kg_cimuning', 'Retail Cimuning (KG)', 16, 6, 0, '', 0, 11, 0, '', 11, '2017-03-15 00:15:23', '2017-03-18 22:00:44'),
+(108, 'wr_cakung', 'WR CAKUNG (KG)', 16, 6, 0, '', 0, 11, 0, '', 6, '2017-03-18 21:58:58', '2017-03-18 21:58:58'),
+(109, 'wr_cimuning', 'WR CIMUNING (KG)', 16, 6, 0, '', 0, 11, 0, '', 10, '2017-03-18 21:59:25', '2017-03-18 21:59:25');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `module_field_types`
+-- Table structure for table `module_field_types`
 --
 
 CREATE TABLE `module_field_types` (
@@ -490,7 +502,7 @@ CREATE TABLE `module_field_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `module_field_types`
+-- Dumping data for table `module_field_types`
 --
 
 INSERT INTO `module_field_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -522,7 +534,7 @@ INSERT INTO `module_field_types` (`id`, `name`, `created_at`, `updated_at`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `organizations`
+-- Table structure for table `organizations`
 --
 
 CREATE TABLE `organizations` (
@@ -546,7 +558,7 @@ CREATE TABLE `organizations` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -558,7 +570,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualans`
+-- Table structure for table `penjualans`
 --
 
 CREATE TABLE `penjualans` (
@@ -578,7 +590,7 @@ CREATE TABLE `penjualans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `penjualans`
+-- Dumping data for table `penjualans`
 --
 
 INSERT INTO `penjualans` (`id`, `deleted_at`, `created_at`, `updated_at`, `tgl_penjualan`, `nama_pembeli`, `nama_pembeli_retail`, `tanggal_penerimaan`, `cara_penerimaan`, `cara_pembayaran`, `tgl_jatuh_tempo`, `Gdg Pengiriman`, `order_id`) VALUES
@@ -591,7 +603,7 @@ INSERT INTO `penjualans` (`id`, `deleted_at`, `created_at`, `updated_at`, `tgl_p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permissions`
+-- Table structure for table `permissions`
 --
 
 CREATE TABLE `permissions` (
@@ -605,7 +617,7 @@ CREATE TABLE `permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `deleted_at`, `created_at`, `updated_at`) VALUES
@@ -614,7 +626,7 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `deleted
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permission_role`
+-- Table structure for table `permission_role`
 --
 
 CREATE TABLE `permission_role` (
@@ -623,7 +635,7 @@ CREATE TABLE `permission_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `permission_role`
+-- Dumping data for table `permission_role`
 --
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
@@ -639,7 +651,7 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `relations`
+-- Table structure for table `relations`
 --
 
 CREATE TABLE `relations` (
@@ -656,7 +668,7 @@ CREATE TABLE `relations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `relations`
+-- Dumping data for table `relations`
 --
 
 INSERT INTO `relations` (`id`, `deleted_at`, `created_at`, `updated_at`, `relation`, `nama`, `alamat`, `no_telepon`, `nama_bank`, `no_rekening`) VALUES
@@ -666,7 +678,7 @@ INSERT INTO `relations` (`id`, `deleted_at`, `created_at`, `updated_at`, `relati
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -682,7 +694,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `parent`, `dept`, `deleted_at`, `created_at`, `updated_at`) VALUES
@@ -698,7 +710,7 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `parent`, `dep
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role_module`
+-- Table structure for table `role_module`
 --
 
 CREATE TABLE `role_module` (
@@ -714,7 +726,7 @@ CREATE TABLE `role_module` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `role_module`
+-- Dumping data for table `role_module`
 --
 
 INSERT INTO `role_module` (`id`, `role_id`, `module_id`, `acc_view`, `acc_create`, `acc_edit`, `acc_delete`, `created_at`, `updated_at`) VALUES
@@ -801,7 +813,7 @@ INSERT INTO `role_module` (`id`, `role_id`, `module_id`, `acc_view`, `acc_create
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role_module_fields`
+-- Table structure for table `role_module_fields`
 --
 
 CREATE TABLE `role_module_fields` (
@@ -814,7 +826,7 @@ CREATE TABLE `role_module_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `role_module_fields`
+-- Dumping data for table `role_module_fields`
 --
 
 INSERT INTO `role_module_fields` (`id`, `role_id`, `field_id`, `access`, `created_at`, `updated_at`) VALUES
@@ -1287,12 +1299,17 @@ INSERT INTO `role_module_fields` (`id`, `role_id`, `field_id`, `access`, `create
 (486, 1, 101, 'write', '2017-02-18 23:06:52', '2017-02-18 23:06:52'),
 (487, 1, 102, 'write', '2017-02-18 23:07:20', '2017-02-18 23:07:20'),
 (488, 1, 103, 'write', '2017-02-18 23:07:40', '2017-02-18 23:07:40'),
-(489, 1, 104, 'write', '2017-02-18 23:07:56', '2017-02-18 23:07:56');
+(489, 1, 104, 'write', '2017-02-18 23:07:56', '2017-02-18 23:07:56'),
+(490, 1, 105, 'write', '2017-03-15 00:11:02', '2017-03-15 00:11:02'),
+(491, 1, 106, 'write', '2017-03-15 00:12:05', '2017-03-15 00:12:05'),
+(492, 1, 107, 'write', '2017-03-15 00:15:23', '2017-03-15 00:15:23'),
+(493, 1, 108, 'write', '2017-03-18 21:58:58', '2017-03-18 21:58:58'),
+(494, 1, 109, 'write', '2017-03-18 21:59:25', '2017-03-18 21:59:25');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role_user`
+-- Table structure for table `role_user`
 --
 
 CREATE TABLE `role_user` (
@@ -1304,7 +1321,7 @@ CREATE TABLE `role_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `role_user`
+-- Dumping data for table `role_user`
 --
 
 INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
@@ -1315,7 +1332,7 @@ INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tallies`
+-- Table structure for table `tallies`
 --
 
 CREATE TABLE `tallies` (
@@ -1334,7 +1351,7 @@ CREATE TABLE `tallies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `tallies`
+-- Dumping data for table `tallies`
 --
 
 INSERT INTO `tallies` (`id`, `deleted_at`, `created_at`, `updated_at`, `jenis_daging`, `merk_daging`, `berat`, `karton`, `harga_kg`, `tipe`, `penjualan`, `pembelian`) VALUES
@@ -1343,7 +1360,7 @@ INSERT INTO `tallies` (`id`, `deleted_at`, `created_at`, `updated_at`, `jenis_da
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `trucks`
+-- Table structure for table `trucks`
 --
 
 CREATE TABLE `trucks` (
@@ -1358,7 +1375,7 @@ CREATE TABLE `trucks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `trucks`
+-- Dumping data for table `trucks`
 --
 
 INSERT INTO `trucks` (`id`, `deleted_at`, `created_at`, `updated_at`, `name`, `nomor_polisi`, `kapasitas`, `status`) VALUES
@@ -1367,7 +1384,7 @@ INSERT INTO `trucks` (`id`, `deleted_at`, `created_at`, `updated_at`, `name`, `n
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `uploads`
+-- Table structure for table `uploads`
 --
 
 CREATE TABLE `uploads` (
@@ -1385,7 +1402,7 @@ CREATE TABLE `uploads` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `uploads`
+-- Dumping data for table `uploads`
 --
 
 INSERT INTO `uploads` (`id`, `name`, `path`, `extension`, `caption`, `user_id`, `hash`, `public`, `deleted_at`, `created_at`, `updated_at`) VALUES
@@ -1399,7 +1416,7 @@ INSERT INTO `uploads` (`id`, `name`, `path`, `extension`, `caption`, `user_id`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -1416,7 +1433,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `context_id`, `email`, `password`, `type`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
@@ -1650,7 +1667,7 @@ ALTER TABLE `gudangs`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `jenis`
 --
@@ -1685,7 +1702,7 @@ ALTER TABLE `modules`
 -- AUTO_INCREMENT for table `module_fields`
 --
 ALTER TABLE `module_fields`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 --
 -- AUTO_INCREMENT for table `module_field_types`
 --
@@ -1725,7 +1742,7 @@ ALTER TABLE `role_module`
 -- AUTO_INCREMENT for table `role_module_fields`
 --
 ALTER TABLE `role_module_fields`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=490;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=495;
 --
 -- AUTO_INCREMENT for table `role_user`
 --
@@ -1752,78 +1769,78 @@ ALTER TABLE `uploads`
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `employees`
+-- Constraints for table `employees`
 --
 ALTER TABLE `employees`
   ADD CONSTRAINT `employees_dept_foreign` FOREIGN KEY (`dept`) REFERENCES `departments` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `items`
+-- Constraints for table `items`
 --
 ALTER TABLE `items`
   ADD CONSTRAINT `items_jenis_foreign` FOREIGN KEY (`jenis`) REFERENCES `jenis` (`id`),
   ADD CONSTRAINT `items_merk_foreign` FOREIGN KEY (`merk`) REFERENCES `merks` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `module_fields`
+-- Constraints for table `module_fields`
 --
 ALTER TABLE `module_fields`
   ADD CONSTRAINT `module_fields_field_type_foreign` FOREIGN KEY (`field_type`) REFERENCES `module_field_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `module_fields_module_foreign` FOREIGN KEY (`module`) REFERENCES `modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `organizations`
+-- Constraints for table `organizations`
 --
 ALTER TABLE `organizations`
   ADD CONSTRAINT `organizations_assigned_to_foreign` FOREIGN KEY (`assigned_to`) REFERENCES `employees` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `penjualans`
+-- Constraints for table `penjualans`
 --
 ALTER TABLE `penjualans`
   ADD CONSTRAINT `penjualans_gdg pengiriman_foreign` FOREIGN KEY (`Gdg Pengiriman`) REFERENCES `gudangs` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `permission_role`
+-- Constraints for table `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `roles`
+-- Constraints for table `roles`
 --
 ALTER TABLE `roles`
   ADD CONSTRAINT `roles_dept_foreign` FOREIGN KEY (`dept`) REFERENCES `departments` (`id`),
   ADD CONSTRAINT `roles_parent_foreign` FOREIGN KEY (`parent`) REFERENCES `roles` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `role_module`
+-- Constraints for table `role_module`
 --
 ALTER TABLE `role_module`
   ADD CONSTRAINT `role_module_module_id_foreign` FOREIGN KEY (`module_id`) REFERENCES `modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `role_module_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `role_module_fields`
+-- Constraints for table `role_module_fields`
 --
 ALTER TABLE `role_module_fields`
   ADD CONSTRAINT `role_module_fields_field_id_foreign` FOREIGN KEY (`field_id`) REFERENCES `module_fields` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `role_module_fields_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `role_user`
+-- Constraints for table `role_user`
 --
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tallies`
+-- Constraints for table `tallies`
 --
 ALTER TABLE `tallies`
   ADD CONSTRAINT `tallies_jenis_daging_foreign` FOREIGN KEY (`jenis_daging`) REFERENCES `jenis` (`id`),
@@ -1831,7 +1848,7 @@ ALTER TABLE `tallies`
   ADD CONSTRAINT `tallies_penjualan_foreign` FOREIGN KEY (`penjualan`) REFERENCES `penjualans` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `uploads`
+-- Constraints for table `uploads`
 --
 ALTER TABLE `uploads`
   ADD CONSTRAINT `uploads_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
