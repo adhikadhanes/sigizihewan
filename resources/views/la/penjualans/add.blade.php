@@ -24,6 +24,11 @@
     </div>
 @endif
 
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+ </head>
+
 <div class="box box-success box-solid">
 	<div class="box-header ">TAMBAH PENJUALAN</div>
 	<div class="box-body ">
@@ -55,7 +60,7 @@
   </tr>
 </table>
 
-		
+
 		</div>
 <div class="col-md-6">
 <table>
@@ -73,10 +78,15 @@
   </tr>
      <tr>
     <td><strong>Tgl Jatuh Tempo </strong> </td><td width="20%"> : </td>
-    <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}</td>
+    <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}
+
+      <!-- {{ Form::select("item", $jenisList, null, ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true"]) }} -->
+      <p id="demo"></p>
+    </td>
+    <td></td>
   <tr>
 </table>
-		
+
 		</div>
 
 	</div>
@@ -84,14 +94,13 @@
 </div>
 
 <div class="box box-info box-solid">
-	<div class="box-header ">TAMBAH TALLY</div>
+	<div class="box-header ">DAFTAR BARANG</div>
 	<div class="box-body ">
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-12">
 			Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
 		</div>
-	</div>
-	<br />
+	</div> -->
 
 	<div id="container"/>
 	</div>
@@ -99,7 +108,7 @@
                 <div class="form-group">  
                      <form name="add_name" id="add_name">  
                           <div class="table-responsive">  
-                               <table class="table" id="dynamic_field">  
+                               <table class="table">  
                                     <tr>
                                     	<td>Jenis Daging</td>
                                     	<td>Merk Daging</td>
@@ -109,8 +118,23 @@
                                     	<td>Aksi</td>
                                     </tr>
 
-                               </table>  
-                               <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />  
+                                    <?php $i = 1; ?>
+                                    <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
+
+                               </table>
+                               <table class="table" id="dynamic_field">  
+                                  <tr>
+                                      <td>Jenis Daging</td>
+                                      <td>Merk Daging</td>
+                                      <td>Berat (KG)</td>
+                                      <td>Karton</td>
+                                      <td>Harga / KG</td>
+                                      <td>Aksi</td>
+                                    </tr>
+
+                               </table>
+
+                               <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />  
                           </div>  
                      </form>  
                 </div>  
@@ -128,8 +152,9 @@
 			<!-- {!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!} -->
 			<div class="modal-body">
 				<div class="box-body">
-                    
+
 	                {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S') }}
+
 
 				</div>
 			</div>
@@ -141,73 +166,80 @@
 		</div>
 	</div>
 </div>
+
+
 @endla_access
+
 
 @endsection
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
 @push('scripts')
-
 <script>
-function addinputFields(){
-    var number = document.getElementById("member").value;
+ $(document).ready(function(){
+      var i = 0;
+      var jenisList = {!! json_encode($jenisList) !!};
+      var dropdown = "<select name = 'coba' class = 'selectpicker form-control'  data-show-subtext = 'true' data-live-search = 'true'> ";
 
-    for (i=0;i<number;i++){
- 
+      for (var n in jenisList) {
+        dropdown += "<option value='"+n[0]+"'>"+n+"</option>";
+      }
+      dropdown = dropdown + "</select>";
+      document.getElementById("demo").innerHTML = dropdown;
+
+      $('#add').click(function(){
+           i++;
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           	'<tr id="row'+i+'"><td>'+dropdown+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+      });
 
-    }
-}
+      $(document).on('click', '.btn_remove', function(){
+           var button_id = $(this).attr("id");
+           $('#row'+button_id+'').remove();
+      });
 
+      var i=0;
 
+      $('#test').click(function(){  
+              var jd =  document.getElementById("jd").value;  
+              console.log(jd);
+              var md = document.getElementById("md").value;
+              var br = document.getElementById("br").value;
+              var kr = document.getElementById("kr").value;
+              var hk = document.getElementById("hk").value;
 
-</script>
-<script>  
- $(document).ready(function(){  
+              document.getElementById("jd").value = "";
+              document.getElementById("md").value = "";
+              document.getElementById("br").value = "";
+              document.getElementById("kr").value = "";
+              document.getElementById("hk").value = "";
 
-      var i=0;  
-      $('#add').click(function(){  
            i++;  
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td>'+'{{ Form::select("item", $jenisList, null, ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true"]) }}'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
-      });  
-      $(document).on('click', '.btn_remove', function(){  
-           var button_id = $(this).attr("id");   
-           $('#row'+button_id+'').remove();  
+            '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td>  <td><input type="text" value="'+br+'"  name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" value="'+kr+'"  name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" value="'+hk+'" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       }); 
-
-      $('#submit').click(function(){            
-           $.ajax({  
-                url:"name.php",  
-                method:"POST",  
-                data:$('#add_name').serialize(),  
-                success:function(data)  
-                {  
-                     alert(data);  
-                     $('#add_name')[0].reset();  
-                }  
-           });  
-      });
 
       $(function () {
           var np = $('select[name="nama_pembeli"]');
-          np.prop('disabled', false); 
-         
-          $("#nama_pembeli_retail").prop('disabled', false); 
+          np.prop('disabled', false);
+
+          $("#nama_pembeli_retail").prop('disabled', false);
 
           $('select[name ="nama_pembeli"]').change(function () {
-              $("#nama_pembeli_retail").prop('disabled', true); 
+              $("#nama_pembeli_retail").prop('disabled', true);
           });
           $("#nama_pembeli_retail").keyup(function () {
-              np.prop('disabled', true); 
+              np.prop('disabled', true);
           });
 
       });
 
              // document.getElementById("nama_pembeli").attr('disabled',true);
              // document.getElementById("nama_pembeli_retail").attr('disabled',true);
- });  
- 
-   
+ });
+
  </script>
+
 @endpush
