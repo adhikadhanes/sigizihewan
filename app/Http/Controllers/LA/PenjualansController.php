@@ -48,7 +48,7 @@ class PenjualansController extends Controller
 	public function tambahpenjualan()
 	{
 
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$jenisList = Item::pluck('nama_jenis', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
 		$merkList = Merk::pluck('nama', 'id')->all();
 		return view('la.penjualans.add', compact('merkList','relationList','jenisList'));
@@ -134,16 +134,28 @@ class PenjualansController extends Controller
 
 		$nomor = $request->nomor;
 
-		for ($i=0; $i <= $nomor; $i++) {
+		for ($i=0; $i < $nomor; $i++) {
 			$data = array(
-				'jenis_daging' => Input::get('jenis_daging'.$i),
-				'merk_daging' => Input::get('merk_daging'.$i),
+				'jenis_daging' => (int)Input::get('jenis_daging'.$i),
+				'merk_daging' => (int)Input::get('merk_daging'.$i),
 				'berat' => Input::get('berat'.$i),
 				'karton' => Input::get('karton'.$i),
 				'harga_kg' => '1',
 			);
 
-		DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+			$flight = new Tally;
+
+	  //       $flight->jenis_daging = $request->jenis_daging;
+	  //       	        $flight->merk_daging = $request->merk_daging;
+	  //       	        	        $flight->berat = $request->berat;
+	  //       	        	        	        $flight->karton = $request->karton;
+	  //       	        	        	        	        $flight->harga_kg = $request->harga_kg;
+
+	        $flight->save();
+
+ // DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+
+			echo $data['jenis_daging'];
 
 		}
 
