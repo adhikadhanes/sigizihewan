@@ -22,6 +22,7 @@ use App\Models\Penjualan;
 use Illuminate\Support\Facades\Input;
 use App\Models\Item;
 use App\Models\Relation;
+use App\Models\Merk;
 
 class PenjualansController extends Controller
 {
@@ -49,7 +50,8 @@ class PenjualansController extends Controller
 
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
-		return view('la.penjualans.add', compact('relationList','jenisList'));
+		$merkList = Merk::pluck('nama', 'id')->all();
+		return view('la.penjualans.add', compact('merkList','relationList','jenisList'));
 	}
 	public function tambahpenjualanretail()
 	{
