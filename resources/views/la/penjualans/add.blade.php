@@ -122,6 +122,8 @@
                                     <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
                                </table>
+
+{!! Form::open(['url' => '/storeTally', 'class' => 'form-horizontal']) !!}
                                <table class="table" id="dynamic_field">  
                                   <tr>
                                       <td>Jenis Daging</td>
@@ -139,6 +141,7 @@
                      </form>  
                 </div>  
 
+{!! Form::close() !!}
 
 
 @la_access("Penjualans", "create")
