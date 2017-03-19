@@ -13,11 +13,13 @@ use Auth;
 use DB;
 use Validator;
 use Datatables;
+use App\Models\Tally;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
 use App\Models\Penjualan;
+use Illuminate\Support\Facades\Input;
 use App\Models\Item;
 
 class PenjualansController extends Controller
@@ -116,6 +118,39 @@ class PenjualansController extends Controller
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
+	}
+
+	public function storeTally(Request $request)
+	{
+
+		// for ($i=0; $i <= $request->jenis_daging; $i++) {
+		// 	$tally = new Tally;
+		// 	$tally->jenis_daging = $request->get("jenis_daging");
+		// 	$tally->merk_daging = $request->get("merk_daging");
+		// 	$tally->berat = $request->get("berat");
+		// 	$tally->karton = $request->get("karton");
+		// 	$tally->save();
+		// 	return var_dump($tally);
+		// }
+
+		$nomor = $request->nomor;
+
+		for ($i=0; $i <= $nomor; $i++) {
+			$data = array(
+				'jenis_daging' => Input::get('jenis_daging'.$i),
+				'merk_daging' => Input::get('merk_daging'.$i),
+				'berat' => Input::get('berat'.$i),
+				'karton' => Input::get('karton'.$i),
+				'harga_kg' => '1',
+			);
+
+        // return var_dump($data);
+
+		DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+
+		}
+
+		return "success";
 	}
 
 	/**
