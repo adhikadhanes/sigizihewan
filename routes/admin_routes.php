@@ -107,4 +107,9 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/relations', 'LA\RelationsController');
 	Route::get(config('laraadmin.adminRoute') . '/relation_dt_ajax', 'LA\RelationsController@dtajax');
 
+
+	/* ================== TransferStocks ================== */
+	Route::get('admin/transferstock','LA\TransferStocksController@transferstock');
+	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
+	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
 });
