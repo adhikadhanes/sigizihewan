@@ -19,6 +19,7 @@ use Dwij\Laraadmin\Models\ModuleFields;
 
 use App\Models\Penjualan;
 use App\Models\Item;
+use App\Models\Relation;
 
 
 class PenjualansController extends Controller
@@ -46,10 +47,16 @@ class PenjualansController extends Controller
 	{
 
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
-		return view('la.penjualans.add', compact('jenisList'));
-
+		$relationList = Relation::pluck('nama', 'id')->all();
+		return view('la.penjualans.add', compact('relationList','jenisList'));
 	}
+	public function tambahpenjualanretail()
+	{
 
+		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$relationList = Relation::pluck('nama', 'id')->all();
+		return view('la.penjualans.addRetail', compact('relationList','jenisList'));
+	}
 		public function autocomplete(Request $request)
     {
         $data = Item::select("title as name")->where("nama_jenis","LIKE","%{$request->input('query')}%")->get();

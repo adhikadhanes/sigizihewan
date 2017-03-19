@@ -37,17 +37,18 @@
 
 <table>
   <tr>
-    <td width="40%"><strong>IDSO </strong></td>
-        <td width="10%"> : </td>
-        <td style="font-weight: bold;">#SO0001</td>
+    <td width="35%"><strong>IDSO </strong></td>
+        <td width="5%"> : </td>
+        <td style="font-weight: bold;">#SOR0001</td>
   </tr>
   <tr>
     <td><strong>Tanggal Penjualan </strong> </td><td> : </td>
-    <td width="80%">{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!} </td>
+    <td width="50%">{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!} </td>
   </tr>
   <tr>
-    <td><strong>Nama Pembeli </strong> </td><td> : </td>
-    <td>{!! Form::select('test', $relationList, null, ['class' => 'form-control', 'class' => 'selectpicker', 'name' => 'nama_pembeli', 'data-show-subtext' => 'true', 'data-live-search' => 'true']); !!} </td>
+    <td><strong>Nama Pembeli Retail </strong> </td><td> : </td>
+        <td>{!! Form::text('hello', '', ['placeholder' => 'Masukkan Nama Pembeli', 'class' => 'form-control', 'id' => 'nama_pembeli_retail']); !!}
+        </td>
   </tr>
     <tr>
 <td><strong>Tanggal Penerimaan </strong> </td><td> : </td>
@@ -60,7 +61,7 @@
 <div class="col-md-6">
 <table>
   <tr>
-    <td width=35%><strong>Cara Pengiriman </strong> </td><td width="5%"> : </td>
+    <td width="35%"><strong>Cara Pengiriman </strong> </td><td width="5%"> : </td>
       <td width="80%">{{ Form::select('size', ['Pengiriman' => 'Pengiriman', 'Pengambilan' => 'Pengambilan'], 'S', ['class' => 'form-control']) }}</td>
   </tr>
    <tr>
@@ -186,7 +187,7 @@
       $('#add').click(function(){
            i++;
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td>'+dropdown+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (kg)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga/kg" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+           	'<tr id="row'+i+'"><td>'+dropdown+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (kg)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
       });
 
       $(document).on('click', '.btn_remove', function(){
