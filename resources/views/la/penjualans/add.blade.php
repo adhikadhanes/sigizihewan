@@ -80,7 +80,8 @@
     <td><strong>Tgl Jatuh Tempo </strong> </td><td width="20%"> : </td>
     <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}
 
-
+      <!-- {{ Form::select("item", $jenisList, null, ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true"]) }} -->
+      <p id="demo"></p>
     </td>
     <td></td>
   <tr>
@@ -118,7 +119,7 @@
                                     </tr>
 
                                     <?php $i = 1; ?>
-                                    <tr id="{{ $i }}"><td><div>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd", "title" => "Pilih Disini"]) }}</div></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
+                                    <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
                                </table>
                                <table class="table" id="dynamic_field">  
