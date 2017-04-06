@@ -115,7 +115,7 @@
 						@la_display($module, 'berat_aktual')
 						@la_display($module, 'carton_aktual')
 						@la_display($module, 'jenis_barang_akhir')
-						@la_display($module, 'merk_barang_akhir')
+						@la_display($module, 'merk_akhir_akhir')
 						@la_display($module, 'berat_perkiraan_akhr')
 						@la_display($module, 'berat_aktual_akhir')
 					</div>

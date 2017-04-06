@@ -1,3 +1,4 @@
+@@ -0,0 +1,196 @@
 @extends("la.layouts.app")
 
 @section("contentheader_title", "Processings")
@@ -30,10 +31,10 @@
  </head>
 
 <div class="box box-success box-solid">
-	<div class="box-header ">MEMBUAT PROCESSING</div>
-	<div class="box-body ">
-	<div class="row">
-		<div class="col-md-6">
+  <div class="box-header ">MEMBUAT PROCESSING</div>
+  <div class="box-body ">
+  <div class="row">
+    <div class="col-md-6">
 
 <table>
   <tr>
@@ -46,37 +47,37 @@
     <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!} </td>
   </tr>
 </table>
-		</div>
+    </div>
 
-	</div>
+  </div>
 </div>
 </div>
 
 <div class="box box-info box-solid">
-	<div class="box-header ">DAFTAR BARANG</div>
-	<div class="box-body ">
-	<!-- <div class="row">
-		<div class="col-md-12">
-			Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
-		</div>
-	</div> -->
+  <div class="box-header ">DAFTAR BARANG</div>
+  <div class="box-body ">
+  <!-- <div class="row">
+    <div class="col-md-12">
+      Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
+    </div>
+  </div> -->
 
-	<div id="container"/>
-	</div>
+  <div id="container"/>
+  </div>
 
                 <div class="form-group">  
                      <form name="add_name" id="add_name">  
                           <div class="table-responsive">  
                                <table class="table">  
                                     <tr>
-                                    	<td>Jenis Barang Awal</td>
-                                    	<td>Merk Barang Awal</td>
-                                    	<td>Berat Perkiraan Awal</td>
-                                    	<td>Karton Perkiraan Awal</td>
-                                    	<td>Jenis Barang Akhir</td>
+                                      <td>Jenis Barang Awal</td>
+                                      <td>Merk Barang Awal</td>
+                                      <td>Berat Perkiraan Awal</td>
+                                      <td>Karton Perkiraan Awal</td>
+                                      <td>Jenis Barang Akhir</td>
                                       <td>Merk Barang Akhir</td>
                                       <td>Berat Perkiraan Akhir</td>
-                                    	<td>Aksi</td>
+                                      <td>Aksi</td>
                                     </tr>
 
                                     <?php $i = 1; ?>
@@ -122,28 +123,28 @@
 
 @la_access("Processings", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Tambah Processing</h4>
-			</div>
-			<!-- {!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!} -->
-			<div class="modal-body">
-				<div class="box-body">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Tambah Processing</h4>
+      </div>
+      <!-- {!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!} -->
+      <div class="modal-body">
+        <div class="box-body">
 
-	                {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S') }}
+                  {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], 'S') }}
 
 
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
-			</div>
-			{!! Form::close() !!}
-		</div>
-	</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        {!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
 </div>
 
 

@@ -17,7 +17,7 @@ class CreateProcessingsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Processings", 'processings', 'tgl_processing', 'fa-cube', [
+        Module::generate("Processings", 'processings', 'tgl_processing', 'fa-gears', [
             ["tgl_processing", "Tgl Processing", "Date", false, "", 0, 0, false],
             ["jenis_barang_awal", "Jenis Barang Awal", "String", false, "", 0, 256, false],
             ["merk_barang_awal", "Merk Barang Awal", "String", false, "", 0, 256, false],
@@ -26,7 +26,7 @@ class CreateProcessingsTable extends Migration
             ["berat_aktual", "Berat Aktual Awal", "Decimal", false, "", 0, 11, false],
             ["carton_aktual", "CRT Aktual Awal", "Decimal", false, "", 0, 11, false],
             ["jenis_barang_akhir", "Jenis Barang Akhir", "String", false, "", 0, 256, false],
-            ["merk_barang_akhir", "Merk Barang Akhir", "String", false, "", 0, 256, false],
+            ["merk_akhir_akhir", "Merk Barang Akhir", "String", false, "", 0, 256, false],
             ["berat_perkiraan_akhr", "Berat Perkiraan Akhr", "Decimal", false, "", 0, 11, false],
             ["berat_aktual_akhir", "Berat Aktual Akhir", "Decimal", false, "", 0, 11, false],
         ]);
