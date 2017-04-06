@@ -1,17 +1,15 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Penjualans")
-@section("contentheader_description", "Penjualans listing")
-@section("section", "Penjualans")
+@section("contentheader_title", "Processings")
+@section("contentheader_description", "Processings listing")
+@section("section", "Processings")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "Penjualans Listing")
+@section("htmlheader_title", "Processings Listing")
 
 @section("headerElems")
-@la_access("Penjualans", "create")
-<button class="btn btn-success btn-sm " data-toggle="modal" data-target="#AddModal">Add Penjualan</button> |
-	<a href="tambahpenjualan" class="btn btn-info" role="button">Tambah Penjualan</a>
-	<a href="tambahpenjualanretail" class="btn btn-info" role="button">Tambah Penjualan Retail</a>
-
+@la_access("Processings", "create")
+	<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddModal">Add Processing</button> | 
+	<a href="tambahprocessing" class="btn btn-info" role="button">Tambah Processing</a>
 @endla_access
 @endsection
 
@@ -42,35 +40,37 @@
 		</tr>
 		</thead>
 		<tbody>
-
+			
 		</tbody>
 		</table>
 	</div>
 </div>
 
-@la_access("Penjualans", "create")
+@la_access("Processings", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Penjualan</h4>
+				<h4 class="modal-title" id="myModalLabel">Add Processing</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\PenjualansController@store', 'id' => 'penjualan-add-form']) !!}
+			{!! Form::open(['action' => 'LA\ProcessingsController@store', 'id' => 'processing-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
-
+					
 					{{--
-					@la_input($module, 'tgl_penjualan')
-					@la_input($module, 'nama_pembeli')
-					@la_input($module, 'nama_pembeli_retail')
-					@la_input($module, 'tanggal_penerimaan')
-					@la_input($module, 'cara_penerimaan')
-					@la_input($module, 'cara_pembayaran')
-					@la_input($module, 'tgl_jatuh_tempo')
-					@la_input($module, 'Gdg Pengiriman')
-					@la_input($module, 'order_id')
+					@la_input($module, 'tgl_processing')
+					@la_input($module, 'jenis_barang_awal')
+					@la_input($module, 'merk_barang_awal')
+					@la_input($module, 'berat_perkiraan')
+					@la_input($module, 'carton_perkiraan')
+					@la_input($module, 'berat_aktual')
+					@la_input($module, 'carton_aktual')
+					@la_input($module, 'jenis_barang_akhir')
+					@la_input($module, 'merk_akhir_akhir')
+					@la_input($module, 'berat_perkiraan_akhr')
+					@la_input($module, 'berat_aktual_akhir')
 					--}}
 				</div>
 			</div>
@@ -97,7 +97,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/penjualan_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/processing_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -107,8 +107,8 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#penjualan-add-form").validate({
-
+	$("#processing-add-form").validate({
+		
 	});
 });
 </script>
