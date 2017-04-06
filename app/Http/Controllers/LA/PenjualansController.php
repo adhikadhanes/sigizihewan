@@ -47,18 +47,19 @@ class PenjualansController extends Controller
 
 	public function tambahpenjualan()
 	{
-
-		$jenisList = Item::pluck('nama_jenis', 'id')->all();
+		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$merkList = Item::pluck('nama', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
-		$merkList = Merk::pluck('nama', 'id')->all();
-		return view('la.penjualans.add', compact('merkList','relationList','jenisList'));
+		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList'));
+
 	}
 	public function tambahpenjualanretail()
 	{
 
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$merkList = Item::pluck('nama', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
-		return view('la.penjualans.addRetail', compact('relationList','jenisList'));
+		return view('la.penjualans.addRetail', compact('relationList','jenisList', 'merkList'));
 	}
 		public function autocomplete(Request $request)
     {
