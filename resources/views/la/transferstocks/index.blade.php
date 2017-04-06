@@ -8,8 +8,7 @@
 
 @section("headerElems")
 @la_access("TransferStocks", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add TransferStock</button>
-	<a href="transferstock" class="btn btn-info" role="button">Add Tranfer Stock</a>
+	<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddModal">Add TransferStock</button> | <a href="transferstock" class="btn btn-info " role="button">Add Tranfer Stock</a>
 @endla_access
 @endsection
 
@@ -60,8 +59,8 @@
                     @la_form($module)
 					
 					{{--
-					@la_input($module, 'Jenis')
-					@la_input($module, 'Merk')
+					@la_input($module, 'jenis')
+					@la_input($module, 'merk')
 					@la_input($module, 'Berat')
 					@la_input($module, 'Karton')
 					--}}

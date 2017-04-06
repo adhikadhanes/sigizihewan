@@ -47,7 +47,7 @@
   </tr>
   <tr>
     <td><strong>Nama Pembeli </strong> </td><td width="20%"> : </td>
-    <td>{{ Form::select('Relations', $NamaPembeliList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli']) }}</td>
+    <td>{{ Form::select('Relations', $relationList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli']) }}</td>
   </tr>
   <tr>
     <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
@@ -171,8 +171,6 @@
 
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 @push('scripts')
 <script>

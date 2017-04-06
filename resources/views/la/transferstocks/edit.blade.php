@@ -33,8 +33,8 @@
 					@la_form($module)
 					
 					{{--
-					@la_input($module, 'Jenis')
-					@la_input($module, 'Merk')
+					@la_input($module, 'jenis')
+					@la_input($module, 'merk')
 					@la_input($module, 'Berat')
 					@la_input($module, 'Karton')
 					--}}
