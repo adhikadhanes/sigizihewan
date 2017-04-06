@@ -127,4 +127,12 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 
 	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
 	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
+
+	/* ================== DaftarBarangs ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/daftarbarangs', 'LA\DaftarBarangsController');
+	Route::get(config('laraadmin.adminRoute') . '/daftarbarang_dt_ajax', 'LA\DaftarBarangsController@dtajax');
+
+	/* ================== BarangKeluars ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangkeluars', 'LA\BarangKeluarsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangkeluar_dt_ajax', 'LA\BarangKeluarsController@dtajax');
 });
