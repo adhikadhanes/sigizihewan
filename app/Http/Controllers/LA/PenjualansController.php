@@ -45,7 +45,7 @@ class PenjualansController extends Controller
 			$this->listing_cols = ModuleFields::listingColumnAccessScan('Penjualans', $this->listing_cols);
 		}
 	}
-
+	
 	public function tambahpenjualan()
 	{
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
