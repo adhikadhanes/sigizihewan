@@ -16,8 +16,10 @@ class Tally extends Model
 	protected $table = 'tallies';
 	
 	protected $hidden = [
-        
+       
     ];
+
+    protected $fillable =['jenis_daging'];
 
 	protected $guarded = [];
 
