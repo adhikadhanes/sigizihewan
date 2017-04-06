@@ -16,18 +16,15 @@ use Datatables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
-
-use App\Models\Processing;
 use App\Models\Item;
 use App\Models\Merk;
-
-
+use App\Models\Processing;
 
 class ProcessingsController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'tgl_processing';
-	public $listing_cols = ['id', 'tgl_processing', 'jenis_barang_awal', 'merk_barang_awal', 'berat_perkiraan', 'carton_perkiraan', 'berat_aktual', 'carton_aktual', 'jenis_barang_akhir', 'merk_barang_akhir', 'berat_perkiraan_akhr', 'berat_aktual_akhir'];
+	public $listing_cols = ['id', 'tgl_processing', 'jenis_barang_awal', 'merk_barang_awal', 'berat_perkiraan', 'carton_perkiraan', 'berat_aktual', 'carton_aktual', 'jenis_barang_akhir', 'merk_akhir_akhir', 'berat_perkiraan_akhr', 'berat_aktual_akhir'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
@@ -41,19 +38,6 @@ class ProcessingsController extends Controller
 		}
 	}
 	
-	public function tambahprocessing()
-	{
-		$merkList = Merk::pluck('nama', 'nama')->all();
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
-		return view('la.processings.add', compact('jenisList', 'merkList'));
-
-	}
-
-		public function autocomplete(Request $request)
-    {
-        $data = Item::select("title as name")->where("nama_jenis","LIKE","%{$request->input('query')}%")->get();
-        return response()->json($data);
-    }
 	/**
 	 * Display a listing of the Processings.
 	 *
@@ -263,4 +247,18 @@ class ProcessingsController extends Controller
 		$out->setData($data);
 		return $out;
 	}
+
+		public function tambahprocessing()
+	{
+		$merkList = Merk::pluck('nama', 'nama')->all();
+		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		return view('la.processings.add', compact('jenisList', 'merkList'));
+
+	}
+
+		public function autocomplete(Request $request)
+    {
+        $data = Item::select("title as name")->where("nama_jenis","LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);
+    }
 }

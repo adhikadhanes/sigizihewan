@@ -116,8 +116,10 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::get(config('laraadmin.adminRoute') . '/relation_dt_ajax', 'LA\RelationsController@dtajax');
 
 
+
 	/* ================== Processings ================== */
 	Route::get('admin/tambahprocessing','LA\ProcessingsController@tambahprocessing');
+
 	Route::resource(config('laraadmin.adminRoute') . '/processings', 'LA\ProcessingsController');
 	Route::get(config('laraadmin.adminRoute') . '/processing_dt_ajax', 'LA\ProcessingsController@dtajax');
 });
