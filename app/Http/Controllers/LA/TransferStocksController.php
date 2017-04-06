@@ -24,7 +24,7 @@ class TransferStocksController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'Merk';
-	public $listing_cols = ['id', 'Jenis', 'Merk', 'Berat', 'Karton'];
+	public $listing_cols = ['id', 'jenis', 'merk', 'Berat', 'Karton'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
