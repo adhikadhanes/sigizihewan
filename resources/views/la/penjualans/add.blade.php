@@ -51,7 +51,7 @@
   </tr>
   <tr>
     <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
-        <td>{{ Form::text('hello', '', ['placeholder' => 'Masukkan Nama Pembeli', 'class' => 'form-control', 'id' => 'nama_pembeli_retail'])}}
+        <td>{{ Form::select('Pembeli', $relationList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli_retail']) }}
         </td>
   </tr>
     <tr>
