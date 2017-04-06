@@ -9,6 +9,7 @@
 @section("headerElems")
 @la_access("TransferStocks", "create")
 	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add TransferStock</button>
+	<a href="transferstock" class="btn btn-info" role="button">Add Tranfer Stock</a>
 @endla_access
 @endsection
 

@@ -16,6 +16,7 @@ use Datatables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
+use App\Models\Item;
 
 use App\Models\TransferStock;
 
@@ -42,6 +43,15 @@ class TransferStocksController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
+
+	
+	public function transferstock()
+	{
+$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+return view('la.transferstocks.add', compact('jenisList'));
+	}
+
+
 	public function index()
 	{
 		$module = Module::get('TransferStocks');

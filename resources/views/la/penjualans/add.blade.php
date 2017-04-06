@@ -46,8 +46,13 @@
     <td width="80%">{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!} </td>
   </tr>
   <tr>
-    <td><strong>Nama Pembeli </strong> </td><td> : </td>
-    <td>{!! Form::select('test', $relationList, null, ['class' => 'form-control', 'class' => 'selectpicker', 'name' => 'nama_pembeli', 'data-show-subtext' => 'true', 'data-live-search' => 'true']); !!} </td>
+    <td><strong>Nama Pembeli </strong> </td><td width="20%"> : </td>
+    <td>{{ Form::select('Relations', $NamaPembeliList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli']) }}</td>
+  </tr>
+  <tr>
+    <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
+        <td>{{ Form::text('hello', '', ['placeholder' => 'Masukkan Nama Pembeli', 'class' => 'form-control', 'id' => 'nama_pembeli_retail'])}}
+        </td>
   </tr>
     <tr>
 <td><strong>Tanggal Penerimaan </strong> </td><td> : </td>
@@ -55,6 +60,8 @@
   </tr>
 </table>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 		</div>
 <div class="col-md-6">
@@ -197,7 +204,33 @@
       }); 
 
 
- });
+      $('#submit').click(function(){            
+           $.ajax({  
+                url:"name.php",  
+                method:"POST",  
+                data:$('#add_name').serialize(),  
+                success:function(data)  
+                {  
+                     alert(data);  
+                     $('#add_name')[0].reset();  
+                }  
+           });  
+      });
+
+      $(function () {
+          var np = $('select[name="nama_pembeli"]');
+          np.prop('disabled', false); 
+         
+          $("#nama_pembeli_retail").prop('disabled', false); 
+
+          $('select[name="nama_pembeli"]').change(function () {
+              $("#nama_pembeli_retail").prop('disabled', true); 
+          });
+          $("#nama_pembeli_retail").keyup(function () {
+              np.prop('disabled', true); 
+          });
+
+      });
 
  </script>
 

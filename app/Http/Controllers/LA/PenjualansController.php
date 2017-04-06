@@ -22,6 +22,7 @@ use App\Models\Penjualan;
 use Illuminate\Support\Facades\Input;
 use App\Models\Item;
 use App\Models\Relation;
+
 use App\Models\Merk;
 
 class PenjualansController extends Controller
@@ -57,9 +58,11 @@ class PenjualansController extends Controller
 	{
 
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+
 		$merkList = Merk::pluck('nama', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
 		return view('la.penjualans.addRetail', compact('relationList','jenisList', 'merkList'));
+
 	}
 		public function autocomplete(Request $request)
     {
