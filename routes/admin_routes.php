@@ -127,4 +127,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 
 	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
 	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
+
+	/* ================== Pembelians ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/pembelians', 'LA\PembeliansController');
+	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
 });
