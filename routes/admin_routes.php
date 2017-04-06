@@ -71,11 +71,13 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::post(config('laraadmin.adminRoute') . '/create_backup_ajax', 'LA\BackupsController@create_backup_ajax');
 	Route::get(config('laraadmin.adminRoute') . '/downloadBackup/{id}', 'LA\BackupsController@downloadBackup');
 
-
-
 	/* ================== Trucks ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/trucks', 'LA\TrucksController');
 	Route::get(config('laraadmin.adminRoute') . '/truck_dt_ajax', 'LA\TrucksController@dtajax');
+
+	/* ================== Relations ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/relations', 'LA\RelationsController');
+	Route::get(config('laraadmin.adminRoute') . '/relation_dt_ajax', 'LA\RelationsController@dtajax');
 
 	/* ================== Jenis ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/jenis', 'LA\JenisController');
@@ -96,6 +98,7 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/penjualans', 'LA\PenjualansController');
 	Route::get(config('laraadmin.adminRoute') . '/penjualan_dt_ajax', 'LA\PenjualansController@dtajax');
 
+
 	/* ================== Gudangs ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/gudangs', 'LA\GudangsController');
 	Route::get(config('laraadmin.adminRoute') . '/gudang_dt_ajax', 'LA\GudangsController@dtajax');
@@ -112,4 +115,16 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/relations', 'LA\RelationsController');
 	Route::get(config('laraadmin.adminRoute') . '/relation_dt_ajax', 'LA\RelationsController@dtajax');
 
+
+	/* ================== Processings ================== */
+	Route::get('admin/tambahprocessing','LA\ProcessingsController@tambahprocessing');
+
+	Route::resource(config('laraadmin.adminRoute') . '/processings', 'LA\ProcessingsController');
+	Route::get(config('laraadmin.adminRoute') . '/processing_dt_ajax', 'LA\ProcessingsController@dtajax');
+
+	/* ================== TransferStocks ================== */
+	Route::get('admin/transferstock','LA\TransferStocksController@transferstock');
+
+	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
+	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
 });

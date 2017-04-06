@@ -13,14 +13,17 @@ use Auth;
 use DB;
 use Validator;
 use Datatables;
+use App\Models\Tally;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
 use App\Models\Penjualan;
+use Illuminate\Support\Facades\Input;
 use App\Models\Item;
 use App\Models\Relation;
 
+use App\Models\Merk;
 
 class PenjualansController extends Controller
 {
@@ -45,19 +48,21 @@ class PenjualansController extends Controller
 
 	public function tambahpenjualan()
 	{
-
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
-		$merkList = Item::pluck('nama', 'id')->all();
+		$merkList = Merk::pluck('nama', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
 		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList'));
+
 	}
 	public function tambahpenjualanretail()
 	{
 
 		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
-		$merkList = Item::pluck('nama', 'id')->all();
+
+		$merkList = Merk::pluck('nama', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
 		return view('la.penjualans.addRetail', compact('relationList','jenisList', 'merkList'));
+
 	}
 		public function autocomplete(Request $request)
     {
@@ -95,7 +100,6 @@ class PenjualansController extends Controller
 		//
 	}
 
-	//buat belajar
 	public function penjualantest()
 	{
 		$jenisList = Item::all();
@@ -127,6 +131,39 @@ class PenjualansController extends Controller
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
+	}
+
+	public function storeTally(Request $request)
+	{
+
+		$nomor = $request->nomor;
+
+		for ($i=0; $i < $nomor; $i++) {
+			$data = array(
+				'jenis_daging' => (int)Input::get('jenis_daging'.$i),
+				'merk_daging' => (int)Input::get('merk_daging'.$i),
+				'berat' => Input::get('berat'.$i),
+				'karton' => Input::get('karton'.$i),
+				'harga_kg' => '1',
+			);
+
+			$flight = new Tally;
+
+	  //       $flight->jenis_daging = $request->jenis_daging;
+	  //       	        $flight->merk_daging = $request->merk_daging;
+	  //       	        	        $flight->berat = $request->berat;
+	  //       	        	        	        $flight->karton = $request->karton;
+	  //       	        	        	        	        $flight->harga_kg = $request->harga_kg;
+
+	        $flight->save();
+
+ // DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+
+			echo $data['jenis_daging'];
+
+		}
+
+		return "success";
 	}
 
 	/**
