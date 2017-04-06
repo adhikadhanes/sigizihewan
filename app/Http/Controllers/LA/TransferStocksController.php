@@ -17,13 +17,14 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 use App\Models\Item;
+
 use App\Models\TransferStock;
 
 class TransferStocksController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'Merk';
-	public $listing_cols = ['id', 'Jenis', 'Merk', 'Berat', 'Karton'];
+	public $listing_cols = ['id', 'jenis', 'merk', 'Berat', 'Karton'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
@@ -42,12 +43,14 @@ class TransferStocksController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
+
 	
 	public function transferstock()
 	{
 $jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
 return view('la.transferstocks.add', compact('jenisList'));
 	}
+
 
 	public function index()
 	{

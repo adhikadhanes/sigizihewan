@@ -18,8 +18,8 @@ class CreateTransferstocksTable extends Migration
     public function up()
     {
         Module::generate("Transferstocks", 'transferstocks', 'Merk', 'fa-truck', [
-            ["Jenis", "Jenis", "String", false, "", 0, 256, true],
-            ["Merk", "Merk", "String", false, "", 0, 256, true],
+            ["jenis", "Jenis", "Dropdown", false, "", 0, 0, false, "@jenis"],
+            ["merk", "Merk", "Dropdown", false, "", 0, 0, false, "@merks"],
             ["Berat", "Berat", "Decimal", false, "", 0, 11, false],
             ["Karton", "Karton", "Decimal", false, "", 0, 11, false],
         ]);

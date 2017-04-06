@@ -1,14 +1,15 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "TransferStocks")
-@section("contentheader_description", "TransferStocks listing")
-@section("section", "TransferStocks")
+@section("contentheader_title", "Processings")
+@section("contentheader_description", "Processings listing")
+@section("section", "Processings")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "TransferStocks Listing")
+@section("htmlheader_title", "Processings Listing")
 
 @section("headerElems")
-@la_access("TransferStocks", "create")
-	<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddModal">Add TransferStock</button> | <a href="transferstock" class="btn btn-info " role="button">Add Tranfer Stock</a>
+@la_access("Processings", "create")
+	<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddModal">Add Processing</button> | 
+	<a href="tambahprocessing" class="btn btn-info" role="button">Tambah Processing</a>
 @endla_access
 @endsection
 
@@ -45,24 +46,31 @@
 	</div>
 </div>
 
-@la_access("TransferStocks", "create")
+@la_access("Processings", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add TransferStock</h4>
+				<h4 class="modal-title" id="myModalLabel">Add Processing</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\TransferStocksController@store', 'id' => 'transferstock-add-form']) !!}
+			{!! Form::open(['action' => 'LA\ProcessingsController@store', 'id' => 'processing-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
 					
 					{{--
-					@la_input($module, 'jenis')
-					@la_input($module, 'merk')
-					@la_input($module, 'Berat')
-					@la_input($module, 'Karton')
+					@la_input($module, 'tgl_processing')
+					@la_input($module, 'jenis_barang_awal')
+					@la_input($module, 'merk_barang_awal')
+					@la_input($module, 'berat_perkiraan')
+					@la_input($module, 'carton_perkiraan')
+					@la_input($module, 'berat_aktual')
+					@la_input($module, 'carton_aktual')
+					@la_input($module, 'jenis_barang_akhir')
+					@la_input($module, 'merk_akhir_akhir')
+					@la_input($module, 'berat_perkiraan_akhr')
+					@la_input($module, 'berat_aktual_akhir')
 					--}}
 				</div>
 			</div>
@@ -89,7 +97,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/transferstock_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/processing_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -99,7 +107,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#transferstock-add-form").validate({
+	$("#processing-add-form").validate({
 		
 	});
 });
