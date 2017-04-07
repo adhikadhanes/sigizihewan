@@ -46,6 +46,7 @@
     <td width="80%">{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control', 'name' => 'tgl_penjualan']); !!} </td>
   </tr>
   <tr>
+
     <td><strong>Nama Pembeli </strong> </td><td width="20%"> : </td>
     <td>{{ Form::select('Relations', $relationList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli']) }}</td>
   </tr>
@@ -53,6 +54,7 @@
     <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
         <td>{{ Form::select('Pembeli', $relationList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli_retail']) }}
         </td>
+
   </tr>
     <tr>
 <td><strong>Tanggal Penerimaan </strong> </td><td> : </td>
@@ -204,6 +206,7 @@
       }); 
 
 
+
       $('#submit').click(function(){            
            $.ajax({  
                 url:"name.php",  
@@ -232,6 +235,7 @@
 
       });
             });
+
 
  </script>
 

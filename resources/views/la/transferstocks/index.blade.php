@@ -42,6 +42,24 @@
 			
 		</tbody>
 		</table>
+		
+		<table class="table" id="dynamic_field">  
+                                  <tr>
+                                      <td>No</td>
+                                      <td>
+                                      <td>ID</td>
+                                      <td>Tanggal Keluar</td>
+                                      <td>Gudang Asal</td>
+                                      <td>Gudang Tujuan</td>
+                                      <td>No</td>
+                                      <td>
+                                      <td>Jenis</td>
+                                      <td>Merk</td>
+                                      <td>Berat (KG)</td>
+                                      <td>Karton</td>
+                                      <td>Status</td>
+                                    </tr>
+                               </table>
 	</div>
 </div>
 

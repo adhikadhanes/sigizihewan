@@ -26,6 +26,8 @@ use App\Models\Relation;
 
 use App\Models\Merk;
 
+
+
 class PenjualansController extends Controller
 {
 	public $show_action = true;
@@ -60,7 +62,9 @@ class PenjualansController extends Controller
 
 		$jenisList = Jeni::pluck('nama', 'id')->all();
 
+
 		$merkList = Merk::pluck('nama', 'id')->all();
+
 		$relationList = Relation::pluck('nama', 'id')->all();
 		return view('la.penjualans.addRetail', compact('relationList','jenisList', 'merkList'));
 
