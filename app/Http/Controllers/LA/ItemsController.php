@@ -24,7 +24,7 @@ class ItemsController extends Controller
 	public $show_action = true;
 	public $view_col = 'jenis';
 	public $listing_cols = ['id', 'jenis', 'merk', 'kg_carton', 'wholesale_kg', 'wholesale_carton', 'retail_kg', 'tipe', 'nama_jenis'];
-	
+
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
@@ -55,6 +55,28 @@ class ItemsController extends Controller
 		} else {
             return redirect(config('laraadmin.adminRoute')."/");
         }
+	}
+
+	public function stokWholesale()
+	{
+		$stokWholesale = DB::table('Items')
+		->select('items.id', 'jenis', 'merk', 'kg_carton', 'wholesale_kg', 'wholesale_carton', 'tipe', 'nama_jenis', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
+		->join('jenis', 'jenis.id', '=', 'items.jenis')
+		->join('merks', 'merks.id', '=', 'items.merk')
+		->get();
+		
+		return view('la.items.stokWholesale', compact('stokWholesale'));
+	}
+
+	public function stokRetail()
+	{
+		$stokRetail = DB::table('Items')->select('items.id', 'jenis', 'merk', 'kg_carton', 'retail_kg', 'tipe', 'nama_jenis', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
+		->join('jenis', 'jenis.id', '=', 'items.jenis')
+		->join('merks', 'merks.id', '=', 'items.merk')
+		->get();
+		
+		return view('la.items.stokRetail', compact('stokRetail'));
+
 	}
 
 	/**
