@@ -21,9 +21,12 @@ use Dwij\Laraadmin\Models\ModuleFields;
 use App\Models\Penjualan;
 use Illuminate\Support\Facades\Input;
 use App\Models\Item;
+use App\Models\Jeni;
 use App\Models\Relation;
 
 use App\Models\Merk;
+
+
 
 class PenjualansController extends Controller
 {
@@ -48,7 +51,7 @@ class PenjualansController extends Controller
 	
 	public function tambahpenjualan()
 	{
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$jenisList = Jeni::pluck('nama', 'id')->all();
 		$merkList = Merk::pluck('nama', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
 		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList'));
@@ -57,9 +60,11 @@ class PenjualansController extends Controller
 	public function tambahpenjualanretail()
 	{
 
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$jenisList = Jeni::pluck('nama', 'id')->all();
+
 
 		$merkList = Merk::pluck('nama', 'id')->all();
+
 		$relationList = Relation::pluck('nama', 'id')->all();
 		return view('la.penjualans.addRetail', compact('relationList','jenisList', 'merkList'));
 
@@ -136,34 +141,27 @@ class PenjualansController extends Controller
 	public function storeTally(Request $request)
 	{
 
-		$nomor = $request->nomor;
+		// $nomor = $request->nomor;
+		$form = $_POST['baris'];
 
-		for ($i=0; $i < $nomor; $i++) {
-			$data = array(
-				'jenis_daging' => (int)Input::get('jenis_daging'.$i),
-				'merk_daging' => (int)Input::get('merk_daging'.$i),
-				'berat' => Input::get('berat'.$i),
-				'karton' => Input::get('karton'.$i),
-				'harga_kg' => '1',
-			);
-
+		foreach ( $form as $form)
+    	{
+        // here you have access to $diam['top'] and $diam['bottom']
+      
 			$flight = new Tally;
 
-	  //       $flight->jenis_daging = $request->jenis_daging;
-	  //       	        $flight->merk_daging = $request->merk_daging;
-	  //       	        	        $flight->berat = $request->berat;
-	  //       	        	        	        $flight->karton = $request->karton;
-	  //       	        	        	        	        $flight->harga_kg = $request->harga_kg;
+	        $flight->jenis_daging = $form['jenis_daging'];
+	       	$flight->merk_daging = $form['merk_daging'];
+	        $flight->berat = $form['berat'];
+	        $flight->karton = $form['karton'];
+	        $flight->harga_kg = $form['harga_kg'];
 
-	        $flight->save();
+	      $flight->save();
 
- // DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+    	}
 
-			echo $data['jenis_daging'];
+    	return redirect(config('laraadmin.adminRoute')."/");
 
-		}
-
-		return "success";
 	}
 
 	/**
