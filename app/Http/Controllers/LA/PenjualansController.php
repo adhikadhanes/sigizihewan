@@ -208,13 +208,14 @@ class PenjualansController extends Controller
 			if(isset($penjualan->id)) {
 				$module = Module::get('Penjualans');
 				$module->row = $penjualan;
+				$barangOut = BarangOut::where('id_penjualan',$id)->get();
 
 				return view('la.penjualans.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
 					'no_header' => true,
 					'no_padding' => "no-padding"
-				])->with('penjualan', $penjualan);
+				])->with('penjualan', $penjualan)->with('barangOut',$barangOut);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
