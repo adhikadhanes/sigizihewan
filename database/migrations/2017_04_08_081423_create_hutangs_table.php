@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreateBarangoutsTable extends Migration
+class CreateHutangsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,13 +17,14 @@ class CreateBarangoutsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Barangouts", 'barangouts', 'id_penjualan', 'fa-sign-out', [
-            ["id_penjualan", "ID Penjualan", "Dropdown", false, "", 0, 0, false, "@penjualans"],
-            ["jenis", "Jenis", "Dropdown", false, "", 0, 0, true, "@jenis"],
-            ["merk", "Merk", "Dropdown", false, "", 0, 0, true, "@merks"],
-            ["karton", "Karton", "Integer", false, "", 0, 11, true],
-            ["harga_kg", "Harga / KG", "Integer", false, "", 0, 11, true],
-            ["berat_kg", "Berat KG", "Decimal", false, "", 0, 11, true],
+        Module::generate("Hutangs", 'hutangs', 'po_id', 'fa-money', [
+            ["po_id", "IDPO", "Dropdown", false, "", 0, 0, true, "@pembelians"],
+            ["tanggal_pembayaran", "Tanggal Pembayaran", "Date", false, "", 0, 0, true],
+            ["tanggal_penerimaan", "Tanggal Penerimaan", "Date", false, "", 0, 0, true],
+            ["nama_supplier", "Nama Supplier", "Dropdown", false, "", 0, 0, true, "@relations"],
+            ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
+            ["cara_bayar", "Cara Bayar", "Dropdown", false, "", 0, 0, true, ["Langsung","Tempo","Cicilan"]],
+            ["status", "Status", "Dropdown", false, "", 0, 0, true, ["Lunas","Tidak Lunas"]],
         ]);
 		
 		/*
@@ -69,8 +70,8 @@ class CreateBarangoutsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('barangouts')) {
-            Schema::drop('barangouts');
+        if (Schema::hasTable('hutangs')) {
+            Schema::drop('hutangs');
         }
     }
 }

@@ -114,7 +114,14 @@
                                       <td>Harga/kg</td>
                                       <td>Aksi</td>
                                     </tr>
-
+                            <!--      <tr>
+                                      <td><input type="text" name="name[]"class="form-control name_list" id="br"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><button type="button" class="btn btn-success" id="test" >Faktur Penjualan</button></td>
+                                  </tr> -->
                                </table>
 
                                {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control pull-right']) !!}

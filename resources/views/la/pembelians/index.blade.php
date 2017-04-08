@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "BarangOuts")
-@section("contentheader_description", "BarangOuts listing")
-@section("section", "BarangOuts")
+@section("contentheader_title", "Pembelians")
+@section("contentheader_description", "Pembelians listing")
+@section("section", "Pembelians")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "BarangOuts Listing")
+@section("htmlheader_title", "Pembelians Listing")
 
 @section("headerElems")
-@la_access("BarangOuts", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add BarangOut</button>
+@la_access("Pembelians", "create")
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Pembelian</button>
 @endla_access
 @endsection
 
@@ -45,26 +45,28 @@
 	</div>
 </div>
 
-@la_access("BarangOuts", "create")
+@la_access("Pembelians", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add BarangOut</h4>
+				<h4 class="modal-title" id="myModalLabel">Add Pembelian</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\BarangOutsController@store', 'id' => 'barangout-add-form']) !!}
+			{!! Form::open(['action' => 'LA\PembeliansController@store', 'id' => 'pembelian-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
 					
 					{{--
-					@la_input($module, 'id_penjualan')
-					@la_input($module, 'jenis')
-					@la_input($module, 'merk')
-					@la_input($module, 'karton')
-					@la_input($module, 'harga_kg')
-					@la_input($module, 'berat_kg')
+					@la_input($module, 'po_id')
+					@la_input($module, 'tgl_pembelian')
+					@la_input($module, 'nama_penjual')
+					@la_input($module, 'tanggal_penerimaan')
+					@la_input($module, 'cara_penerimaan')
+					@la_input($module, 'cara_pembayaran')
+					@la_input($module, 'tgl_jatuh_tempo')
+					@la_input($module, 'gdg_penerimaan')
 					--}}
 				</div>
 			</div>
@@ -91,7 +93,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/barangout_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/pembelian_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -101,7 +103,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#barangout-add-form").validate({
+	$("#pembelian-add-form").validate({
 		
 	});
 });
