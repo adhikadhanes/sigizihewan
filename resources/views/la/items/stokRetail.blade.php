@@ -30,25 +30,19 @@
 		<table id="example" class="table table-bordered">
         <thead>           
             <tr class="success">
-                <th class="sorting">Id</th>
                 <th class="sorting">Jenis</th>
                 <th class="sorting">Merk</th>
                 <th class="sorting">KG Karton</th>
                 <th class="sorting">KG Retail</th>
-                <th class="sorting">Tipe</th>
-                <th class="sorting">Nama Jenis</th>
             </tr>
         </thead>
         <tbody>
         @foreach( $stokRetail as $rtl )
             <tr>
-                <td>{{ $rtl->id }}</td>
                 <td>{{ $rtl->jenis_nama }}</td>
                 <td>{{ $rtl->merk_nama }}</td>
                 <td>{{ $rtl->kg_carton }}</td>
                 <td>{{ $rtl->retail_kg }}</td>
-                <td>{{ $rtl->tipe }}</td>
-                <td>{{ $rtl->nama_jenis }}</td>
             </tr>
 		@endforeach
         </tbody>
@@ -68,18 +62,45 @@
 <script>
 $(function () {
     $("#example").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/item_dt_ajax') }}",
         language: {
             lengthMenu: "_MENU_",
             search: "_INPUT_",
             searchPlaceholder: "Search"
         },
+        "columnDefs": [
+            { "visible": false, "targets": 0 }
+        ],
+        "order": [[ 2, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5" style="background-color:rgb(200,200,200);">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
     });
     $("#item-add-form").validate({
         
     });
+    // Order by the grouping
+    $('#example tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    } );
 });
 </script>
 @endpush
