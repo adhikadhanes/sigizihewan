@@ -21,15 +21,20 @@ use Dwij\Laraadmin\Models\ModuleFields;
 use App\Models\Penjualan;
 use Illuminate\Support\Facades\Input;
 use App\Models\Item;
+use App\Models\Jeni;
 use App\Models\Relation;
+use App\Models\Gudang;
+use App\Models\BarangOut;
 
 use App\Models\Merk;
+
+
 
 class PenjualansController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'order_id';
-	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_penerimaan', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'Gdg Pengiriman', 'order_id'];
+	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_pengiriman', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gudang_pengiriman', 'order_id'];
 	// public static $add_rules = array(
 	// 	'nama_pembeli' => 'required',
 	// 	'nama_pembeli_retail' => 'required'
@@ -48,18 +53,21 @@ class PenjualansController extends Controller
 
 	public function tambahpenjualan()
 	{
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$jenisList = Jeni::pluck('nama', 'id')->all();
 		$merkList = Merk::pluck('nama', 'id')->all();
+		$gudangList = Gudang::pluck('name', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
-		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList'));
+		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList','gudangList'));
 
 	}
 	public function tambahpenjualanretail()
 	{
 
-		$jenisList = Item::pluck('nama_jenis', 'nama_jenis')->all();
+		$jenisList = Jeni::pluck('nama', 'id')->all();
+
 
 		$merkList = Merk::pluck('nama', 'id')->all();
+
 		$relationList = Relation::pluck('nama', 'id')->all();
 		return view('la.penjualans.addRetail', compact('relationList','jenisList', 'merkList'));
 
@@ -133,37 +141,57 @@ class PenjualansController extends Controller
 		}
 	}
 
-	public function storeTally(Request $request)
+	 function generateOrder() {
+
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		return $order_id;
+
+	}
+
+	public function storePenjualan(Request $request)
 	{
 
-		$nomor = $request->nomor;
+		$penjualan = new Penjualan;
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		// $order_id = generateOrder();
 
-		for ($i=0; $i < $nomor; $i++) {
-			$data = array(
-				'jenis_daging' => (int)Input::get('jenis_daging'.$i),
-				'merk_daging' => (int)Input::get('merk_daging'.$i),
-				'berat' => Input::get('berat'.$i),
-				'karton' => Input::get('karton'.$i),
-				'harga_kg' => '1',
-			);
+		$penjualan->order_id = $order_id;
+		$penjualan->tgl_penjualan = $request->tgl_penjualan;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->tanggal_pengiriman = $request->tanggal_pengiriman;
+		$penjualan->cara_penerimaan = $request->cara_penerimaan;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->cara_pembayaran = $request->cara_pembayaran;
+		$penjualan->tgl_jatuh_tempo = 		$request->tgl_jatuh_tempo;
 
-			$flight = new Tally;
+		$penjualan->save();
+		$id_penjualan = $penjualan->id;
 
-	  //       $flight->jenis_daging = $request->jenis_daging;
-	  //       	        $flight->merk_daging = $request->merk_daging;
-	  //       	        	        $flight->berat = $request->berat;
-	  //       	        	        	        $flight->karton = $request->karton;
-	  //       	        	        	        	        $flight->harga_kg = $request->harga_kg;
+		$form = $_POST['baris'];
 
-	        $flight->save();
+		foreach ( $form as $form)
+    	{
+        // here you have access to $diam['top'] and $diam['bottom']
+      
+			$barang = new BarangOut;
 
- // DB::table('tallies')->insert(['jenis_daging' => $data['jenis_daging'], 'merk_daging' => $data['merk_daging'], 'berat' => $data['berat'], 'karton' => $data['karton'],]);
+			$barang->id_penjualan = $id_penjualan;
+	        $barang->jenis = $form['jenis_daging'];
+	       	$barang->merk = $form['merk_daging'];
+	        $barang->berat_kg = $form['berat'];
+	        $barang->karton = $form['karton'];
+	        $barang->harga_kg = $form['harga_kg'];
 
-			echo $data['jenis_daging'];
+	      $barang->save();
 
-		}
+    	}
 
-		return "success";
+    	return redirect(config('laraadmin.adminRoute')."/");
+
 	}
 
 	/**
@@ -180,13 +208,14 @@ class PenjualansController extends Controller
 			if(isset($penjualan->id)) {
 				$module = Module::get('Penjualans');
 				$module->row = $penjualan;
+				$barangOut = BarangOut::where('id_penjualan',$id)->get();
 
 				return view('la.penjualans.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
 					'no_header' => true,
 					'no_padding' => "no-padding"
-				])->with('penjualan', $penjualan);
+				])->with('penjualan', $penjualan)->with('barangOut',$barangOut);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,

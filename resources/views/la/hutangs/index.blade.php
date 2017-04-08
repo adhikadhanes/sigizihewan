@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "TransferStocks")
-@section("contentheader_description", "TransferStocks listing")
-@section("section", "TransferStocks")
+@section("contentheader_title", "Hutangs")
+@section("contentheader_description", "Hutangs listing")
+@section("section", "Hutangs")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "TransferStocks Listing")
+@section("htmlheader_title", "Hutangs Listing")
 
 @section("headerElems")
-@la_access("TransferStocks", "create")
-	<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddModal">Add TransferStock</button> | <a href="transferstock" class="btn btn-info " role="button">Add Tranfer Stock</a>
+@la_access("Hutangs", "create")
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Hutang</button>
 @endla_access
 @endsection
 
@@ -42,45 +42,30 @@
 			
 		</tbody>
 		</table>
-		
-		<table class="table" id="dynamic_field">  
-                                  <tr>
-                                      <td>No</td>
-                                      <td>
-                                      <td>ID</td>
-                                      <td>Tanggal Keluar</td>
-                                      <td>Gudang Asal</td>
-                                      <td>Gudang Tujuan</td>
-                                      <td>No</td>
-                                      <td>
-                                      <td>Jenis</td>
-                                      <td>Merk</td>
-                                      <td>Berat (KG)</td>
-                                      <td>Karton</td>
-                                      <td>Status</td>
-                                    </tr>
-                               </table>
 	</div>
 </div>
 
-@la_access("TransferStocks", "create")
+@la_access("Hutangs", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add TransferStock</h4>
+				<h4 class="modal-title" id="myModalLabel">Add Hutang</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\TransferStocksController@store', 'id' => 'transferstock-add-form']) !!}
+			{!! Form::open(['action' => 'LA\HutangsController@store', 'id' => 'hutang-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
 					
 					{{--
-					@la_input($module, 'jenis')
-					@la_input($module, 'merk')
-					@la_input($module, 'Berat')
-					@la_input($module, 'Karton')
+					@la_input($module, 'po_id')
+					@la_input($module, 'tanggal_pembayaran')
+					@la_input($module, 'tanggal_penerimaan')
+					@la_input($module, 'nama_supplier')
+					@la_input($module, 'total_harga')
+					@la_input($module, 'cara_bayar')
+					@la_input($module, 'status')
 					--}}
 				</div>
 			</div>
@@ -107,7 +92,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/transferstock_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/hutang_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -117,7 +102,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#transferstock-add-form").validate({
+	$("#hutang-add-form").validate({
 		
 	});
 });

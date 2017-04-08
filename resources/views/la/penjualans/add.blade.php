@@ -28,7 +28,7 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
  </head>
-
+{!! Form::open(['url' => '/storePenjualan', 'class' => 'form-horizontal']) !!}
 <div class="box box-success box-solid">
 	<div class="box-header ">TAMBAH PENJUALAN</div>
 	<div class="box-body ">
@@ -37,52 +37,40 @@
 
 <table>
   <tr>
-    <td width="40%"><strong>IDSO </strong></td>
-        <td width="10%"> : </td>
-        <td style="font-weight: bold;">#SO0001</td>
-  </tr>
-  <tr>
     <td><strong>Tanggal Penjualan </strong> </td><td> : </td>
-    <td width="80%">{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!} </td>
+    <td width="10%">{!! Form::date('tgl_penjualan', \Carbon\Carbon::today()->toDateString(), ['class' => 'form-control']); !!} </td>
   </tr>
   <tr>
+
     <td><strong>Nama Pembeli </strong> </td><td width="20%"> : </td>
-    <td>{{ Form::select('Relations', $relationList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true' , 'name' => 'nama_pembeli']) }}</td>
+    <td>{{ Form::select('nama_pembeli', $relationList, null, ['class' => 'selectpicker', 'data-show-subtext' => 'true', 'data-live-search' => 'true']) }}</td>
   </tr>
-  <tr>
-    <td><strong>Nama Pembeli Retail </strong> </td><td width="20%"> : </td>
-        <td>{{ Form::text('hello', '', ['placeholder' => 'Masukkan Nama Pembeli', 'class' => 'form-control', 'id' => 'nama_pembeli_retail'])}}
-        </td>
-  </tr>
+
     <tr>
-<td><strong>Tanggal Penerimaan </strong> </td><td> : </td>
-    <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}</td>
+<td><strong>Tanggal Pengiriman </strong> </td><td> : </td>
+    <td>{!! Form::date('tanggal_pengiriman', \Carbon\Carbon::today()->toDateString(), ['class' => 'form-control']); !!}</td>
   </tr>
 </table>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 		</div>
 <div class="col-md-6">
 <table>
   <tr>
-    <td width=35%><strong>Cara Pengiriman </strong> </td><td width="5%"> : </td>
-      <td width="80%">{{ Form::select('size', ['Pengiriman' => 'Pengiriman', 'Pengambilan' => 'Pengambilan'], 'S', ['class' => 'form-control']) }}</td>
+    <td width=35%><strong>Cara Penerimaan </strong> </td><td width="5%"> : </td>
+      <td width="80%">{{ Form::select('cara_penerimaan', ['Pengiriman' => 'Pengiriman', 'Pengambilan' => 'Pengambilan'], null, ['class' => 'form-control']) }}</td>
   </tr>
    <tr>
-    <td><strong>Gudang Pengiriman </strong> </td><td> : </td>
-   <td>{{ Form::select('size', ['Cakung' => 'Cakung', 'Cimuning' => 'Cimuning'], 'S', ['class' => 'form-control']) }}</td>
+    <td><strong>Gudang Pengiriman</strong> </td><td> : </td>
+   <td>{{ Form::select('gudang_pengiriman', $gudangList, null, ['class' => 'form-control']) }}</td>
   </tr>
      <tr>
     <td><strong>Cara Pembayaran </strong> </td><td> : </td>
-  <td>{{ Form::select('size', ['Langsung' => 'Langsung', 'Tempo' => 'Tempo', 'Cicilan' => 'Cicilan'], 'S', ['class' => 'form-control']) }}</td>
+  <td>{{ Form::select('cara_pembayaran', ['Langsung' => 'Langsung', 'Tempo' => 'Tempo', 'Cicilan' => 'Cicilan'], 'S', ['class' => 'form-control']) }}</td>
   </tr>
      <tr>
     <td><strong>Tgl Jatuh Tempo </strong> </td><td> : </td>
-    <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}
+    <td>{!! Form::date('tgl_jatuh_tempo', \Carbon\Carbon::today()->toDateString(), ['class' => 'form-control']); !!}
 
-      <!-- {{ Form::select("item", $jenisList, null, ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true"]) }} -->
     </td>
     <td></td>
   <tr>
@@ -112,11 +100,10 @@
 
                                     <?php $i = 1; ?>
                                     <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td>
-                                    {{ Form::select("item", $merkList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "md", "name" => "md"]) }}</td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
+                                    {{ Form::select("item", $merkList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "md", "name" => "md"]) }}</td>  <td><input type="number" step="0.01" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="number" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="number" step="0.01" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
                                </table>
 
-                          {!! Form::open(['url' => '/storeTally', 'class' => 'form-horizontal']) !!}
                                <table class="table" id="dynamic_field">  
 
                                   <tr>
@@ -127,14 +114,22 @@
                                       <td>Harga/kg</td>
                                       <td>Aksi</td>
                                     </tr>
-
+                            <!--      <tr>
+                                      <td><input type="text" name="name[]"class="form-control name_list" id="br"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><button type="button" class="btn btn-success" id="test" >Faktur Penjualan</button></td>
+                                  </tr> -->
                                </table>
 
                                {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control pull-right']) !!}
 
                           </div>  
-                          {!! Form::close() !!}
-                     </form>  
+                          </div>  
+                          </div>  
+                          {!! Form::close() !!} 
               
 
 
@@ -171,6 +166,8 @@
 
 @endsection
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 @push('scripts')
 <script>
@@ -186,20 +183,30 @@
       $('#test').click(function(){  
               var jd =  document.getElementById("jd").value;  
               var md = document.getElementById("md").value;
+
+              var jdnama =  document.getElementById("jd").innerHTML;  
+              var mdnama = document.getElementById("md").innerHTML;
+
+
+
               var br = document.getElementById("br").value;
               var kr = document.getElementById("kr").value;
               var hk = document.getElementById("hk").value;
 
-              document.getElementById("jd").value = "";
-              document.getElementById("md").value = "";
+              if(br == "" && br == "" && br == "") {
+                alert('Kolom Berat, Karton, Kilogram ada yang belum diisi.');
+                return;
+              }
+
               document.getElementById("br").value = "";
               document.getElementById("kr").value = "";
               document.getElementById("hk").value = "";
 
            i++;
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="jenis_daging'+i+'" value="'+jd+'" placeholder="Jenis Daging" class="form-control" />'+'</td><td><input type="text" name="merk_daging'+i+'" value="'+md+'" placeholder="Merk Daging" class="form-control name_list" /></td><td><input type="text" name="berat'+i+'" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="text" name="karton'+i+'" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="text" name="harga_kg'+i+'" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="baris['+i+'][jenis_daging]" value="'+jd+'" placeholder="Jenis Daging" class="form-control" readonly/>'+'</td><td><input type="text" name="baris['+i+'][merk_daging]" value="'+md+'" placeholder="Merk Daging" class="form-control name_list" readonly/></td><td><input type="number" name="baris['+i+'][berat]" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][karton]" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][harga_kg]" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       }); 
+
 
 
       $('#submit').click(function(){            
@@ -229,6 +236,8 @@
           });
 
       });
+            });
+
 
  </script>
 
