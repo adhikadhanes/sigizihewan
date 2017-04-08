@@ -6,7 +6,6 @@
 
 namespace App\Http\Controllers\LA;
 
-		// Field Access of Listing Columns
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -18,36 +17,37 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
-use App\Models\Hutang;
+use App\Models\BarangIn;
 
-class HutangsController extends Controller
+class BarangInsController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'po_id';
-	public $listing_cols = ['id', 'po_id', 'tanggal_pembayaran', 'tanggal_penerimaan', 'nama_supplier', 'total_harga', 'cara_bayar', 'status'];
+	public $listing_cols = ['id', 'po_id', 'jenis', 'merk', 'karton', 'harga_kg', 'berat_kg'];
 	
 	public function __construct() {
+		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 			$this->middleware(function ($request, $next) {
-				$this->listing_cols = ModuleFields::listingColumnAccessScan('Hutangs', $this->listing_cols);
+				$this->listing_cols = ModuleFields::listingColumnAccessScan('BarangIns', $this->listing_cols);
 				return $next($request);
 			});
 		} else {
-			$this->listing_cols = ModuleFields::listingColumnAccessScan('Hutangs', $this->listing_cols);
+			$this->listing_cols = ModuleFields::listingColumnAccessScan('BarangIns', $this->listing_cols);
 		}
 	}
 	
 	/**
-	 * Display a listing of the Hutangs.
+	 * Display a listing of the BarangIns.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{
-		$module = Module::get('Hutangs');
+		$module = Module::get('BarangIns');
 		
 		if(Module::hasAccess($module->id)) {
-			return View('la.hutangs.index', [
+			return View('la.barangins.index', [
 				'show_actions' => $this->show_action,
 				'listing_cols' => $this->listing_cols,
 				'module' => $module
@@ -58,7 +58,7 @@ class HutangsController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new hutang.
+	 * Show the form for creating a new barangin.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -68,16 +68,16 @@ class HutangsController extends Controller
 	}
 
 	/**
-	 * Store a newly created hutang in database.
+	 * Store a newly created barangin in database.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request)
 	{
-		if(Module::hasAccess("Hutangs", "create")) {
+		if(Module::hasAccess("BarangIns", "create")) {
 		
-			$rules = Module::validateRules("Hutangs", $request);
+			$rules = Module::validateRules("BarangIns", $request);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -85,9 +85,9 @@ class HutangsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
 			
-			$insert_id = Module::insert("Hutangs", $request);
+			$insert_id = Module::insert("BarangIns", $request);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.hutangs.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.barangins.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -95,30 +95,30 @@ class HutangsController extends Controller
 	}
 
 	/**
-	 * Display the specified hutang.
+	 * Display the specified barangin.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		if(Module::hasAccess("Hutangs", "view")) {
+		if(Module::hasAccess("BarangIns", "view")) {
 			
-			$hutang = Hutang::find($id);
-			if(isset($hutang->id)) {
-				$module = Module::get('Hutangs');
-				$module->row = $hutang;
+			$barangin = BarangIn::find($id);
+			if(isset($barangin->id)) {
+				$module = Module::get('BarangIns');
+				$module->row = $barangin;
 				
-				return view('la.hutangs.show', [
+				return view('la.barangins.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
 					'no_header' => true,
 					'no_padding' => "no-padding"
-				])->with('hutang', $hutang);
+				])->with('barangin', $barangin);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("hutang"),
+					'record_name' => ucfirst("barangin"),
 				]);
 			}
 		} else {
@@ -127,28 +127,28 @@ class HutangsController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified hutang.
+	 * Show the form for editing the specified barangin.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("Hutangs", "edit")) {			
-			$hutang = Hutang::find($id);
-			if(isset($hutang->id)) {	
-				$module = Module::get('Hutangs');
+		if(Module::hasAccess("BarangIns", "edit")) {			
+			$barangin = BarangIn::find($id);
+			if(isset($barangin->id)) {	
+				$module = Module::get('BarangIns');
 				
-				$module->row = $hutang;
+				$module->row = $barangin;
 				
-				return view('la.hutangs.edit', [
+				return view('la.barangins.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
-				])->with('hutang', $hutang);
+				])->with('barangin', $barangin);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("hutang"),
+					'record_name' => ucfirst("barangin"),
 				]);
 			}
 		} else {
@@ -157,7 +157,7 @@ class HutangsController extends Controller
 	}
 
 	/**
-	 * Update the specified hutang in storage.
+	 * Update the specified barangin in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -165,9 +165,9 @@ class HutangsController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		if(Module::hasAccess("Hutangs", "edit")) {
+		if(Module::hasAccess("BarangIns", "edit")) {
 			
-			$rules = Module::validateRules("Hutangs", $request, true);
+			$rules = Module::validateRules("BarangIns", $request, true);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -175,9 +175,9 @@ class HutangsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
 			
-			$insert_id = Module::updateRow("Hutangs", $request, $id);
+			$insert_id = Module::updateRow("BarangIns", $request, $id);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.hutangs.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.barangins.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -185,18 +185,18 @@ class HutangsController extends Controller
 	}
 
 	/**
-	 * Remove the specified hutang from storage.
+	 * Remove the specified barangin from storage.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id)
 	{
-		if(Module::hasAccess("Hutangs", "delete")) {
-			Hutang::find($id)->delete();
+		if(Module::hasAccess("BarangIns", "delete")) {
+			BarangIn::find($id)->delete();
 			
 			// Redirecting to index() method
-			return redirect()->route(config('laraadmin.adminRoute') . '.hutangs.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.barangins.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -209,11 +209,11 @@ class HutangsController extends Controller
 	 */
 	public function dtajax()
 	{
-		$values = DB::table('hutangs')->select($this->listing_cols)->whereNull('deleted_at');
+		$values = DB::table('barangins')->select($this->listing_cols)->whereNull('deleted_at');
 		$out = Datatables::of($values)->make();
 		$data = $out->getData();
 
-		$fields_popup = ModuleFields::getModuleFields('Hutangs');
+		$fields_popup = ModuleFields::getModuleFields('BarangIns');
 		
 		for($i=0; $i < count($data->data); $i++) {
 			for ($j=0; $j < count($this->listing_cols); $j++) { 
@@ -222,7 +222,7 @@ class HutangsController extends Controller
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
 				}
 				if($col == $this->view_col) {
-					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/hutangs/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/barangins/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
 				}
 				// else if($col == "author") {
 				//    $data->data[$i][$j];
@@ -231,12 +231,12 @@ class HutangsController extends Controller
 			
 			if($this->show_action) {
 				$output = '';
-				if(Module::hasAccess("Hutangs", "edit")) {
-					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/hutangs/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+				if(Module::hasAccess("BarangIns", "edit")) {
+					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/barangins/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
 				
-				if(Module::hasAccess("Hutangs", "delete")) {
-					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.hutangs.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+				if(Module::hasAccess("BarangIns", "delete")) {
+					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.barangins.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
 					$output .= Form::close();
 				}
