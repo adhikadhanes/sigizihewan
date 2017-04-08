@@ -17,37 +17,37 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
-use App\Models\Item;
+use App\Models\Hutang;
 
-class ItemsController extends Controller
+class HutangsController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'jenis';
-	public $listing_cols = ['id', 'jenis', 'merk', 'kg_carton', 'wholesale_kg', 'wholesale_carton', 'retail_kg', 'tipe', 'nama_jenis'];
-
+	public $view_col = 'po_id';
+	public $listing_cols = ['id', 'po_id', 'tanggal_pembayaran', 'tanggal_penerimaan', 'nama_supplier', 'total_harga', 'cara_bayar', 'status'];
+	
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 			$this->middleware(function ($request, $next) {
-				$this->listing_cols = ModuleFields::listingColumnAccessScan('Items', $this->listing_cols);
+				$this->listing_cols = ModuleFields::listingColumnAccessScan('Hutangs', $this->listing_cols);
 				return $next($request);
 			});
 		} else {
-			$this->listing_cols = ModuleFields::listingColumnAccessScan('Items', $this->listing_cols);
+			$this->listing_cols = ModuleFields::listingColumnAccessScan('Hutangs', $this->listing_cols);
 		}
 	}
 	
 	/**
-	 * Display a listing of the Items.
+	 * Display a listing of the Hutangs.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{
-		$module = Module::get('Items');
+		$module = Module::get('Hutangs');
 		
 		if(Module::hasAccess($module->id)) {
-			return View('la.items.index', [
+			return View('la.hutangs.index', [
 				'show_actions' => $this->show_action,
 				'listing_cols' => $this->listing_cols,
 				'module' => $module
@@ -57,30 +57,8 @@ class ItemsController extends Controller
         }
 	}
 
-	public function stokWholesale()
-	{
-		$stokWholesale = DB::table('Items')
-		->select('kg_carton', 'wholesale_kg', 'wholesale_carton', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
-		->join('jenis', 'jenis.id', '=', 'items.jenis')
-		->join('merks', 'merks.id', '=', 'items.merk')
-		->get();
-		
-		return view('la.items.stokWholesale', compact('stokWholesale'));
-	}
-
-	public function stokRetail()
-	{
-		$stokRetail = DB::table('Items')->select('kg_carton', 'retail_kg', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
-		->join('jenis', 'jenis.id', '=', 'items.jenis')
-		->join('merks', 'merks.id', '=', 'items.merk')
-		->get();
-		
-		return view('la.items.stokRetail', compact('stokRetail'));
-
-	}
-
 	/**
-	 * Show the form for creating a new item.
+	 * Show the form for creating a new hutang.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -90,16 +68,16 @@ class ItemsController extends Controller
 	}
 
 	/**
-	 * Store a newly created item in database.
+	 * Store a newly created hutang in database.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request)
 	{
-		if(Module::hasAccess("Items", "create")) {
+		if(Module::hasAccess("Hutangs", "create")) {
 		
-			$rules = Module::validateRules("Items", $request);
+			$rules = Module::validateRules("Hutangs", $request);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -107,9 +85,9 @@ class ItemsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
 			
-			$insert_id = Module::insert("Items", $request);
+			$insert_id = Module::insert("Hutangs", $request);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.items.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.hutangs.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -117,30 +95,30 @@ class ItemsController extends Controller
 	}
 
 	/**
-	 * Display the specified item.
+	 * Display the specified hutang.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		if(Module::hasAccess("Items", "view")) {
+		if(Module::hasAccess("Hutangs", "view")) {
 			
-			$item = Item::find($id);
-			if(isset($item->id)) {
-				$module = Module::get('Items');
-				$module->row = $item;
+			$hutang = Hutang::find($id);
+			if(isset($hutang->id)) {
+				$module = Module::get('Hutangs');
+				$module->row = $hutang;
 				
-				return view('la.items.show', [
+				return view('la.hutangs.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
 					'no_header' => true,
 					'no_padding' => "no-padding"
-				])->with('item', $item);
+				])->with('hutang', $hutang);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("item"),
+					'record_name' => ucfirst("hutang"),
 				]);
 			}
 		} else {
@@ -149,28 +127,28 @@ class ItemsController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified item.
+	 * Show the form for editing the specified hutang.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("Items", "edit")) {			
-			$item = Item::find($id);
-			if(isset($item->id)) {	
-				$module = Module::get('Items');
+		if(Module::hasAccess("Hutangs", "edit")) {			
+			$hutang = Hutang::find($id);
+			if(isset($hutang->id)) {	
+				$module = Module::get('Hutangs');
 				
-				$module->row = $item;
+				$module->row = $hutang;
 				
-				return view('la.items.edit', [
+				return view('la.hutangs.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
-				])->with('item', $item);
+				])->with('hutang', $hutang);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("item"),
+					'record_name' => ucfirst("hutang"),
 				]);
 			}
 		} else {
@@ -179,7 +157,7 @@ class ItemsController extends Controller
 	}
 
 	/**
-	 * Update the specified item in storage.
+	 * Update the specified hutang in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -187,9 +165,9 @@ class ItemsController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		if(Module::hasAccess("Items", "edit")) {
+		if(Module::hasAccess("Hutangs", "edit")) {
 			
-			$rules = Module::validateRules("Items", $request, true);
+			$rules = Module::validateRules("Hutangs", $request, true);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -197,9 +175,9 @@ class ItemsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
 			
-			$insert_id = Module::updateRow("Items", $request, $id);
+			$insert_id = Module::updateRow("Hutangs", $request, $id);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.items.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.hutangs.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -207,18 +185,18 @@ class ItemsController extends Controller
 	}
 
 	/**
-	 * Remove the specified item from storage.
+	 * Remove the specified hutang from storage.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id)
 	{
-		if(Module::hasAccess("Items", "delete")) {
-			Item::find($id)->delete();
+		if(Module::hasAccess("Hutangs", "delete")) {
+			Hutang::find($id)->delete();
 			
 			// Redirecting to index() method
-			return redirect()->route(config('laraadmin.adminRoute') . '.items.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.hutangs.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -231,11 +209,11 @@ class ItemsController extends Controller
 	 */
 	public function dtajax()
 	{
-		$values = DB::table('items')->select($this->listing_cols)->whereNull('deleted_at');
+		$values = DB::table('hutangs')->select($this->listing_cols)->whereNull('deleted_at');
 		$out = Datatables::of($values)->make();
 		$data = $out->getData();
 
-		$fields_popup = ModuleFields::getModuleFields('Items');
+		$fields_popup = ModuleFields::getModuleFields('Hutangs');
 		
 		for($i=0; $i < count($data->data); $i++) {
 			for ($j=0; $j < count($this->listing_cols); $j++) { 
@@ -244,7 +222,7 @@ class ItemsController extends Controller
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
 				}
 				if($col == $this->view_col) {
-					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/items/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/hutangs/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
 				}
 				// else if($col == "author") {
 				//    $data->data[$i][$j];
@@ -253,12 +231,12 @@ class ItemsController extends Controller
 			
 			if($this->show_action) {
 				$output = '';
-				if(Module::hasAccess("Items", "edit")) {
-					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/items/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+				if(Module::hasAccess("Hutangs", "edit")) {
+					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/hutangs/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
 				
-				if(Module::hasAccess("Items", "delete")) {
-					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.items.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+				if(Module::hasAccess("Hutangs", "delete")) {
+					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.hutangs.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
 					$output .= Form::close();
 				}

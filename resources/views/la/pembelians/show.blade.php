@@ -1,7 +1,7 @@
 @extends('la.layouts.app')
 
 @section('htmlheader_title')
-	BarangOut View
+	Pembelian View
 @endsection
 
 
@@ -15,7 +15,7 @@
 					<div class="profile-icon text-primary"><i class="fa {{ $module->fa_icon }}"></i></div>
 				</div>
 				<div class="col-md-9">
-					<h4 class="name">{{ $barangout->$view_col }}</h4>
+					<h4 class="name">{{ $pembelian->$view_col }}</h4>
 					<div class="row stats">
 						<div class="col-md-4"><i class="fa fa-facebook"></i> 234</div>
 						<div class="col-md-4"><i class="fa fa-twitter"></i> 12</div>
@@ -81,12 +81,12 @@
 			</div>
 		</div>
 		<div class="col-md-1 actions">
-			@la_access("BarangOuts", "edit")
-				<a href="{{ url(config('laraadmin.adminRoute') . '/barangouts/'.$barangout->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			@la_access("Pembelians", "edit")
+				<a href="{{ url(config('laraadmin.adminRoute') . '/pembelians/'.$pembelian->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
 			
-			@la_access("BarangOuts", "delete")
-				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.barangouts.destroy', $barangout->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			@la_access("Pembelians", "delete")
+				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.pembelians.destroy', $pembelian->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 				{{ Form::close() }}
 			@endla_access
@@ -94,7 +94,7 @@
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/barangouts') }}" data-toggle="tooltip" data-placement="right" title="Back to BarangOuts"><i class="fa fa-chevron-left"></i></a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/pembelians') }}" data-toggle="tooltip" data-placement="right" title="Back to Pembelians"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="#tab-timeline" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
 	</ul>
@@ -107,12 +107,14 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
-						@la_display($module, 'id_penjualan')
-						@la_display($module, 'jenis')
-						@la_display($module, 'merk')
-						@la_display($module, 'karton')
-						@la_display($module, 'harga_kg')
-						@la_display($module, 'berat_kg')
+						@la_display($module, 'po_id')
+						@la_display($module, 'tgl_pembelian')
+						@la_display($module, 'nama_penjual')
+						@la_display($module, 'tanggal_penerimaan')
+						@la_display($module, 'cara_penerimaan')
+						@la_display($module, 'cara_pembayaran')
+						@la_display($module, 'tgl_jatuh_tempo')
+						@la_display($module, 'gdg_penerimaan')
 					</div>
 				</div>
 			</div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreateBarangoutsTable extends Migration
+class CreatePembeliansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,13 +17,15 @@ class CreateBarangoutsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Barangouts", 'barangouts', 'id_penjualan', 'fa-sign-out', [
-            ["id_penjualan", "ID Penjualan", "Dropdown", false, "", 0, 0, false, "@penjualans"],
-            ["jenis", "Jenis", "Dropdown", false, "", 0, 0, true, "@jenis"],
-            ["merk", "Merk", "Dropdown", false, "", 0, 0, true, "@merks"],
-            ["karton", "Karton", "Integer", false, "", 0, 11, true],
-            ["harga_kg", "Harga / KG", "Integer", false, "", 0, 11, true],
-            ["berat_kg", "Berat KG", "Decimal", false, "", 0, 11, true],
+        Module::generate("Pembelians", 'pembelians', 'so_id', 'fa-inbox', [
+            ["po_id", "IDPO", "String", false, "", 0, 256, false],
+            ["tgl_pembelian", "Tanggal Pembelian", "Date", false, "", 0, 0, false],
+            ["nama_penjual", "Nama Penjual", "Dropdown", false, "", 0, 256, true, "@relations"],
+            ["tanggal_penerimaan", "Tgl Penerimaan", "Date", false, "", 0, 0, true],
+            ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
+            ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
+            ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
+            ["gdg_penerimaan", "Gudang Penerimaan", "Dropdown", false, "", 0, 0, true, "@gudangs"],
         ]);
 		
 		/*
@@ -69,8 +71,8 @@ class CreateBarangoutsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('barangouts')) {
-            Schema::drop('barangouts');
+        if (Schema::hasTable('pembelians')) {
+            Schema::drop('pembelians');
         }
     }
 }
