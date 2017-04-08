@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Input;
 use App\Models\Item;
 use App\Models\Jeni;
 use App\Models\Relation;
+use App\Models\Gudang;
+use App\Models\BarangOut;
 
 use App\Models\Merk;
 
@@ -32,7 +34,7 @@ class PenjualansController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'order_id';
-	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_penerimaan', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'Gdg Pengiriman', 'order_id'];
+	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_pengiriman', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gudang_pengiriman', 'order_id'];
 	// public static $add_rules = array(
 	// 	'nama_pembeli' => 'required',
 	// 	'nama_pembeli_retail' => 'required'
@@ -53,8 +55,9 @@ class PenjualansController extends Controller
 	{
 		$jenisList = Jeni::pluck('nama', 'id')->all();
 		$merkList = Merk::pluck('nama', 'id')->all();
+		$gudangList = Gudang::pluck('name', 'id')->all();
 		$relationList = Relation::pluck('nama', 'id')->all();
-		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList'));
+		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList','gudangList'));
 
 	}
 	public function tambahpenjualanretail()
@@ -138,25 +141,52 @@ class PenjualansController extends Controller
 		}
 	}
 
-	public function storeTally(Request $request)
+	 function generateOrder() {
+
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		return $order_id;
+
+	}
+
+	public function storePenjualan(Request $request)
 	{
 
-		// $nomor = $request->nomor;
+		$penjualan = new Penjualan;
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		// $order_id = generateOrder();
+
+		$penjualan->order_id = $order_id;
+		$penjualan->tgl_penjualan = $request->tgl_penjualan;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->tanggal_pengiriman = $request->tanggal_pengiriman;
+		$penjualan->cara_penerimaan = $request->cara_penerimaan;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->cara_pembayaran = $request->cara_pembayaran;
+		$penjualan->tgl_jatuh_tempo = 		$request->tgl_jatuh_tempo;
+
+		$penjualan->save();
+		$id_penjualan = $penjualan->id;
+
 		$form = $_POST['baris'];
 
 		foreach ( $form as $form)
     	{
         // here you have access to $diam['top'] and $diam['bottom']
       
-			$flight = new Tally;
+			$barang = new BarangOut;
 
-	        $flight->jenis_daging = $form['jenis_daging'];
-	       	$flight->merk_daging = $form['merk_daging'];
-	        $flight->berat = $form['berat'];
-	        $flight->karton = $form['karton'];
-	        $flight->harga_kg = $form['harga_kg'];
+			$barang->id_penjualan = $id_penjualan;
+	        $barang->jenis = $form['jenis_daging'];
+	       	$barang->merk = $form['merk_daging'];
+	        $barang->berat_kg = $form['berat'];
+	        $barang->karton = $form['karton'];
+	        $barang->harga_kg = $form['harga_kg'];
 
-	      $flight->save();
+	      $barang->save();
 
     	}
 

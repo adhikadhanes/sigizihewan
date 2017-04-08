@@ -35,11 +35,11 @@
 						@la_display($module, 'tgl_penjualan')
 						@la_display($module, 'nama_pembeli')
 						@la_display($module, 'nama_pembeli_retail')
-						@la_display($module, 'tanggal_penerimaan')
+						@la_display($module, 'tanggal_pengiriman')
 						@la_display($module, 'cara_penerimaan')
 						@la_display($module, 'cara_pembayaran')
 						@la_display($module, 'tgl_jatuh_tempo')
-						@la_display($module, 'Gdg Pengiriman')
+						@la_display($module, 'gudang_pengiriman')
 						@la_display($module, 'order_id')
 					</div>
 				</div>

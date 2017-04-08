@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreatePenjualansTable extends Migration
+class CreateBarangoutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,16 +17,13 @@ class CreatePenjualansTable extends Migration
      */
     public function up()
     {
-        Module::generate("Penjualans", 'penjualans', 'order_id', 'fa-money', [
-            ["order_id", "IDPO", "String", false, "", 0, 256, false],
-            ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
-            ["nama_pembeli", "Nama Pembeli", "Name", false, "", 0, 256, false],
-            ["nama_pembeli_retail", "Nama Pembeli Retail", "Name", false, "", 0, 256, false],
-            ["tanggal_penerimaan", "Tgl Penerimaan", "Date", false, "", 0, 0, true],
-            ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
-            ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
-            ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
-            ["gudang_pengiriman", "Gudang Pengiriman", "Dropdown", false, "", 0, 0, false, "@gudangs"],
+        Module::generate("Barangouts", 'barangouts', 'id_penjualan', 'fa-sign-out', [
+            ["id_penjualan", "ID Penjualan", "Dropdown", false, "", 0, 0, false, "@penjualans"],
+            ["jenis", "Jenis", "Dropdown", false, "", 0, 0, true, "@jenis"],
+            ["merk", "Merk", "Dropdown", false, "", 0, 0, true, "@merks"],
+            ["karton", "Karton", "Integer", false, "", 0, 11, true],
+            ["harga_kg", "Harga / KG", "Integer", false, "", 0, 11, true],
+            ["berat_kg", "Berat KG", "Decimal", false, "", 0, 11, true],
         ]);
 		
 		/*
@@ -72,8 +69,8 @@ class CreatePenjualansTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('penjualans')) {
-            Schema::drop('penjualans');
+        if (Schema::hasTable('barangouts')) {
+            Schema::drop('barangouts');
         }
     }
 }

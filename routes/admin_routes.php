@@ -137,4 +137,9 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Pembelians ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/pembelians', 'LA\PembeliansController');
 	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
+
+
+	/* ================== BarangOuts ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangouts', 'LA\BarangOutsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangout_dt_ajax', 'LA\BarangOutsController@dtajax');
 });
