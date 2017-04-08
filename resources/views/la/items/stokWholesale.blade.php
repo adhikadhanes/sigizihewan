@@ -29,9 +29,9 @@
 	<div class="box-body">
 	<!-- public $wholesale_cols = ['id', 'jenis', 'merk', 'kg_carton', 'wholesale_kg', 'wholesale_carton', 'tipe', 'nama_jenis']; -->
 
-		<table id="example" class="display" cellspacing="0" width="100%">
+		<table id="example" class="table table-bordered"">
         <thead>           
-            <tr>
+            <tr class="success">
                 <th>Id</th>
                 <th>Jenis</th>
                 <th>Merk</th>
@@ -42,18 +42,6 @@
                 <th>Nama Jenis</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Id</th>
-                <th>Jenis</th>
-                <th>Merk</th>
-                <th>KG Karton</th>
-                <th>KG Wholesale</th>
-                <th>Wholesale Karton</th>
-                <th>Tipe</th>
-                <th>Nama Jenis</th>
-            </tr>
-        </tfoot>
         <tbody>
         @foreach( $stokWholesale as $rtl )
             <tr>
@@ -82,8 +70,20 @@
 @push('scripts')
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
+$(function () {
+    $("#example").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/item_dt_ajax') }}",
+        language: {
+            lengthMenu: "_MENU_",
+            search: "_INPUT_",
+            searchPlaceholder: "Search"
+        },
+    });
+    $("#item-add-form").validate({
+        
+    });
+});
 </script>
 @endpush

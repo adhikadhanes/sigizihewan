@@ -27,29 +27,18 @@
 <div class="box box-success">
 	<!--<div class="box-header"></div>-->
 	<div class="box-body">
-		<table id="example" class="display" cellspacing="0" width="100%">
+		<table id="example" class="table table-bordered">
         <thead>           
-            <tr>
-                <th>Id</th>
-                <th>Jenis</th>
-                <th>Merk</th>
-                <th>KG Karton</th>
-                <th>KG Retail</th>
-                <th>Tipe</th>
-                <th>Nama Jenis</th>
+            <tr class="success">
+                <th class="sorting">Id</th>
+                <th class="sorting">Jenis</th>
+                <th class="sorting">Merk</th>
+                <th class="sorting">KG Karton</th>
+                <th class="sorting">KG Retail</th>
+                <th class="sorting">Tipe</th>
+                <th class="sorting">Nama Jenis</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Id</th>
-                <th>Jenis</th>
-                <th>Merk</th>
-                <th>KG Karton</th>
-                <th>KG Retail</th>
-                <th>Tipe</th>
-                <th>Nama Jenis</th>
-            </tr>
-        </tfoot>
         <tbody>
         @foreach( $stokRetail as $rtl )
             <tr>
@@ -77,8 +66,20 @@
 @push('scripts')
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
+$(function () {
+    $("#example").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/item_dt_ajax') }}",
+        language: {
+            lengthMenu: "_MENU_",
+            search: "_INPUT_",
+            searchPlaceholder: "Search"
+        },
+    });
+    $("#item-add-form").validate({
+        
+    });
+});
 </script>
 @endpush
