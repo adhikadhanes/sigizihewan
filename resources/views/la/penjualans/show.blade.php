@@ -117,6 +117,29 @@
 						@la_display($module, 'Gdg Pengiriman')
 						@la_display($module, 'order_id')
 					</div>
+					<tr>
+					<table class="table">
+										<tr>
+                                      <td><strong>No</strong></td>
+                                      <td></td>
+                                      <td><strong>Nama Barang</strong></td>
+                                      <td></td>
+                                      <td><strong>Karton</strong></td>
+                                      <td></td>
+                                      <td><strong>Kg</strong></td>
+                                      <td></td>
+                                      <td><strong>Harga</strong></td>
+                                      <td></td>
+                                      <td><strong>Jumlah</strong></td>
+                                      <td></td>
+                                      <td><button type="button" class="btn btn-success" id="test" >Faktur Penjualan</button></td>
+                                      <td><button type="button" class="btn btn-success" id="test" >Surat Jalan</button></td>
+                                      </table>
+                                      </tr>
+                                      <tr>
+
+                                      </tr>
+                                  </tr>
 				</div>
 			</div>
 		</div>
