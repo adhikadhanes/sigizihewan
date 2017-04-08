@@ -146,4 +146,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Hutangs ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/hutangs', 'LA\HutangsController');
 	Route::get(config('laraadmin.adminRoute') . '/hutang_dt_ajax', 'LA\HutangsController@dtajax');
+
+	/* ================== BarangIns ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangins', 'LA\BarangInsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangin_dt_ajax', 'LA\BarangInsController@dtajax');
 });
