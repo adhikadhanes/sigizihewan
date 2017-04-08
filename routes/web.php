@@ -19,7 +19,8 @@ Route::get('/penjualantest', 'LA\PenjualansController@penjualantest');
 Route::get('search',array('as'=>'search','uses'=>'SearchController@search'));
 Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
 Route::get('admin/tambahpenjualanretail','LA\PenjualansController@tambahpenjualanretail');
-
+Route::get('/stokRetail', 'LA\ItemsController@stokRetail');
+Route::get('/stokWholesale', 'LA\ItemsController@stokWholesale');
 
 /* ================== Homepage + Admin Routes ================== */
 
