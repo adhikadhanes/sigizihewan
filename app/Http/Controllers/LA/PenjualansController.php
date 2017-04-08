@@ -34,7 +34,7 @@ class PenjualansController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'order_id';
-	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_penerimaan', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gudang_penerimaan', 'order_id'];
+	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_pengiriman', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gudang_pengiriman', 'order_id'];
 	// public static $add_rules = array(
 	// 	'nama_pembeli' => 'required',
 	// 	'nama_pembeli_retail' => 'required'
@@ -141,22 +141,30 @@ class PenjualansController extends Controller
 		}
 	}
 
+	 function generateOrder() {
+
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		return $order_id;
+
+	}
+
 	public function storePenjualan(Request $request)
 	{
 
-		// $nomor = $request->nomor;
-		
 		$penjualan = new Penjualan;
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		// $order_id = generateOrder();
 
-		$penjualan->order_id = 1;
+		$penjualan->order_id = $order_id;
 		$penjualan->tgl_penjualan = $request->tgl_penjualan;
 		$penjualan->nama_pembeli = $request->nama_pembeli;
-		$penjualan->tanggal_penerimaan = $request->tanggal_penerimaan;
-		$penjualan->gudang_penerimaan = $request->gudang_penerimaan;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
 		$penjualan->nama_pembeli = $request->nama_pembeli;
-		$penjualan->tanggal_penerimaan = $request->tanggal_penerimaan;
+		$penjualan->tanggal_pengiriman = $request->tanggal_pengiriman;
 		$penjualan->cara_penerimaan = $request->cara_penerimaan;
-		$penjualan->gudang_penerimaan = $request->gudang_penerimaan;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
 		$penjualan->cara_pembayaran = $request->cara_pembayaran;
 		$penjualan->tgl_jatuh_tempo = 		$request->tgl_jatuh_tempo;
 

@@ -26,7 +26,7 @@ class CreatePenjualansTable extends Migration
             ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
             ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
             ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
-            ["gudang_penerimaan", "Gudang Penerimaan", "Dropdown", false, "", 0, 0, false, "@gudangs"],
+            ["gudang_pengiriman", "Gudang Pengiriman", "Dropdown", false, "", 0, 0, false, "@gudangs"],
         ]);
 		
 		/*

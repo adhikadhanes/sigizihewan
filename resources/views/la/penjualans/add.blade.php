@@ -47,8 +47,8 @@
   </tr>
 
     <tr>
-<td><strong>Tanggal Penerimaan </strong> </td><td> : </td>
-    <td>{!! Form::date('tanggal_penerimaan', \Carbon\Carbon::today()->toDateString(), ['class' => 'form-control']); !!}</td>
+<td><strong>Tanggal Pengiriman </strong> </td><td> : </td>
+    <td>{!! Form::date('tanggal_pengiriman', \Carbon\Carbon::today()->toDateString(), ['class' => 'form-control']); !!}</td>
   </tr>
 </table>
 
@@ -61,7 +61,7 @@
   </tr>
    <tr>
     <td><strong>Gudang Pengiriman</strong> </td><td> : </td>
-   <td>{{ Form::select('gudang_penerimaan', $gudangList, null, ['class' => 'form-control']) }}</td>
+   <td>{{ Form::select('gudang_pengiriman', $gudangList, null, ['class' => 'form-control']) }}</td>
   </tr>
      <tr>
     <td><strong>Cara Pembayaran </strong> </td><td> : </td>
