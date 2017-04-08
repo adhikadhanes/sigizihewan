@@ -39,7 +39,7 @@
 						@la_display($module, 'cara_penerimaan')
 						@la_display($module, 'cara_pembayaran')
 						@la_display($module, 'tgl_jatuh_tempo')
-						@la_display($module, 'Gdg Pengiriman')
+						@la_display($module, 'gudang_penerimaan')
 						@la_display($module, 'order_id')
 					</div>
 				</div>

@@ -127,4 +127,9 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 
 	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
 	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
+
+
+	/* ================== BarangOuts ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangouts', 'LA\BarangOutsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangout_dt_ajax', 'LA\BarangOutsController@dtajax');
 });
