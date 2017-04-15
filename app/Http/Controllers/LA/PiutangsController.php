@@ -56,7 +56,7 @@ class PiutangsController extends Controller
   //           return redirect(config('laraadmin.adminRoute')."/");
   //       }
 		$piutang = DB::table('Penjualans')
-		->select('nama_pembeli', 'tanggal_pengiriman', 'cara_pembayaran', 'order_id')
+		->select('nama_pembeli', 'tanggal_pengiriman', 'cara_pembayaran', 'order_id', 'total_harga')
 		->get();
 		
 		return view('la.piutangs.index', compact('piutang'));

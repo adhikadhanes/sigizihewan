@@ -46,7 +46,7 @@
                 <td></td>
                 <td>{{ $pt->tanggal_pengiriman }}</td>
                 <td>{{ $pt->nama_pembeli }}</td>
-                <td></td>
+                <td>{{ $pt->total_harga }}</td>
                 <td>{{ $pt->cara_pembayaran }}</td>
                 <td></td>
             </tr>
