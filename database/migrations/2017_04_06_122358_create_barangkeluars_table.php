@@ -17,8 +17,8 @@ class CreateBarangkeluarsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Barangkeluars", 'barangkeluars', 'sales_id', 'fa-archive', [
-            ["sales_id", "IDSO", "String", false, "", 0, 256, false],
+        Module::generate("Barangkeluars", 'barangkeluars', 'order_id', 'fa-archive', [
+            ["order_id", "IDSO", "String", false, "", 0, 256, false],
             ["nama_supplier", "Nama Supplier", "Name", false, "", 0, 256, false],
             ["tanggal_terima", "Tanggal Terima", "Date", false, "", 0, 0, false],
             ["jenis_daging", "Jenis", "String", false, "", 0, 256, false],

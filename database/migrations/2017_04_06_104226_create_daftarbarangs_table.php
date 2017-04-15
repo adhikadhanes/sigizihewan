@@ -17,8 +17,8 @@ class CreateDaftarbarangsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Daftarbarangs", 'daftarbarangs', 'order_id', 'fa-archive', [
-            ["order_id", "IDPO", "String", false, "", 0, 256, false],
+        Module::generate("Daftarbarangs", 'daftarbarangs', 'po_id', 'fa-archive', [
+            ["po_id", "IDPO", "String", false, "", 0, 256, false],
             ["nama_supplier", "Nama Supplier", "Name", false, "", 0, 256, false],
             ["tanggal_terima", "Tanggal Terima", "Date", false, "", 0, 0, false],
             ["jenis_barang", "Jenis", "String", false, "", 0, 256, false],

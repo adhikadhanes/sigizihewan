@@ -33,7 +33,7 @@
 					@la_form($module)
 					
 					{{--
-					@la_input($module, 'order_id')
+					@la_input($module, 'po_id')
 					@la_input($module, 'nama_supplier')
 					@la_input($module, 'tanggal_terima')
 					@la_input($module, 'jenis_barang')

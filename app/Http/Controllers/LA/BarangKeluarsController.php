@@ -22,8 +22,8 @@ use App\Models\BarangKeluar;
 class BarangKeluarsController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'sales_id';
-	public $listing_cols = ['id', 'sales_id', 'nama_supplier', 'tanggal_terima', 'jenis_daging', 'merk_daging', 'berat_penjualan', 'berat_aktual', 'jumlah_karton', 'status_keluar', 'status_terkirim', 'tgl_baru'];
+	public $view_col = 'order_id';
+	public $listing_cols = ['id', 'order_id', 'nama_supplier', 'tanggal_terima', 'jenis_daging', 'merk_daging', 'berat_penjualan', 'berat_aktual', 'jumlah_karton', 'status_keluar', 'status_terkirim', 'tgl_baru'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns

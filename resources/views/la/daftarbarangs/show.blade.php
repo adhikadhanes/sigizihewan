@@ -107,7 +107,7 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
-						@la_display($module, 'order_id')
+						@la_display($module, 'po_id')
 						@la_display($module, 'nama_supplier')
 						@la_display($module, 'tanggal_terima')
 						@la_display($module, 'jenis_barang')

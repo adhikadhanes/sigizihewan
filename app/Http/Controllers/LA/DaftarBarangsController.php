@@ -22,8 +22,8 @@ use App\Models\DaftarBarang;
 class DaftarBarangsController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'order_id';
-	public $listing_cols = ['id', 'order_id', 'nama_supplier', 'tanggal_terima', 'jenis_barang', 'merk_daging', 'berat_pembelian', 'berat_aktual', 'jumlah_karton'];
+	public $view_col = 'po_id';
+	public $listing_cols = ['id', 'po_id', 'nama_supplier', 'tanggal_terima', 'jenis_barang', 'merk_daging', 'berat_pembelian', 'berat_aktual', 'jumlah_karton'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
@@ -229,15 +229,15 @@ class DaftarBarangsController extends Controller
 				// }
 			}
 			
-			if(TRUE) {
+			if($this->show_action) {
 				$output = '';
-				if(TRUE) {
-					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/daftarbarangs/'.$data->data[$i][0].'/edit').'" class="btn btn-warning" style="display:inline;">Tally</a>';
+				if(Module::hasAccess("DaftarBarangs", "edit")) {
+					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/daftarbarangs/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
 				
-				if(TRUE) {
+				if(Module::hasAccess("DaftarBarangs", "delete")) {
 					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.daftarbarangs.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
-					$output .= ' <button class="btn btn-success" type="submit">Confirm</button>';
+					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
 					$output .= Form::close();
 				}
 				$data->data[$i][] = (string)$output;
