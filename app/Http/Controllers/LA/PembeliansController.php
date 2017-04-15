@@ -149,7 +149,7 @@ class PembeliansController extends Controller
 
 			$barang = new BarangIn;
 
-			$barang->po_id = $po_id;
+					$barang->po_id = $po_id;
 					$barang->jenis = $form['jenis_daging'];
 					$barang->merk = $form['merk_daging'];
 					$barang->berat_kg = $form['berat'];
