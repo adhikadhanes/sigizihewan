@@ -9,6 +9,7 @@
 @section("headerElems")
 @la_access("Pembelians", "create")
 	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Pembelian</button>
+		<a href="tambahpembelian" class="btn btn-info" role="button">Tambah Pembelian</a>
 @endla_access
 @endsection
 
@@ -39,7 +40,7 @@
 		</tr>
 		</thead>
 		<tbody>
-			
+
 		</tbody>
 		</table>
 	</div>
@@ -57,7 +58,7 @@
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
-					
+
 					{{--
 					@la_input($module, 'po_id')
 					@la_input($module, 'tgl_pembelian')
@@ -104,7 +105,7 @@ $(function () {
 		@endif
 	});
 	$("#pembelian-add-form").validate({
-		
+
 	});
 });
 </script>

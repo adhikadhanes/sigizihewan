@@ -101,6 +101,12 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/penjualans', 'LA\PenjualansController');
 	Route::get(config('laraadmin.adminRoute') . '/penjualan_dt_ajax', 'LA\PenjualansController@dtajax');
 
+	/* ================== Pembelians ================== */
+	Route::get('admin/tambahpembelian','LA\PembeliansController@tambahpembelian');
+
+	Route::resource(config('laraadmin.adminRoute') . '/pembelians', 'LA\PembeliansController');
+	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
+
 
 	/* ================== Gudangs ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/gudangs', 'LA\GudangsController');
@@ -131,6 +137,10 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
 	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
 
+	/* ================== Pembelians ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/pembelians', 'LA\PembeliansController');
+	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
+
 
 	/* ================== BarangOuts ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/barangouts', 'LA\BarangOutsController');
@@ -149,4 +159,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Hutangs ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/hutangs', 'LA\HutangsController');
 	Route::get(config('laraadmin.adminRoute') . '/hutang_dt_ajax', 'LA\HutangsController@dtajax');
+
+	/* ================== BarangIns ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangins', 'LA\BarangInsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangin_dt_ajax', 'LA\BarangInsController@dtajax');
 });

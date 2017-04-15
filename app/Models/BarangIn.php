@@ -9,11 +9,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Hutang extends Model
+class BarangIn extends Model
 {
     use SoftDeletes;
 	
-	protected $table = 'hutangs';
+	protected $table = 'barangins';
 	
 	protected $hidden = [
         

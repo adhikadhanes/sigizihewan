@@ -50,6 +50,10 @@
 						@la_display($module, 'cara_pembayaran')
 						@la_display($module, 'tgl_jatuh_tempo')
 						@la_display($module, 'gudang_pengiriman')
+						<!--la_display($module, 'status') -->
+						<!--la_display($module, 'keterangan') -->
+						<!--la_display($module, 'total_harga') -->
+
 						</div>
 					</div>
 				

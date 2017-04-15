@@ -33,7 +33,7 @@ class PenjualansController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'order_id';
-	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_pengiriman', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gudang_pengiriman', 'order_id'];
+	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_pengiriman', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gudang_pengiriman', 'order_id','status','keterangan','total_harga'];
 	// public static $add_rules = array(
 	// 	'nama_pembeli' => 'required',
 	// 	'nama_pembeli_retail' => 'required'
@@ -175,7 +175,7 @@ class PenjualansController extends Controller
 		foreach ( $form as $form)
     	{
         // here you have access to $diam['top'] and $diam['bottom']
-      
+
 			$barang = new BarangOut;
 
 			$barang->id_penjualan = $id_penjualan;

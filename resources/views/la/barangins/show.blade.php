@@ -1,11 +1,12 @@
 @extends('la.layouts.app')
 
 @section('htmlheader_title')
-	Hutang View
+	BarangIn View
 @endsection
 
 
 @section('main-content')
+<!--barangin -->
 <div id="page-content" class="profile2">
 	<div class="bg-primary clearfix">
 		<div class="col-md-4">
@@ -15,7 +16,7 @@
 					<div class="profile-icon text-primary"><i class="fa {{ $module->fa_icon }}"></i></div>
 				</div>
 				<div class="col-md-9">
-					<h4 class="name">{{ $hutang->$view_col }}</h4>
+					<h4 class="name">{{ $barangin->$view_col }}</h4>
 					<div class="row stats">
 						<div class="col-md-4"><i class="fa fa-facebook"></i> 234</div>
 						<div class="col-md-4"><i class="fa fa-twitter"></i> 12</div>
@@ -81,12 +82,12 @@
 			</div>
 		</div>
 		<div class="col-md-1 actions">
-			@la_access("Hutangs", "edit")
-				<a href="{{ url(config('laraadmin.adminRoute') . '/hutangs/'.$hutang->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			@la_access("BarangIns", "edit")
+				<a href="{{ url(config('laraadmin.adminRoute') . '/barangins/'.$barangin->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
 			
-			@la_access("Hutangs", "delete")
-				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.hutangs.destroy', $hutang->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			@la_access("BarangIns", "delete")
+				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.barangins.destroy', $barangin->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 				{{ Form::close() }}
 			@endla_access
@@ -94,7 +95,7 @@
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/hutangs') }}" data-toggle="tooltip" data-placement="right" title="Back to Hutangs"><i class="fa fa-chevron-left"></i></a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/barangins') }}" data-toggle="tooltip" data-placement="right" title="Back to BarangIns"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="#tab-timeline" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
 	</ul>
@@ -108,12 +109,11 @@
 					</div>
 					<div class="panel-body">
 						@la_display($module, 'po_id')
-						@la_display($module, 'tanggal_pembayaran')
-						@la_display($module, 'tanggal_penerimaan')
-						@la_display($module, 'nama_supplier')
-						@la_display($module, 'total_harga')
-						@la_display($module, 'cara_bayar')
-						@la_display($module, 'status')
+						@la_display($module, 'jenis')
+						@la_display($module, 'merk')
+						@la_display($module, 'karton')
+						@la_display($module, 'harga_kg')
+						@la_display($module, 'berat_kg')
 					</div>
 				</div>
 			</div>
