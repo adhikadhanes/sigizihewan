@@ -27,8 +27,7 @@ use App\Models\Gudang;
 use App\Models\BarangOut;
 
 use App\Models\Merk;
-
-
+ 
 
 class PenjualansController extends Controller
 {
@@ -226,6 +225,21 @@ class PenjualansController extends Controller
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
 	}
+
+	//menampilkan faktur penjualan
+
+	public function showfaktur($id)
+	{
+		$penjualan = Penjualan::find($id)->nama_pembeli();
+		$barangout = BarangOut::where('id_penjualan',$id)->get();
+		if(isset($penjualan->nama_pembeli)){
+			$nama_pembeli = $penjualan->nama_pembeli;
+		}else{
+			$nama_pembeli = $penjualan->nama_pembeli_retail;
+		}
+		return view('la.penjualans.faktur',compact('penjualan', 'barangout', 'nama_pembeli'));
+	}
+
 
 	/**
 	 * Show the form for editing the specified penjualan.

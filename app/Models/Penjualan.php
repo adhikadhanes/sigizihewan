@@ -22,4 +22,12 @@ class Penjualan extends Model
 	protected $guarded = [];
 
 	protected $dates = ['deleted_at'];
+
+
+	 public function nama_pembeli()
+    {
+        return $this->hasOne('App\Models\Relation','nama_pembeli','id');
+    }
+
+
 }
