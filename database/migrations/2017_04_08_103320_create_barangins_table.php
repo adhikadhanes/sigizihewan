@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreatePenjualansTable extends Migration
+class CreateBaranginsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,19 +17,13 @@ class CreatePenjualansTable extends Migration
      */
     public function up()
     {
-        Module::generate("Penjualans", 'penjualans', 'order_id', 'fa-money', [
-            ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
-            ["status", "Status", "Dropdown", false, "", 0, 0, true, ["Lunas","Belum Lunas"]],
-            ["keterangan", "Keterangan", "Textarea", false, "", 0, 0, false],
-            ["order_id", "IDSO", "String", false, "", 0, 256, false],
-            ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
-            ["nama_pembeli", "Nama Pembeli", "Dropdown", false, "", 0, 256, false, "@relations"],
-            ["nama_pembeli_retail", "Nama Pembeli Retail", "Name", false, "", 0, 256, false],
-            ["tanggal_pengiriman", "Tgl Pengiriman", "Date", false, "", 0, 0, true],
-            ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
-            ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
-            ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
-            ["gudang_pengiriman", "Gudang Pengiriman", "Dropdown", false, "", 0, 0, false, "@gudangs"],
+        Module::generate("Barangins", 'barangins', 'po_id', 'fa-sign-out', [
+            ["po_id", "IDPO", "Dropdown", false, "", 0, 0, false, "@pembelians"],
+            ["jenis", "Jenis", "Dropdown", false, "", 0, 0, true, "@jenis"],
+            ["merk", "Merk", "Dropdown", false, "", 0, 0, true, "@merks"],
+            ["karton", "Karton", "Integer", false, "", 0, 11, true],
+            ["harga_kg", "Harga/kg", "Integer", false, "", 0, 11, true],
+            ["berat_kg", "Berat (kg)", "Decimal", false, "", 0, 11, true],
         ]);
 		
 		/*
@@ -75,8 +69,8 @@ class CreatePenjualansTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('penjualans')) {
-            Schema::drop('penjualans');
+        if (Schema::hasTable('barangins')) {
+            Schema::drop('barangins');
         }
     }
 }

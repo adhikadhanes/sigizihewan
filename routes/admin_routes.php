@@ -128,6 +128,7 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
 	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
 
+
 	/* ================== DaftarBarangs ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/daftarbarangs', 'LA\DaftarBarangsController');
 	Route::get(config('laraadmin.adminRoute') . '/daftarbarang_dt_ajax', 'LA\DaftarBarangsController@dtajax');
@@ -135,4 +136,28 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== BarangKeluars ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/barangkeluars', 'LA\BarangKeluarsController');
 	Route::get(config('laraadmin.adminRoute') . '/barangkeluar_dt_ajax', 'LA\BarangKeluarsController@dtajax');
+
+
+	/* ================== BarangOuts ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangouts', 'LA\BarangOutsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangout_dt_ajax', 'LA\BarangOutsController@dtajax');
+
+
+
+	/* ================== Piutangs ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/piutangs', 'LA\PiutangsController');
+	Route::get(config('laraadmin.adminRoute') . '/piutang_dt_ajax', 'LA\PiutangsController@dtajax');
+
+	/* ================== Pembelians ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/pembelians', 'LA\PembeliansController');
+	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
+
+	/* ================== Hutangs ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/hutangs', 'LA\HutangsController');
+	Route::get(config('laraadmin.adminRoute') . '/hutang_dt_ajax', 'LA\HutangsController@dtajax');
+
+	/* ================== BarangIns ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangins', 'LA\BarangInsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangin_dt_ajax', 'LA\BarangInsController@dtajax');
+
 });

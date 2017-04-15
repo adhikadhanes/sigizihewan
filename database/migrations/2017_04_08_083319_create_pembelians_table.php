@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreatePenjualansTable extends Migration
+class CreatePembeliansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,19 +17,15 @@ class CreatePenjualansTable extends Migration
      */
     public function up()
     {
-        Module::generate("Penjualans", 'penjualans', 'order_id', 'fa-money', [
-            ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
-            ["status", "Status", "Dropdown", false, "", 0, 0, true, ["Lunas","Belum Lunas"]],
-            ["keterangan", "Keterangan", "Textarea", false, "", 0, 0, false],
-            ["order_id", "IDSO", "String", false, "", 0, 256, false],
-            ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
-            ["nama_pembeli", "Nama Pembeli", "Dropdown", false, "", 0, 256, false, "@relations"],
-            ["nama_pembeli_retail", "Nama Pembeli Retail", "Name", false, "", 0, 256, false],
-            ["tanggal_pengiriman", "Tgl Pengiriman", "Date", false, "", 0, 0, true],
+        Module::generate("Pembelians", 'pembelians', 'so_id', 'fa-inbox', [
+            ["po_id", "IDPO", "String", false, "", 0, 256, false],
+            ["tgl_pembelian", "Tanggal Pembelian", "Date", false, "", 0, 0, false],
+            ["nama_penjual", "Nama Penjual", "Dropdown", false, "", 0, 256, true, "@relations"],
+            ["tanggal_penerimaan", "Tgl Penerimaan", "Date", false, "", 0, 0, true],
             ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
             ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
             ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
-            ["gudang_pengiriman", "Gudang Pengiriman", "Dropdown", false, "", 0, 0, false, "@gudangs"],
+            ["gdg_penerimaan", "Gudang Penerimaan", "Dropdown", false, "", 0, 0, true, "@gudangs"],
         ]);
 		
 		/*
@@ -75,8 +71,8 @@ class CreatePenjualansTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('penjualans')) {
-            Schema::drop('penjualans');
+        if (Schema::hasTable('pembelians')) {
+            Schema::drop('pembelians');
         }
     }
 }
