@@ -50,7 +50,7 @@ class PenjualansController extends Controller
 			$this->listing_cols = ModuleFields::listingColumnAccessScan('Penjualans', $this->listing_cols);
 		}
 	}
-	
+
 	public function tambahpenjualan()
 	{
 		$jenisList = Jeni::pluck('nama', 'id')->all();
@@ -176,7 +176,7 @@ class PenjualansController extends Controller
 		foreach ( $form as $form)
     	{
         // here you have access to $diam['top'] and $diam['bottom']
-      
+
 			$barang = new BarangOut;
 
 			$barang->id_penjualan = $id_penjualan;
