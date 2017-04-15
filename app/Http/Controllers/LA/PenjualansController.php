@@ -27,8 +27,7 @@ use App\Models\Gudang;
 use App\Models\BarangOut;
 
 use App\Models\Merk;
-
-
+ 
 
 class PenjualansController extends Controller
 {
@@ -178,7 +177,7 @@ class PenjualansController extends Controller
 		foreach ( $form as $form)
     	{
         // here you have access to $diam['top'] and $diam['bottom']
-      
+
 			$barang = new BarangOut;
 
 			$barang->id_penjualan = $id_penjualan;
@@ -239,6 +238,28 @@ class PenjualansController extends Controller
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
 	}
+
+	//menampilkan faktur penjualan
+
+	public function showfaktur($id)
+	{
+		$barangout = DB::table('BarangOuts')
+		->select('BarangOuts.id', 'id_penjualan', 'jenis.nama as jenis', 'merks.nama as merk', 'karton', 'harga_kg', 'berat_kg')
+		->join('jenis', 'jenis.id', '=', 'BarangOuts.jenis')
+		->join('merks', 'merks.id', '=', 'BarangOuts.merk')
+		->where('id_penjualan',$id)
+		->get();
+
+		$penjualan = Penjualan::find($id);
+		
+		if(isset($penjualan->nama_pembeli)){
+			$nama_pembeli = Relation::find($penjualan->nama_pembeli)->nama;
+		}else{
+			$nama_pembeli = $penjualan->nama_pembeli_retail;
+		}
+		return view('la.penjualans.faktur',compact('penjualan', 'barangout', 'nama_pembeli'));
+	}
+
 
 	/**
 	 * Show the form for editing the specified penjualan.

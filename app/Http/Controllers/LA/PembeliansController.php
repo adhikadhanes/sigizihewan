@@ -18,13 +18,23 @@ use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
 use App\Models\Pembelian;
+use Illuminate\Support\Facades\Input;
+use App\Models\Item;
+use App\Models\Jeni;
+use App\Models\Relation;
+use App\Models\Gudang;
+use App\Models\BarangIn;
+
+use App\Models\Merk;
+
+
 
 class PembeliansController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'so_id';
 	public $listing_cols = ['id', 'po_id', 'tgl_pembelian', 'nama_penjual', 'tanggal_penerimaan', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gdg_penerimaan'];
-	
+
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
@@ -36,7 +46,16 @@ class PembeliansController extends Controller
 			$this->listing_cols = ModuleFields::listingColumnAccessScan('Pembelians', $this->listing_cols);
 		}
 	}
-	
+
+	public function tambahpembelian()
+	{
+		$jenisList = Jeni::pluck('nama', 'id')->all();
+		$merkList = Merk::pluck('nama', 'id')->all();
+		$gudangList = Gudang::pluck('name', 'id')->all();
+		$relationList = Relation::pluck('nama', 'id')->all();
+		return view('la.pembelians.add', compact('relationList','jenisList', 'merkList','gudangList'));
+
+	}
 	/**
 	 * Display a listing of the Pembelians.
 	 *
@@ -45,7 +64,7 @@ class PembeliansController extends Controller
 	public function index()
 	{
 		$module = Module::get('Pembelians');
-		
+
 		if(Module::hasAccess($module->id)) {
 			return View('la.pembelians.index', [
 				'show_actions' => $this->show_action,
@@ -76,22 +95,73 @@ class PembeliansController extends Controller
 	public function store(Request $request)
 	{
 		if(Module::hasAccess("Pembelians", "create")) {
-		
+
 			$rules = Module::validateRules("Pembelians", $request);
-			
+
 			$validator = Validator::make($request->all(), $rules);
-			
+
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
-			
+
 			$insert_id = Module::insert("Pembelians", $request);
-			
+
 			return redirect()->route(config('laraadmin.adminRoute') . '.pembelians.index');
-			
+
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
+	}
+
+	function generateOrder() {
+
+	 $number = (rand(1,10000));
+	 $po_id = 'IDPO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+	 return $po_id;
+
+ }
+
+	public function storePembelian(Request $request)
+	{
+
+		$pembelian = new Pembelian;
+		$number = (rand(1,10000));
+		$po_id = 'IDPO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		// $order_id = generateOrder();
+
+		$pembelian->po_id = $po_id;
+		$pembelian->tgl_pembelian = $request->tgl_pembelian;
+		$pembelian->nama_penjual = $request->nama_penjual;
+		$pembelian->gdg_penerimaan = $request->gdg_penerimaan;
+		$pembelian->tanggal_penerimaan = $request->tanggal_penerimaan;
+		$pembelian->cara_penerimaan = $request->cara_penerimaan;
+		$pembelian->cara_pembayaran = $request->cara_pembayaran;
+		$pembelian->tgl_jatuh_tempo = $request->tgl_jatuh_tempo;
+
+		$pembelian->save();
+		$po_id = $pembelian->id;
+
+		$form = $_POST['baris'];
+
+		foreach ( $form as $form)
+			{
+				// here you have access to $diam['top'] and $diam['bottom']
+
+			$barang = new BarangIn;
+
+			$barang->po_id = $po_id;
+					$barang->jenis = $form['jenis_daging'];
+					$barang->merk = $form['merk_daging'];
+					$barang->berat_kg = $form['berat'];
+					$barang->karton = $form['karton'];
+					$barang->harga_kg = $form['harga_kg'];
+
+				$barang->save();
+
+			}
+
+			return redirect(config('laraadmin.adminRoute')."/");
+
 	}
 
 	/**
@@ -103,12 +173,12 @@ class PembeliansController extends Controller
 	public function show($id)
 	{
 		if(Module::hasAccess("Pembelians", "view")) {
-			
+
 			$pembelian = Pembelian::find($id);
 			if(isset($pembelian->id)) {
 				$module = Module::get('Pembelians');
 				$module->row = $pembelian;
-				
+
 				return view('la.pembelians.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
@@ -134,13 +204,13 @@ class PembeliansController extends Controller
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("Pembelians", "edit")) {			
+		if(Module::hasAccess("Pembelians", "edit")) {
 			$pembelian = Pembelian::find($id);
-			if(isset($pembelian->id)) {	
+			if(isset($pembelian->id)) {
 				$module = Module::get('Pembelians');
-				
+
 				$module->row = $pembelian;
-				
+
 				return view('la.pembelians.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
@@ -166,19 +236,19 @@ class PembeliansController extends Controller
 	public function update(Request $request, $id)
 	{
 		if(Module::hasAccess("Pembelians", "edit")) {
-			
+
 			$rules = Module::validateRules("Pembelians", $request, true);
-			
+
 			$validator = Validator::make($request->all(), $rules);
-			
+
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
-			
+
 			$insert_id = Module::updateRow("Pembelians", $request, $id);
-			
+
 			return redirect()->route(config('laraadmin.adminRoute') . '.pembelians.index');
-			
+
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -194,14 +264,14 @@ class PembeliansController extends Controller
 	{
 		if(Module::hasAccess("Pembelians", "delete")) {
 			Pembelian::find($id)->delete();
-			
+
 			// Redirecting to index() method
 			return redirect()->route(config('laraadmin.adminRoute') . '.pembelians.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
 	}
-	
+
 	/**
 	 * Datatable Ajax fetch
 	 *
@@ -214,9 +284,9 @@ class PembeliansController extends Controller
 		$data = $out->getData();
 
 		$fields_popup = ModuleFields::getModuleFields('Pembelians');
-		
+
 		for($i=0; $i < count($data->data); $i++) {
-			for ($j=0; $j < count($this->listing_cols); $j++) { 
+			for ($j=0; $j < count($this->listing_cols); $j++) {
 				$col = $this->listing_cols[$j];
 				if($fields_popup[$col] != null && starts_with($fields_popup[$col]->popup_vals, "@")) {
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
@@ -228,13 +298,13 @@ class PembeliansController extends Controller
 				//    $data->data[$i][$j];
 				// }
 			}
-			
+
 			if($this->show_action) {
 				$output = '';
 				if(Module::hasAccess("Pembelians", "edit")) {
 					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/pembelians/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
-				
+
 				if(Module::hasAccess("Pembelians", "delete")) {
 					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.pembelians.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
