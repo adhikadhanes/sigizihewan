@@ -61,56 +61,7 @@ class PenjualansController extends Controller
 
 	}
 
-	public function tallyCoba()
-	{
-		return view('la.penjualans.addTally');
-	}
-
-	public function tallySimpan()
-	{
-
-		$penjualan = new Penjualan;
-		$number = (rand(1,10000));
-		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
-		// $order_id = generateOrder();
-
-		$penjualan->order_id = $order_id;
-		$penjualan->tgl_penjualan = $request->tgl_penjualan;
-		$penjualan->nama_pembeli = $request->nama_pembeli;
-		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
-		$penjualan->nama_pembeli = $request->nama_pembeli;
-		$penjualan->tanggal_pengiriman = $request->tanggal_pengiriman;
-		$penjualan->cara_penerimaan = $request->cara_penerimaan;
-		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
-		$penjualan->cara_pembayaran = $request->cara_pembayaran;
-		$penjualan->tgl_jatuh_tempo = 		$request->tgl_jatuh_tempo;
-
-		$penjualan->save();
-		$id_penjualan = $penjualan->id;
-
-		$form = $_POST['name'];
-
-		foreach ($form as $form) {
-			$berat = new Penjualan;
-
-			$berat->id_penjualan = $id_penjualan;
-	        $berat->satu = $form['satu'];
-	       	$berat->dua = $form['dua'];
-	        $berat->tiga = $form['tiga'];
-	        $berat->empat = $form['empat'];
-	        $berat->lima = $form['lima'];
-	        $berat->enam = $form['enam'];
-	        $berat->tujuh = $form['tujuh'];
-	        $berat->delapan = $form['delapan'];
-	        $berat->sembilan = $form['sembilan'];
-	        $berat->sepuluh = $form['sepuluh'];
-
-	      $berat->save();
-
-	      $totalBerats = $totalBerats + ($berat->satu + $berat->dua + $berat->tiga + $berat->empat + $berat->lima + $berat->enam + $berat->tujuh + $berat->delapan + $berat->sembilan + $berat->sepuluh);
-
-		}
-	}
+	
 
 	public function tambahpenjualanretail()
 	{

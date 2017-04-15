@@ -94,6 +94,40 @@ class BarangInsController extends Controller
 		}
 	}
 
+	public function tallyCoba()
+	{
+		return view('la.barangins.addTally');
+	}
+
+	public function tallySimpan()
+	{
+
+		
+
+		$form = $_POST['name'];
+
+		foreach ($form as $form) {
+			$berat = new Penjualan;
+
+			$berat->id_penjualan = $id_penjualan;
+	        $berat->satu = $form['satu'];
+	       	$berat->dua = $form['dua'];
+	        $berat->tiga = $form['tiga'];
+	        $berat->empat = $form['empat'];
+	        $berat->lima = $form['lima'];
+	        $berat->enam = $form['enam'];
+	        $berat->tujuh = $form['tujuh'];
+	        $berat->delapan = $form['delapan'];
+	        $berat->sembilan = $form['sembilan'];
+	        $berat->sepuluh = $form['sepuluh'];
+
+	      $berat->save();
+
+	      $totalBerats = $totalBerats + ($berat->satu + $berat->dua + $berat->tiga + $berat->empat + $berat->lima + $berat->enam + $berat->tujuh + $berat->delapan + $berat->sembilan + $berat->sepuluh);
+
+		}
+	}
+
 	/**
 	 * Display the specified barangin.
 	 *

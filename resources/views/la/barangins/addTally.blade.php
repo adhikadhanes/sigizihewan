@@ -1,16 +1,13 @@
-@@ -0,0 +1,196 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Processings")
-@section("contentheader_description", "Processings listing")
-@section("section", "Processings")
+@section("contentheader_title", "Tally")
+@section("contentheader_description", "Untuk Barang Masuk")
+@section("section", "Tally")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "Processings Listing")
+@section("htmlheader_title", "Tally Listing")
 
 @section("headerElems")
-@la_access("Processings", "create")
 
-@endla_access
 @endsection
 
 @section("main-content")
@@ -115,24 +112,13 @@
 
                                     <td><input type="number" name="name[]" class="form-control name_list tally" id="tally10" /></td>
 
-                                    <td><input type="number" name="name[]" class="form-control name_list total" id="totalBerat" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list total" id="totalBerat" disabled /></td>
 
                                     <td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
                                </table>
                                <table class="table" id="dynamic_field">  
-                                  <tr>
-                                      <td>1</td>
-                                      <td>2</td>
-                                      <td>3</td>
-                                      <td>4</td>
-                                      <td>5</td>
-                                      <td>6</td>
-                                      <td>7</td>
-                                      <td>8</td>
-                                      <td>9</td>
-                                      <td>10</td>
-                                    </tr>
+                                  
 
                                </table>
 
@@ -219,8 +205,8 @@
               var sepuluh = document.getElementById("tally10").value;
               var totalBerat = document.getElementById("totalBerat").value;
 
-              if(bp == "" && kpa == "" && jba == "" && mba == "" && bpa == "") {
-                alert('Kolom belum diisi.');
+              if(satu == "" && dua == "" && tiga == "" && empat == "" && lima == "" && enam == "" && tujuh == "" && delapan == "" && sembilan == "" && sepuluh == "") {
+                alert('Kolom tidak boleh kosong semua');
                 return;
               }
 
@@ -238,7 +224,7 @@
 
            i++;  
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><td>'+'<input type="text" name="baris"  value="'+i+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name['+i+'][satu]" value="'+satu+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name['+i+'][dua]" value="'+dua+'" class="form-control name_list" disabled /> '+' </td>  <td><input type="text" name="name['+i+'][tiga]" value="'+tiga+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][empat]" value="'+empat+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][lima]" value="'+lima+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][enam]" value="'+enam+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][tujuh]" value="'+tujuh+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][delapan]" value="'+delapan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sembilan]" value="'+sembilan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sepuluh]" value="'+sepuluh+'" class="form-control name_list" disabled/></td><td><button type="button" name ="remove" class="btn btn-danger btn_remove" id="'+i+'" >X</button></td></tr>');
+            '<tr id="row'+i+'"><input type="hidden" name="nomor" class="form-control name_list" />'+'<td><input type="text" name="name['+i+'][satu]" value="'+satu+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name['+i+'][dua]" value="'+dua+'" class="form-control name_list" disabled /> '+' </td>  <td><input type="text" name="name['+i+'][tiga]" value="'+tiga+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][empat]" value="'+empat+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][lima]" value="'+lima+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][enam]" value="'+enam+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][tujuh]" value="'+tujuh+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][delapan]" value="'+delapan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sembilan]" value="'+sembilan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sepuluh]" value="'+sepuluh+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][totalBerat]" value="'+totalBerat+'" class="form-control name_list" disabled/></td> <td><button type="button" name ="remove" class="btn btn-danger btn_remove" id="'+i+'" >X</button></td></tr>');
 
       }); 
 
