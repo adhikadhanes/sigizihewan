@@ -95,6 +95,9 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Penjualans ================== */
 	Route::get('admin/tambahpenjualan','LA\PenjualansController@tambahpenjualan');
 
+	//route buat faktur
+	Route::get('admin/penjualans/showfaktur/{id}','LA\PenjualansController@showfaktur');
+
 	Route::resource(config('laraadmin.adminRoute') . '/penjualans', 'LA\PenjualansController');
 	Route::get(config('laraadmin.adminRoute') . '/penjualan_dt_ajax', 'LA\PenjualansController@dtajax');
 
