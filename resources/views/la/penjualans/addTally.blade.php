@@ -95,27 +95,27 @@
                                     <?php $i = 1; ?>
                                     <tr id="{{ $i }}">
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally1" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally1" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally2" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally2" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally3" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally3" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally4" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally4" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally5" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally5" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally6" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally6" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally7" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally7" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally8" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally8" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally9" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally9" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list tally" id="tally10" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list tally" id="tally10" /></td>
 
-                                    <td><input type="text" name="name[]" class="form-control name_list total" id="totalBerat" /></td>
+                                    <td><input type="number" name="name[]" class="form-control name_list total" id="totalBerat" /></td>
 
                                     <td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
@@ -190,16 +190,16 @@
 
 
       $('.tally').on("keyup", function(){
-      var tally1 = parseFloat($('#tally1').val());
-      var tally2 = parseFloat($('#tally2').val());
-      var tally3 = parseFloat($('#tally3').val());
-      var tally4 = parseFloat($('#tally4').val());
-      var tally5 = parseFloat($('#tally5').val());
-      var tally6 = parseFloat($('#tally6').val());
-      var tally7 = parseFloat($('#tally7').val());
-      var tally8 = parseFloat($('#tally8').val());
-      var tally9 = parseFloat($('#tally9').val());
-      var tally10 = parseFloat($('#tally10').val());
+      var tally1 = parseFloat($('#tally1').val()) || 0;
+      var tally2 = parseFloat($('#tally2').val()) || 0;
+      var tally3 = parseFloat($('#tally3').val()) || 0;
+      var tally4 = parseFloat($('#tally4').val()) || 0;
+      var tally5 = parseFloat($('#tally5').val()) || 0;
+      var tally6 = parseFloat($('#tally6').val()) || 0;
+      var tally7 = parseFloat($('#tally7').val()) || 0;
+      var tally8 = parseFloat($('#tally8').val()) || 0;
+      var tally9 = parseFloat($('#tally9').val()) || 0;
+      var tally10 = parseFloat($('#tally10').val()) || 0;
       var totalBerat = tally1 + tally2 + tally3 + tally4 + tally5 + tally6 + tally7 + tally8 + tally9+ tally10;
       $('#totalBerat').val(totalBerat);
       console.log(totalBerat);
@@ -217,6 +217,7 @@
               var delapan = document.getElementById("tally8").value;
               var sembilan = document.getElementById("tally9").value;
               var sepuluh = document.getElementById("tally10").value;
+              var totalBerat = document.getElementById("totalBerat").value;
 
               if(bp == "" && kpa == "" && jba == "" && mba == "" && bpa == "") {
                 alert('Kolom belum diisi.');
@@ -233,6 +234,7 @@
               document.getElementById("tally8").value = "";
               document.getElementById("tally9").value = "";
               document.getElementById("tally10").value = "";
+              document.getElementById("totalBerat").value = "";
 
            i++;  
            $('#dynamic_field').append(
