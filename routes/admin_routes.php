@@ -138,6 +138,7 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::get(config('laraadmin.adminRoute') . '/barangkeluar_dt_ajax', 'LA\BarangKeluarsController@dtajax');
 
 
+
 	/* ================== BarangOuts ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/barangouts', 'LA\BarangOutsController');
 	Route::get(config('laraadmin.adminRoute') . '/barangout_dt_ajax', 'LA\BarangOutsController@dtajax');
