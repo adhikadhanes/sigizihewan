@@ -23,9 +23,6 @@ class Relation extends Model
 
 	protected $dates = ['deleted_at'];
 
-	public function penjualan()
-    {
-        return $this->belongsTo('App\Models\Penjualan');
-    }
+	
 
 }
