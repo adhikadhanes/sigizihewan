@@ -6,6 +6,7 @@
 
 
 @section('main-content')
+<!--barangin -->
 <div id="page-content" class="profile2">
 	<div class="bg-primary clearfix">
 		<div class="col-md-4">

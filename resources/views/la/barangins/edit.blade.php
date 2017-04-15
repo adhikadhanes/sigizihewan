@@ -24,7 +24,7 @@
 
 <div class="box">
 	<div class="box-header">
-		
+		<!-- barangin -->
 	</div>
 	<div class="box-body">
 		<div class="row">
