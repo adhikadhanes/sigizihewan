@@ -18,6 +18,9 @@ class CreatePenjualansTable extends Migration
     public function up()
     {
         Module::generate("Penjualans", 'penjualans', 'order_id', 'fa-money', [
+            ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
+            ["status", "Status", "Dropdown", false, "", 0, 0, true, ["Lunas","Belum Lunas"]],
+            ["keterangan", "Keterangan", "Textarea", false, "", 0, 0, false],
             ["order_id", "IDSO", "String", false, "", 0, 256, false],
             ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
             ["nama_pembeli", "Nama Pembeli", "Dropdown", false, "", 0, 256, false, "@relations"],

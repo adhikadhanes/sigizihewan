@@ -42,6 +42,9 @@
 					@la_input($module, 'cara_pembayaran')
 					@la_input($module, 'tgl_jatuh_tempo')
 					@la_input($module, 'gudang_penerimaan')
+					@la_input($module, 'status')
+					@la_input($module, 'keterangan')
+					@la_input($module, 'total_harga')
 					--}}
                     <br>
 					<div class="form-group">

@@ -60,7 +60,7 @@ class ItemsController extends Controller
 	public function stokWholesale()
 	{
 		$stokWholesale = DB::table('Items')
-		->select('items.id', 'jenis', 'merk', 'kg_carton', 'wholesale_kg', 'wholesale_carton', 'tipe', 'nama_jenis', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
+		->select('kg_carton', 'wholesale_kg', 'wholesale_carton', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
 		->join('jenis', 'jenis.id', '=', 'items.jenis')
 		->join('merks', 'merks.id', '=', 'items.merk')
 		->get();
@@ -70,7 +70,7 @@ class ItemsController extends Controller
 
 	public function stokRetail()
 	{
-		$stokRetail = DB::table('Items')->select('items.id', 'jenis', 'merk', 'kg_carton', 'retail_kg', 'tipe', 'nama_jenis', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
+		$stokRetail = DB::table('Items')->select('kg_carton', 'retail_kg', 'jenis.nama as jenis_nama', 'merks.nama as merk_nama')
 		->join('jenis', 'jenis.id', '=', 'items.jenis')
 		->join('merks', 'merks.id', '=', 'items.merk')
 		->get();
