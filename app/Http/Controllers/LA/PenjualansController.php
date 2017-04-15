@@ -230,9 +230,15 @@ class PenjualansController extends Controller
 
 	public function showfaktur($id)
 	{
+		$barangout = DB::table('BarangOuts')
+		->select('BarangOuts.id', 'id_penjualan', 'jenis.nama as jenis', 'merks.nama as merk', 'karton', 'harga_kg', 'berat_kg')
+		->join('jenis', 'jenis.id', '=', 'BarangOuts.jenis')
+		->join('merks', 'merks.id', '=', 'BarangOuts.merk')
+		->where('id_penjualan',$id)
+		->get();
 
 		$penjualan = Penjualan::find($id);
-		$barangout = BarangOut::where('id_penjualan',$id)->get();
+		
 		if(isset($penjualan->nama_pembeli)){
 			$nama_pembeli = Relation::find($penjualan->nama_pembeli)->nama;
 		}else{
