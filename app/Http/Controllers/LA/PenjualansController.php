@@ -176,7 +176,7 @@ class PenjualansController extends Controller
 		foreach ( $form as $form)
     	{
         // here you have access to $diam['top'] and $diam['bottom']
-      
+
 			$barang = new BarangOut;
 
 			$barang->id_penjualan = $id_penjualan;
