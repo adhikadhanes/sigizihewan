@@ -142,6 +142,16 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
 
 
+	/* ================== DaftarBarangs ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/daftarbarangs', 'LA\DaftarBarangsController');
+	Route::get(config('laraadmin.adminRoute') . '/daftarbarang_dt_ajax', 'LA\DaftarBarangsController@dtajax');
+
+	/* ================== BarangKeluars ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/barangkeluars', 'LA\BarangKeluarsController');
+	Route::get(config('laraadmin.adminRoute') . '/barangkeluar_dt_ajax', 'LA\BarangKeluarsController@dtajax');
+
+
+
 	/* ================== BarangOuts ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/barangouts', 'LA\BarangOutsController');
 	Route::get(config('laraadmin.adminRoute') . '/barangout_dt_ajax', 'LA\BarangOutsController@dtajax');
@@ -163,4 +173,5 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== BarangIns ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/barangins', 'LA\BarangInsController');
 	Route::get(config('laraadmin.adminRoute') . '/barangin_dt_ajax', 'LA\BarangInsController@dtajax');
+
 });

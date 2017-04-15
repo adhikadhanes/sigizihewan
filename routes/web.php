@@ -23,6 +23,7 @@ Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@a
 Route::get('admin/tambahpenjualanretail','LA\PenjualansController@tambahpenjualanretail');
 Route::get('admin/stokRetail', 'LA\ItemsController@stokRetail');
 Route::get('admin/stokWholesale', 'LA\ItemsController@stokWholesale');
+Route::get('admin/tallyCoba', 'LA\PenjualansController@tallyCoba');
 
 /* ================== Homepage + Admin Routes ================== */
 
