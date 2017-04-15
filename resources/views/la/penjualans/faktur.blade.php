@@ -25,17 +25,19 @@
 	</tr>
 </div>
 <div class="col-sm-6">
-<tr>
+
 		<?php $nomor = 1; ?>
 		@foreach ($barangout as $barangout)
+		<tr>
 		<td>{{$nomor++}}</td>
 		<td>{{ $barangout->jenis }} {{ $barangout->merk }}</td>
 		<td>{{ $barangout->karton }}</td>
 		<td>{{ $barangout->berat_kg }}</td>
 		<td>{{ $barangout->harga_kg }}</td>
 		<td>{{ $barangout->harga_kg*$barangout->berat_kg }}</td>
+		</tr>
 		@endforeach
-	</tr>
+	
 </div>
 
 

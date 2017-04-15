@@ -230,10 +230,11 @@ class PenjualansController extends Controller
 
 	public function showfaktur($id)
 	{
-		$penjualan = Penjualan::find($id)->nama_pembeli();
+
+		$penjualan = Penjualan::find($id);
 		$barangout = BarangOut::where('id_penjualan',$id)->get();
 		if(isset($penjualan->nama_pembeli)){
-			$nama_pembeli = $penjualan->nama_pembeli;
+			$nama_pembeli = Relation::find($penjualan->nama_pembeli)->nama;
 		}else{
 			$nama_pembeli = $penjualan->nama_pembeli_retail;
 		}
