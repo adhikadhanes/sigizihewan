@@ -420,4 +420,11 @@ class PenjualansController extends Controller
 		$out->setData($data);
 		return $out;
 	}
+
+	public function getJenis(Request $request) {
+		$jd = $request->jd;
+      return response()->json(array('nama'=> 'Allana'), 200);
+
+	}
+
 }
