@@ -43,40 +43,43 @@
         <td style="font-weight: bold;">#PCG0001</td>
   </tr>
   <tr>
-    <td><strong>Tanggal Processing </strong> </td><td width="20%"> : </td>
+    <td><strong>Tanggal Pengerjaan </strong> </td><td width="20%"> : </td>
     <td>{!! Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control']); !!} </td>
   </tr>
 </table>
     </div>
+
+    <div class="col-md-6">
+    <table>
+      <tr>
+        <td><strong>Gudang Processing </strong> </td><td width="10%"> : </td>
+       <td>{{ Form::select('size', ['Cakung' => 'Cakung', 'Cimuning' => 'Cimuning'], 'S', ['class' => 'form-control']) }}</td>
+      </tr>
+         <tr>
+        <td><strong>Keterangan </strong> </td><td width="10%"> : </td>
+        <td>{!! Form::textarea('notes', null, ['size' => '30x3']); !!}</td>
+      <tr>
+    </table>
+
+    		</div>
 
   </div>
 </div>
 </div>
 
 <div class="box box-info box-solid">
-  <div class="box-header ">DAFTAR BARANG</div>
-  <div class="box-body ">
-  <!-- <div class="row">
-    <div class="col-md-12">
-      Masukkan Jumlah Barang yang akan dijual : <input type="number" id="member" name="member" value=""> <button class="btn btn-info" id="btn" onclick="addinputFields()">Tambah</button> | <button type="button" class="btn btn-success" id="add">Tambah</button>
-    </div>
-  </div> -->
-
-  <div id="container"/>
-  </div>
-
-                <div class="form-group">  
-                     <form name="add_name" id="add_name">  
-                          <div class="table-responsive">  
-                               <table class="table">  
+      <div class="box-header ">DAFTAR BARANG</div>
+            <div class="box-body ">
+                  <div class="table-responsive">
+                        <table class="table">
                                     <tr>
-                                      <td>Jenis Barang Awal</td>
-                                      <td>Merk Barang Awal</td>
-                                      <td>Berat Perkiraan Awal</td>
-                                      <td>Karton Perkiraan Awal</td>
-                                      <td>Jenis Barang Akhir</td>
-                                      <td>Merk Barang Akhir</td>
-                                      <td>Berat Perkiraan Akhir</td>
+                                      <td>Jenis Awal</td>
+                                      <td>Merk Awal</td>
+                                      <td>Berat Awal</td>
+                                      <td>Karton Awal</td>
+                                      <td>Jenis Akhir</td>
+                                      <td>Merk Akhir</td>
+                                      <td>Berat Akhir</td>
                                       <td>Aksi</td>
                                     </tr>
 
@@ -87,37 +90,49 @@
 
                                     <td>{{ Form::select("item", $merkList, "pilih disini", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "mb", "name" => "mb", "title" => "Pilih Disini"]) }}</td>
 
-                                    <td><input type="text" name="name[]" placeholder="Berat Perkiraan Awal" class="form-control name_list" id="bp" /></td>
+                                    <td><input type="text" name="name[]" placeholder="Berat Awal" class="form-control name_list" id="bp" style="width:100px;" /></td>
 
-                                    <td><input type="text" name="name[]" placeholder="Karton Perkiraan Awal" class="form-control name_list" id="kpa" /></td>
+                                    <td><input type="text" name="name[]" placeholder="Karton Awal" class="form-control name_list" id="kpa" style="width:105px;" /></td>
 
-                                    <td><input type="text" name="name[]" placeholder="Jenis Barang Akhir" class="form-control name_list" id="jba" /></td>
+                                    <td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jba", "name" => "jb", "title" => "Pilih Disini"]) }}</td>
 
-                                    <td><input type="text" name="name[]" placeholder="Merk Barang Akhir" class="form-control name_list" id="mba" /></td> 
+                                    <td>{{ Form::select("item", $merkList, "pilih disini", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "mba", "name" => "mb", "title" => "Pilih Disini"]) }}</td>
 
-                                    <td><input type="text" name="name[]" placeholder="Berat Perkiraan Akhir" class="form-control name_list" id="bpa" /></td>
+                                    <td><input type="text" name="name[]" placeholder="Berat Akhir" class="form-control name_list" id="bpa" style="width:100px;" /></td>
 
-                                    <td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
+                                    <td><button type="button" class="btn btn-success" id="test" >Add</button></td>
+                                  </tr>
 
                                </table>
-                               <table class="table" id="dynamic_field">  
+
+                               <table class="table" id="dynamic_field">
+
                                   <tr>
-                                     <td>Jenis Barang Awal</td>
-                                      <td>Merk Barang Awal</td>
-                                      <td>Berat Perkiraan Awal</td>
-                                      <td>Karton Perkiraan Awal</td>
-                                      <td>Jenis Barang Akhir</td>
-                                      <td>Merk Barang Akhir</td>
-                                      <td>Berat Perkiraan Akhir</td>
-                                      <td>Aksi</td>
+                                     <td>Jenis Awal</td>
+                                     <td>Merk Awal</td>
+                                     <td>Berat Awal</td>
+                                     <td>Karton Awal</td>
+                                     <td>Jenis Akhir</td>
+                                     <td>Merk Akhir</td>
+                                     <td>Berat Akhir</td>
+                                     <td>Aksi</td>
                                     </tr>
-
+                            <!--      <tr>
+                                      <td><input type="text" name="name[]"class="form-control name_list" id="br"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><input type="text" name="name[]"/></td>
+                                      <td><button type="button" class="btn btn-success" id="test" >Faktur Penjualan</button></td>
+                                  </tr> -->
                                </table>
 
-                               <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />  
-                          </div>  
-                     </form>  
-                </div>  
+                               {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control pull-right']) !!}
+
+                          </div>
+                          </div>
+                          </div>
+                          {!! Form::close() !!}
 
 
 
@@ -159,12 +174,13 @@
 @push('scripts')
 <script>
  $(document).ready(function(){
-      var i = 0;
 
       $(document).on('click', '.btn_remove', function(){
            var button_id = $(this).attr("id");
            $('#row'+button_id+'').remove();
       });
+
+      var i = 0;
 
 
       $('#test').click(function(){
@@ -176,6 +192,15 @@
               var mba = document.getElementById("mba").value;
               var bpa = document.getElementById("bpa").value;
 
+              if(bp == "" || kpa == "") {
+                alert('Kolom Berat atau Karton Awal perlu diisi');
+                return;
+              }
+              if(bpa == "") {
+                alert('Kolom Berat Akhir perlu diisi');
+                return;
+              }
+
               document.getElementById("jb").value = "";
               document.getElementById("mb").value = "";
               document.getElementById("bp").value = "";
@@ -184,11 +209,23 @@
               document.getElementById("mba").value = "";
               document.getElementById("bpa").value = "";
 
-           i++;  
+           i++;
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Barang Awal" value="'+jb+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name[]" placeholder="Merk Barang Awal" value="'+bp+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name[]" placeholder="Berat Perkiraan Awal" value="'+bp+'" class="form-control name_list" disabled /> '+' </td>  <td><input type="text" name="name[]" placeholder="Karton Perkiraan Awal" value="'+kpa+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name[]" placeholder="Jenis Barang Akhir" value="'+jba+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name[]" placeholder="Merk Barang Akhir" value="'+mba+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name[]" placeholder="Berat Perkiraan Akhir" value="'+bpa+'" class="form-control name_list" disabled/></td> <td><button type="button" name ="remove" class="btn btn-danger btn_remove" id="'+i+'" >X</button></td></tr>');
+            '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Awal" value="'+jb+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name[]" placeholder="Merk Awal" value="'+bp+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name[]" placeholder="Berat Awal" value="'+bp+'" class="form-control name_list" disabled /> '+' </td>  <td><input type="text" name="name[]" placeholder="Karton Awal" value="'+kpa+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name[]" placeholder="Jenis Akhir" value="'+jba+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name[]" placeholder="Merk Akhir" value="'+mba+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name[]" placeholder="Berat Akhir" value="'+bpa+'" class="form-control name_list" disabled/></td> <td><button type="button" name ="remove" class="btn btn-danger btn_remove" id="'+i+'" >X</button></td></tr>');
+      });
 
-      }); 
+      $('#submit').click(function(){
+           $.ajax({
+                url:"name.php",
+                method:"POST",
+                data:$('#add_name').serialize(),
+                success:function(data)
+                {
+                     alert(data);
+                     $('#add_name')[0].reset();
+                }
+           });
+      });
 
  });
 

@@ -53,24 +53,24 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-		
+
 		</div>
 <div class="col-md-6">
 <table>
   <tr>
-    <td><strong>Gudang Asal </strong> </td><td width="20%"> : </td>
+    <td><strong>Gudang Asal </strong> </td><td width="10%"> : </td>
    <td>{{ Form::select('size', ['Cakung' => 'Cakung', 'Cimuning' => 'Cimuning'], 'S', ['class' => 'form-control']) }}</td>
   </tr>
    <tr>
-    <td><strong>Gudang Tujuan </strong> </td><td width="20%"> : </td>
+    <td><strong>Gudang Tujuan </strong> </td><td width="10%"> : </td>
    <td>{{ Form::select('size', ['Cakung' => 'Cakung', 'Cimuning' => 'Cimuning'], 'S', ['class' => 'form-control']) }}</td>
   </tr>
      <tr>
-    <td><strong>Keterangan </strong> </td><td width="20%"> : </td>
-    <td>{!! Form::textarea('notes', null, ['size' => '20x5']); !!}</td>
+    <td><strong>Keterangan </strong> </td><td width="10%"> : </td>
+    <td>{!! Form::textarea('notes', null, ['size' => '30x3']); !!}</td>
   <tr>
 </table>
-		
+
 		</div>
 
 	</div>
@@ -89,10 +89,10 @@
 	<div id="container"/>
 	</div>
 
-                <div class="form-group">  
-                     <form name="add_name" id="add_name">  
-                          <div class="table-responsive">  
-                               <table class="table">  
+                <div class="form-group">
+                     <form name="add_name" id="add_name">
+                          <div class="table-responsive">
+                               <table class="table">
                                     <tr>
                                     	<td>Jenis Daging</td>
                                     	<td>Merk Daging</td>
@@ -106,7 +106,7 @@
                                     <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
                                </table>
-                            <!--   <table class="table" id="dynamic_field">  
+                            <!--   <table class="table" id="dynamic_field">
                                   <tr>
                                       <td>No</td>
                                       <td>
@@ -125,10 +125,10 @@
 
                                </table> -->
 
-                               <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />  
-                          </div>  
-                     </form>  
-                </div>  
+                               <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />
+                          </div>
+                     </form>
+                </div>
 
 
 @endsection
@@ -141,9 +141,9 @@ function addinputFields(){
     var number = document.getElementById("member").value;
 
     for (i=0;i<number;i++){
- 
+
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           	'<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Jenis Daging" class="form-control name_list" /></td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 
     }
 }
@@ -151,15 +151,15 @@ function addinputFields(){
 
 
 </script>
-<script>  
- $(document).ready(function(){  
+<script>
+ $(document).ready(function(){
 
       var i=0;
 
 
 
-      $('#test').click(function(){  
-              var jd =  document.getElementById("jd").value;  
+      $('#test').click(function(){
+              var jd =  document.getElementById("jd").value;
               console.log(jd);
               var md = document.getElementById("md").value;
               var br = document.getElementById("br").value;
@@ -172,54 +172,54 @@ function addinputFields(){
               document.getElementById("kr").value = "";
               document.getElementById("hk").value = "";
 
-           i++;  
+           i++;
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td>  <td><input type="text" value="'+br+'"  name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" value="'+kr+'"  name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" value="'+hk+'" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
-      }); 
+            '<tr id="row'+i+'"><td>'+'<input type="text" name="name[]" placeholder="Jenis Daging" value="'+jd+'" class="form-control" disabled/>'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" value="'+md+'" class="form-control name_list" disabled/></td>  <td><input type="text" value="'+br+'"  name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" value="'+kr+'"  name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" value="'+hk+'" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+      });
 
-      $('#add').click(function(){  
-           i++;  
+      $('#add').click(function(){
+           i++;
            $('#dynamic_field').append(
-           	'<tr id="row'+i+'"><td>'+'{{ Form::select("item", $jenisList, null, ["class" => "selectpicker form-control", "data-show-subtext" => "true", "data-live-search" => "true"]) }}'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
-      });  
-      $(document).on('click', '.btn_remove', function(){  
-           var button_id = $(this).attr("id");   
-           $('#row'+button_id+'').remove();  
-      }); 
+           	'<tr id="row'+i+'"><td>'+'{{ Form::select("item", $jenisList, null, ["class" => "selectpicker form-control", "data-show-subtext" => "true", "data-live-search" => "true"]) }}'+'</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+      });
+      $(document).on('click', '.btn_remove', function(){
+           var button_id = $(this).attr("id");
+           $('#row'+button_id+'').remove();
+      });
 
-      $('#submit').click(function(){            
-           $.ajax({  
-                url:"name.php",  
-                method:"POST",  
-                data:$('#add_name').serialize(),  
-                success:function(data)  
-                {  
-                     alert(data);  
-                     $('#add_name')[0].reset();  
-                }  
-           });  
+      $('#submit').click(function(){
+           $.ajax({
+                url:"name.php",
+                method:"POST",
+                data:$('#add_name').serialize(),
+                success:function(data)
+                {
+                     alert(data);
+                     $('#add_name')[0].reset();
+                }
+           });
       });
 
       $(function () {
           var np = $('select[name="nama_pembeli"]');
-          np.prop('disabled', false); 
-         
-          $("#nama_pembeli_retail").prop('disabled', false); 
+          np.prop('disabled', false);
+
+          $("#nama_pembeli_retail").prop('disabled', false);
 
           $('select[name="nama_pembeli"]').change(function () {
-              $("#nama_pembeli_retail").prop('disabled', true); 
+              $("#nama_pembeli_retail").prop('disabled', true);
           });
           $("#nama_pembeli_retail").keyup(function () {
-              np.prop('disabled', true); 
+              np.prop('disabled', true);
           });
 
       });
 
              // document.getElementById("nama_pembeli").attr('disabled',true);
              // document.getElementById("nama_pembeli_retail").attr('disabled',true);
- });  
- 
-   
+ });
+
+
  </script>
 
 @endpush
