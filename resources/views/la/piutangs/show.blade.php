@@ -109,11 +109,10 @@
 					<div class="panel-body">
 						@la_display($module, 'tanggal_pembayaran')
 						@la_display($module, 'tanggal_pengiriman')
-						@la_display($module, 'nama_customer')
 						@la_display($module, 'total_harga')
 						@la_display($module, 'cara_bayar')
-						@la_display($module, 'status')
 						@la_display($module, 'order_id')
+						@la_display($module, 'nama_customer')
 					</div>
 				</div>
 			</div>

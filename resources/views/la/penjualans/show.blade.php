@@ -42,7 +42,6 @@
 						<div class="col-sm-6">
 						@la_display($module, 'tgl_penjualan')
 						@la_display($module, 'nama_pembeli')
-						@la_display($module, 'nama_pembeli_retail')
 						@la_display($module, 'tanggal_pengiriman')
 						</div>
 						<div class="col-sm-6">

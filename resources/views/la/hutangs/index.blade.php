@@ -65,7 +65,6 @@
 					@la_input($module, 'nama_supplier')
 					@la_input($module, 'total_harga')
 					@la_input($module, 'cara_bayar')
-					@la_input($module, 'status')
 					--}}
 				</div>
 			</div>

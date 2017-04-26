@@ -64,8 +64,6 @@
 					{{--
 					@la_input($module, 'tgl_penjualan')
 					@la_input($module, 'nama_pembeli')
-					@la_input($module, 'nama_pembeli_retail')
-					@la_input($module, 'status')
 					@la_input($module, 'tanggal_pengiriman')
 					@la_input($module, 'cara_penerimaan')
 					@la_input($module, 'cara_pembayaran')
@@ -73,7 +71,10 @@
 					@la_input($module, 'gudang_pengiriman')
 					@la_input($module, 'order_id')
 					@la_input($module, 'keterangan')
+					@la_input($module, 'status')
+					@la_input($module, 'status_pengiriman')
 					@la_input($module, 'total_harga')
+					
 					--}}
 				</div>
 			</div>

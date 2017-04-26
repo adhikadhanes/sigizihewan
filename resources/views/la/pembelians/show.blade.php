@@ -115,6 +115,8 @@
 						@la_display($module, 'cara_pembayaran')
 						@la_display($module, 'tgl_jatuh_tempo')
 						@la_display($module, 'gdg_penerimaan')
+						@la_display($module, 'status')
+						@la_display($module, 'status_penerimaan')
 					</div>
 				</div>
 			</div>

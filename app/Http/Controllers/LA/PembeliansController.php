@@ -32,8 +32,8 @@ use App\Models\Merk;
 class PembeliansController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'so_id';
-	public $listing_cols = ['id', 'po_id', 'tgl_pembelian', 'nama_penjual', 'tanggal_penerimaan', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gdg_penerimaan'];
+	public $view_col = 'po_id';
+	public $listing_cols = ['id', 'po_id', 'tgl_pembelian', 'nama_penjual', 'tanggal_penerimaan', 'cara_penerimaan', 'cara_pembayaran', 'gdg_penerimaan', 'status', 'status_penerimaan'];
 
 	public function __construct() {
 		// Field Access of Listing Columns
