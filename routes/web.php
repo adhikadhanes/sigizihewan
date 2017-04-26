@@ -22,6 +22,7 @@ Route::get('search',array('as'=>'search','uses'=>'SearchController@search'));
 Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
 Route::get('admin/tambahpenjualanretail','LA\PenjualansController@tambahpenjualanretail');
 Route::get('admin/barangins_lama', 'LA\BarangInsController@index_lama');
+Route::get('admin/barangouts_lama', 'LA\BarangOutsController@index_lama');
 Route::get('admin/stokRetail', 'LA\ItemsController@stokRetail');
 Route::get('admin/stokWholesale', 'LA\ItemsController@stokWholesale');
 Route::get('admin/tallyCoba', 'LA\PenjualansController@tallyCoba');
