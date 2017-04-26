@@ -44,10 +44,21 @@ class BarangOutsController extends Controller
 	 */
 	public function index()
 	{
+		$barangouts = DB::table('barangouts')
+		->select('penjualans.order_id as soid', 'jenis', 'merk', 'karton', 'harga_kg', 'berat_kg', 'penjualans.created_at as created_at')
+		->join('penjualans', 'penjualans.id', '=', 'barangouts.id_penjualan')
+		->get();
+		
+		return view('la.barangouts.index', compact('barangouts'));
+
+	}
+
+	public function index_lama()
+	{
 		$module = Module::get('BarangOuts');
 		
 		if(Module::hasAccess($module->id)) {
-			return View('la.barangouts.index', [
+			return View('la.barangouts.index_lama', [
 				'show_actions' => $this->show_action,
 				'listing_cols' => $this->listing_cols,
 				'module' => $module
