@@ -25,6 +25,8 @@ Route::get('admin/barangins_lama', 'LA\BarangInsController@index_lama');
 Route::get('admin/barangouts_lama', 'LA\BarangOutsController@index_lama');
 Route::get('admin/stokRetail', 'LA\ItemsController@stokRetail');
 Route::get('admin/stokWholesale', 'LA\ItemsController@stokWholesale');
+Route::get('admin/tallyCoba', 'LA\PenjualansController@tallyCoba');
+Route::get('admin/getJenis/{id}', 'LA\PenjualansController@getJenis');
 
 /* ================== Homepage + Admin Routes ================== */
 

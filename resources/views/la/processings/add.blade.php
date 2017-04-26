@@ -114,7 +114,7 @@
 
                                </table>
 
-                               <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />  
+                               <input type="button" name="submit" id="submit" class="btn btn-primary form-control pull-right" value="Submit" />  
                           </div>  
                      </form>  
                 </div>  
@@ -175,6 +175,11 @@
               var jba = document.getElementById("jba").value;
               var mba = document.getElementById("mba").value;
               var bpa = document.getElementById("bpa").value;
+
+              if(bp == "" && kpa == "" && jba == "" && mba == "" && bpa == "") {
+                alert('Kolom belum diisi.');
+                return;
+              }
 
               document.getElementById("jb").value = "";
               document.getElementById("mb").value = "";

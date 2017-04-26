@@ -114,14 +114,7 @@
                                       <td>Harga/kg</td>
                                       <td>Aksi</td>
                                     </tr>
-                            <!--      <tr>
-                                      <td><input type="text" name="name[]"class="form-control name_list" id="br"/></td>
-                                      <td><input type="text" name="name[]"/></td>
-                                      <td><input type="text" name="name[]"/></td>
-                                      <td><input type="text" name="name[]"/></td>
-                                      <td><input type="text" name="name[]"/></td>
-                                      <td><button type="button" class="btn btn-success" id="test" >Faktur Penjualan</button></td>
-                                  </tr> -->
+
                                </table>
 
                                {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control pull-right']) !!}
@@ -180,13 +173,22 @@
 
       var i=0;
 
+
       $('#test').click(function(){  
               var jd =  document.getElementById("jd").value;  
               var md = document.getElementById("md").value;
 
-              var jdnama =  document.getElementById("jd").innerHTML;  
-              var mdnama = document.getElementById("md").innerHTML;
+              var jdnama = ""; 
+              var mdnama = "";
 
+              // $.get('getJenis/' + jd, function (data) {
+              //             //success data
+              //             jdnama = String(data.nama);
+              //             alert(data.nama);
+              //         }) 
+              
+              
+              // alert(jdnama);
 
 
               var br = document.getElementById("br").value;
@@ -204,7 +206,11 @@
 
            i++;
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="baris['+i+'][jenis_daging]" value="'+jd+'" placeholder="Jenis Daging" class="form-control" readonly/>'+'</td><td><input type="text" name="baris['+i+'][merk_daging]" value="'+md+'" placeholder="Merk Daging" class="form-control name_list" readonly/></td><td><input type="number" name="baris['+i+'][berat]" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][karton]" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][harga_kg]" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+
+            '<input type="hidden" name="baris['+i+'][jenis_daging]" value="'+jd+'" class="form-control name_list" />'+
+            '<input type="hidden" name="baris['+i+'][merk_daging]" value="'+md+'" class="form-control name_list" />'+
+            '<input type="text" value="'+jdnama+'" placeholder="Jenis Daging" class="form-control" readonly/></td><td>'+
+            '<input type="text"  value="'+mdnama+'" placeholder="Merk Daging" class="form-control name_list" readonly/></td><td><input type="number" name="baris['+i+'][berat]" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][karton]" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][harga_kg]" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       }); 
 
 
@@ -237,7 +243,6 @@
 
       });
             });
-
 
  </script>
 
