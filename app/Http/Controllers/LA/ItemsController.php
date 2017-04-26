@@ -99,9 +99,12 @@ class ItemsController extends Controller
 	{
 		if(Module::hasAccess("Items", "create")) {
 		
-			$rules = Module::validateRules("Items", $request);
+			// $rules = Module::validateRules("Items", $request);
+			$rules2 = [
+		    		'jenis' => 'unique_with:items, merk'
+		    	];
 			
-			$validator = Validator::make($request->all(), $rules);
+			$validator = Validator::make($request->all(), $rules2);
 			
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();
@@ -109,11 +112,21 @@ class ItemsController extends Controller
 			
 			$insert_id = Module::insert("Items", $request);
 			
+			// var_dump($rules);
+			// return;
 			return redirect()->route(config('laraadmin.adminRoute') . '.items.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
+	}
+
+	public function rules()
+	{
+	    return [
+	    	'jenis' => 'unique:merk', 
+	    	'merk' => 'unique;jenis'
+	    	];
 	}
 
 	/**

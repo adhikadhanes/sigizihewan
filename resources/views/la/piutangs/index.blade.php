@@ -28,56 +28,33 @@
 	<!--<div class="box-header"></div>-->
 	<div class="box-body">
 		<table id="example1" class="table table-bordered">
-		<thead>
-		<tr class="success">
-			@foreach( $listing_cols as $col )
-			<th>{{ $module->fields[$col]['label'] or ucfirst($col) }}</th>
-			@endforeach
-			@if($show_actions)
-			<th>Actions</th>
-			@endif
-		</tr>
-		</thead>
-		<tbody>
-			
-		</tbody>
-		</table>
+        <thead>           
+            <tr class="success">
+                <th class="sorting">IDPO</th>
+                <th class="sorting">Tanggal Pembayaran</th>
+                <th class="sorting">Tanggal Pengiriman</th>
+                <th class="sorting">Nama Supplier</th>
+                <th class="sorting">Total Harga</th>
+                <th class="sorting">Cara Bayar</th>
+                <th class="sorting">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach( $piutang as $pt )
+            <tr>
+                <td>{{ $pt->order_id }}</td>
+                <td></td>
+                <td>{{ $pt->tanggal_pengiriman }}</td>
+                <td>{{ $pt->nama_pembeli }}</td>
+                <td>{{ $pt->total_harga }}</td>
+                <td>{{ $pt->cara_pembayaran }}</td>
+                <td></td>
+            </tr>
+		@endforeach
+        </tbody>
+    </table>
 	</div>
 </div>
-
-@la_access("Piutangs", "create")
-<div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Piutang</h4>
-			</div>
-			{!! Form::open(['action' => 'LA\PiutangsController@store', 'id' => 'piutang-add-form']) !!}
-			<div class="modal-body">
-				<div class="box-body">
-                    @la_form($module)
-					
-					{{--
-					@la_input($module, 'tanggal_pembayaran')
-					@la_input($module, 'tanggal_pengiriman')
-					@la_input($module, 'nama_customer')
-					@la_input($module, 'total_harga')
-					@la_input($module, 'cara_bayar')
-					@la_input($module, 'status')
-					@la_input($module, 'order_id')
-					--}}
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
-			</div>
-			{!! Form::close() !!}
-		</div>
-	</div>
-</div>
-@endla_access
 
 @endsection
 
@@ -90,17 +67,11 @@
 <script>
 $(function () {
 	$("#example1").DataTable({
-		processing: true,
-        serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/piutang_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
 			searchPlaceholder: "Search"
 		},
-		@if($show_actions)
-		columnDefs: [ { orderable: false, targets: [-1] }],
-		@endif
 	});
 	$("#piutang-add-form").validate({
 		
