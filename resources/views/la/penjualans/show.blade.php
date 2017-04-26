@@ -32,7 +32,7 @@
 			@endla_access
 			<button class="btn btn-danger btn-large" type="submit"><i class="fa fa-times"></i></button>
 			<a href="showfaktur/{{ $penjualan->id }}" class="btn btn-info" role="button">Faktur Penjualan</a>
-			<a href="suratjalan" class="btn btn-info" role="button">Surat Jalan</a>
+			<a href="showsuratjalan/{{$penjualan->id}}" class="btn btn-info" role="button">Surat Jalan</a>
 
 					</div>
 					<div class="panel-body">

@@ -1,3 +1,5 @@
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title> Order confirmation </title>
 <meta name="robots" content="noindex,nofollow" />
@@ -32,28 +34,24 @@
   .hiddenMobile { display: none !important; }
   }
 
-  @media print{
-
-
-  }
-  div.wrapper {
-	background-color: white;
-	height: 842px;
-	width: 595px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 2%;
-	padding-right: 2%;
-	padding-bottom: 2%;
-	padding-left: 2%;
-	visibility: visible;
+   div.wrapper {
+  background-color: white;
+  height: 842px;
+  width: 595px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  visibility: visible;
 }
 </style>
-
 
 <div class="wrapper">
 <!-- Header -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+  
   <tr>
     <td>
       <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
@@ -102,7 +100,7 @@
                         </tr>
                         <tr>
                           <td style="font-size: 21px; color: #008000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
-                            Faktur Penjualan
+                            Surat Jalan
                           </td>
                         </tr>
                         <tr>
@@ -114,10 +112,12 @@
                         </tr>
                         <tr>
                           <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                            <small>No Faktur :</small> #800000025<br />
                             <small>No Surat Jalan :</small>#800000025<br />
-                            <small>No Surat Pesanan :</small>#800000025<br />
+                            <small>ID Sales Order :</small>#800000025<br />
+                            <small>Bekasi, ..........................</small><br />
+                            <small>Kepada Yth, </small>
                           </td>
+                          
                         </tr>
                       </tbody>
                     </table>
@@ -154,7 +154,7 @@
                       <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
                         No
                       </th>
-                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
+                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="">
                         Nama Barang
                       </th>
                       <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
@@ -163,11 +163,8 @@
                       <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
                         Kg
                       </th>
-                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
-                        Harga
-                      </th>
-                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
-                        Jumlah
+                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
+                        Keterangan
                       </th>
                     </tr>
                     <tr>
@@ -179,14 +176,13 @@
                     <tr>
                     <?php $nomor = 1; ?>
 					@foreach ($barangout as $barangout)
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="left">
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
                         {{$nomor++}}
                       </td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="left">{{ $barangout->jenis }} {{ $barangout->merk }}</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="left">{{ $barangout->karton }}</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="left">{{ $barangout->berat_kg }}</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="left">{{ $barangout->harga_kg }}</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="left">{{ $barangout->harga_kg*$barangout->berat_kg }}</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>{{ $barangout->jenis }} {{ $barangout->merk }}/small></td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">{{ $barangout->karton }}</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">{{ $barangout->berat_kg }}</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right"></td>
                     </tr>
                     @endforeach
                     <tr>
@@ -265,4 +261,5 @@
   </tbody>
 </table>
 <!-- /Total -->
+
 

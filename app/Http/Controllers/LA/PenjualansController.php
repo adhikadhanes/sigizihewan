@@ -312,6 +312,25 @@ class PenjualansController extends Controller
 		return view('la.penjualans.faktur',compact('penjualan', 'barangout', 'nama_pembeli'));
 	}
 
+	public function showsuratjalan($id)
+	{
+		$barangout = DB::table('BarangOuts')
+		->select('BarangOuts.id', 'id_penjualan', 'jenis.nama as jenis', 'merks.nama as merk', 'karton', 'harga_kg', 'berat_kg')
+		->join('jenis', 'jenis.id', '=', 'BarangOuts.jenis')
+		->join('merks', 'merks.id', '=', 'BarangOuts.merk')
+		->where('id_penjualan',$id)
+		->get();
+
+		$penjualan = Penjualan::find($id);
+		
+		if(isset($penjualan->nama_pembeli)){
+			$nama_pembeli = Relation::find($penjualan->nama_pembeli)->nama;
+		}else{
+			$nama_pembeli = $penjualan->nama_pembeli_retail;
+		}
+		return view('la.penjualans.suratjalan',compact('penjualan', 'barangout', 'nama_pembeli'));
+	}
+
 
 	/**
 	 * Show the form for editing the specified penjualan.
