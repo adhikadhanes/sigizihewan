@@ -1,12 +1,3 @@
-@extends('la.layouts.app')
-
-@section('htmlheader_title')
-	Penjualan View
-@endsection
-
-
-@section('main-content')
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title> Order confirmation </title>
 <meta name="robots" content="noindex,nofollow" />
@@ -40,14 +31,29 @@
   .visibleMobile { display: block !important; }
   .hiddenMobile { display: none !important; }
   }
+
+  @media print{
+
+
+  }
+  div.wrapper {
+	background-color: white;
+	height: 842px;
+	width: 595px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 2%;
+	padding-right: 2%;
+	padding-bottom: 2%;
+	padding-left: 2%;
+	visibility: visible;
+}
 </style>
 
 
+<div class="wrapper">
 <!-- Header -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
-  <tr>
-    <td height="20"></td>
-  </tr>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
   <tr>
     <td>
       <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
@@ -260,4 +266,3 @@
 </table>
 <!-- /Total -->
 
-@endsection

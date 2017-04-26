@@ -1,11 +1,5 @@
-<!--
 
-Follow me on
-Dribbble: https://dribbble.com/supahfunk
-Twitter: https://twitter.com/supahfunk
-Codepen: http://codepen.io/supah/
 
--->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title> Order confirmation </title>
 <meta name="robots" content="noindex,nofollow" />
@@ -39,14 +33,25 @@ Codepen: http://codepen.io/supah/
   .visibleMobile { display: block !important; }
   .hiddenMobile { display: none !important; }
   }
+
+   div.wrapper {
+  background-color: white;
+  height: 842px;
+  width: 595px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  visibility: visible;
+}
 </style>
 
-
+<div class="wrapper">
 <!-- Header -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-  <tr>
-    <td height="20"></td>
-  </tr>
+  
   <tr>
     <td>
       <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
@@ -76,8 +81,11 @@ Codepen: http://codepen.io/supah/
                         </tr>
                         <tr>
                           <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                            Hello, Philip Brooks.
-                            <br> Thank you for shopping from our store and for your order.
+                            PT Hijrah Gizi Hewani
+                            <br>Jl. Raya Bantargebang Setu No.57 , Cimuning, Kota Bekasi.
+                            Telp : 021-826-22082/ 0822-10000-248
+                            www.hijrahfood.co.id
+                            daging.hgh@gmail.com 
                           </td>
                         </tr>
                       </tbody>
@@ -91,8 +99,8 @@ Codepen: http://codepen.io/supah/
                           <td height="5"></td>
                         </tr>
                         <tr>
-                          <td style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
-                            Invoice
+                          <td style="font-size: 21px; color: #008000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
+                            Surat Jalan
                           </td>
                         </tr>
                         <tr>
@@ -104,9 +112,12 @@ Codepen: http://codepen.io/supah/
                         </tr>
                         <tr>
                           <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                            <small>ORDER</small> #800000025<br />
-                            <small>MARCH 4TH 2016</small>
+                            <small>No Surat Jalan :</small>#800000025<br />
+                            <small>ID Sales Order :</small>#800000025<br />
+                            <small>Bekasi, ..........................</small><br />
+                            <small>Kepada Yth, </small>
                           </td>
+                          
                         </tr>
                       </tbody>
                     </table>
@@ -140,41 +151,42 @@ Codepen: http://codepen.io/supah/
                 <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                   <tbody>
                     <tr>
-                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="52%" align="left">
-                        Item
-                      </th>
                       <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
-                        <small>SKU</small>
+                        No
+                      </th>
+                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="">
+                        Nama Barang
                       </th>
                       <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
-                        Quantity
+                        Karton
                       </th>
-                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
-                        Subtotal
+                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
+                        Kg
+                      </th>
+                      <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
+                        Keterangan
                       </th>
                     </tr>
                     <tr>
-                      <td height="1" style="background: #bebebe;" colspan="4"></td>
+                      <td height="1" style="background: #bebebe;" colspan="6"></td>
                     </tr>
                     <tr>
                       <td height="10" colspan="4"></td>
                     </tr>
                     <tr>
+                    <?php $nomor = 1; ?>
+					@foreach ($barangout as $barangout)
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
-                        Beats Studio Over-Ear Headphones
+                        {{$nomor++}}
                       </td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>MH792AM/A</small></td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$299.95</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>{{ $barangout->jenis }} {{ $barangout->merk }}/small></td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">{{ $barangout->karton }}</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">{{ $barangout->berat_kg }}</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right"></td>
                     </tr>
+                    @endforeach
                     <tr>
                       <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">Beats RemoteTalk Cable</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>MHDV2G/A</small></td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">$29.95</td>
                     </tr>
                     <tr>
                       <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
@@ -249,172 +261,5 @@ Codepen: http://codepen.io/supah/
   </tbody>
 </table>
 <!-- /Total -->
-<!-- Information -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-  <tbody>
-    <tr>
-      <td>
-        <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
-          <tbody>
-            <tr>
-            <tr class="hiddenMobile">
-              <td height="60"></td>
-            </tr>
-            <tr class="visibleMobile">
-              <td height="40"></td>
-            </tr>
-            <tr>
-              <td>
-                <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
-
-                          <tbody>
-                            <tr>
-                              <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                <strong>BILLING INFORMATION</strong>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="100%" height="10"></td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                Philip Brooks<br> Public Wales, Somewhere<br> New York NY<br> 4468, United States<br> T: 202-555-0133
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
 
 
-                        <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
-                          <tbody>
-                            <tr class="visibleMobile">
-                              <td height="20"></td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                <strong>PAYMENT METHOD</strong>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="100%" height="10"></td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                Credit Card<br> Credit Card Type: Visa<br> Worldpay Transaction ID: <a href="#" style="color: #ff0000; text-decoration:underline;">4185939336</a><br>
-                                <a href="#" style="color:#b0b0b0;">Right of Withdrawal</a>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
-                          <tbody>
-                            <tr class="hiddenMobile">
-                              <td height="35"></td>
-                            </tr>
-                            <tr class="visibleMobile">
-                              <td height="20"></td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                <strong>SHIPPING INFORMATION</strong>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="100%" height="10"></td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                Sup Inc<br> Another Place, Somewhere<br> New York NY<br> 4468, United States<br> T: 202-555-0171
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-
-                        <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
-                          <tbody>
-                            <tr class="hiddenMobile">
-                              <td height="35"></td>
-                            </tr>
-                            <tr class="visibleMobile">
-                              <td height="20"></td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                <strong>SHIPPING METHOD</strong>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td width="100%" height="10"></td>
-                            </tr>
-                            <tr>
-                              <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                UPS: U.S. Shipping Services
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            <tr class="hiddenMobile">
-              <td height="60"></td>
-            </tr>
-            <tr class="visibleMobile">
-              <td height="30"></td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<!-- /Information -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-
-  <tr>
-    <td>
-      <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 0 0 10px 10px;">
-        <tr>
-          <td>
-            <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
-              <tbody>
-                <tr>
-                  <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                    Have a nice day.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-        <tr class="spacer">
-          <td height="50"></td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td height="20"></td>
-  </tr>
-</table>
