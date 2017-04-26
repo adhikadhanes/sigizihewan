@@ -98,7 +98,8 @@
                                     	<td>Merk Daging</td>
                                     	<td>Berat (KG)</td>
                                     	<td>Karton</td>
-                                    	<td>Aksi</td>
+                                    	<td>Harga</td>
+                                      <td>Aksi</td>
                                     </tr>
 
 
@@ -106,24 +107,7 @@
                                     <tr id="{{ $i }}"><td>{{ Form::select("item", $jenisList, "", ["class" => "selectpicker", "data-show-subtext" => "true", "data-live-search" => "true", "id" => "jd", "name" => "jd"]) }}</td><td><input type="text" name="name[]" placeholder="Merk Daging" class="form-control name_list" id="md" /></td>  <td><input type="text" name="name[]" placeholder="Berat (KG)" class="form-control name_list" id="br" /></td> <td><input type="text" name="name[]" placeholder="Karton" class="form-control name_list" id="kr" /></td>  <td><input type="text" name="name[]" placeholder="Harga / KG" class="form-control name_list" id="hk" /></td><td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
 
                                </table>
-                            <!--   <table class="table" id="dynamic_field">  
-                                  <tr>
-                                      <td>No</td>
-                                      <td>
-                                      <td>ID</td>
-                                      <td>Tanggal Keluar</td>
-                                      <td>Gudang Asal</td>
-                                      <td>Gudang Tujuan</td>
-                                      <td>No</td>
-                                      <td>
-                                      <td>Jenis</td>
-                                      <td>Merk</td>
-                                      <td>Berat (KG)</td>
-                                      <td>Karton</td>
-                                      <td>Status</td>
-                                    </tr>
-
-                               </table> -->
+                            
 
                                <input type="button" name="submit" id="submit" class="btn btn-info pull-right" value="Submit" />  
                           </div>  

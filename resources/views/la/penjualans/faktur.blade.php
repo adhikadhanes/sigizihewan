@@ -1,5 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title> Order confirmation </title>
+<title> Faktur Penjualan </title>
 <meta name="robots" content="noindex,nofollow" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0;" />
 <style type="text/css">
@@ -224,7 +224,7 @@
                   <tbody>
                     <tr>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
-                        Subtotal
+                        Total
                       </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
                         $329.90
