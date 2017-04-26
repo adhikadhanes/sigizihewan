@@ -31,7 +31,7 @@
         <thead>           
             <tr class="success">
                 <th>Tanggal</th>
-                <th>IDPO</th>
+                <th>IDSO</th>
                 <th>Jenis</th>
                 <th>Merk</th>
                 <th>Karton</th>
