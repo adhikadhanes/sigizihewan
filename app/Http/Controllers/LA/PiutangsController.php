@@ -44,22 +44,17 @@ class PiutangsController extends Controller
 	 */
 	public function index()
 	{
-		// $module = Module::get('Piutangs');
+		$module = Module::get('Piutangs');
 		
-		// if(Module::hasAccess($module->id)) {
-		// 	return View('la.piutangs.index', [
-		// 		'show_actions' => $this->show_action,
-		// 		'listing_cols' => $this->listing_cols,
-		// 		'module' => $module
-		// 	]);
-		// } else {
-  //           return redirect(config('laraadmin.adminRoute')."/");
-  //       }
-		$piutang = DB::table('Penjualans')
-		->select('nama_pembeli', 'tanggal_pengiriman', 'cara_pembayaran', 'order_id', 'total_harga')
-		->get();
-		
-		return view('la.piutangs.index', compact('piutang'));
+		if(Module::hasAccess($module->id)) {
+			return View('la.piutangs.index', [
+				'show_actions' => $this->show_action,
+				'listing_cols' => $this->listing_cols,
+				'module' => $module
+			]);
+		} else {
+            return redirect(config('laraadmin.adminRoute')."/");
+        }
 	}
 
 	/**

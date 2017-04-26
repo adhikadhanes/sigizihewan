@@ -163,7 +163,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Dwij\Laraadmin\LAProvider::class,
-        Felixkiss\UniqueWithValidator\ServiceProvider::class,
 
         /*
          * Package Service Providers...

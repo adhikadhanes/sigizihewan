@@ -224,8 +224,6 @@ class PenjualansController extends Controller
 
 		$form = $_POST['baris'];
 
-		$total_hargas = 0;
-
 		foreach ( $form as $form)
     	{
         // here you have access to $diam['top'] and $diam['bottom']
@@ -241,18 +239,7 @@ class PenjualansController extends Controller
 
 	      $barang->save();
 
-	      $total_hargas = $total_hargas + ($barang->berat_kg * $barang->harga_kg);
-	      
-
     	}
-
-
-    	$penjualan->total_harga = $total_hargas;
-
-    	DB::table('penjualans')
-            ->where('id', $id_penjualan)
-            ->update(['total_harga' => $total_hargas]);
-    	//$penjualan->save();
 
     	return redirect(config('laraadmin.adminRoute')."/");
 
