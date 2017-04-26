@@ -66,15 +66,17 @@
 
 <div class="box box-info box-solid">
   <div class="box-header ">DAFTAR BARANG</div>
-  <div class="box-body ">
+  <div class="box-body "> 
+  JUMLAH BARANG: <input type="checkbox" name="jumlahbarang" id="ceklisbarang" onclick="validate()" /> <input type="text" name="jumlahbarang" id="jumlahbarang"/>
+  </div>
 
   <div id="container"/>
   </div>
 
                 <div class="form-group">  
-                     <form name="add_tally" id="add_tally">  
+                     
                           <div class="table-responsive">  
-                               <table class="table">  
+                               <table style="table-layout:fixed" class="table">  
                                     <tr>
                                       <td>1</td>
                                       <td>2</td>
@@ -114,15 +116,46 @@
 
                                     <td><input type="number" name="name[]" class="form-control name_list total" id="totalBerat" disabled /></td>
 
-                                    <td><button type="button" class="btn btn-success" id="test" >Add</button></td></tr>
+                                    <td><button type="button" name="action" class="btn btn-success" id="test" style="font-weight: bold">+</button></td></tr>
 
                                </table>
-                               <table class="table" id="dynamic_field">  
+
+                    <form method="POST" action="{{ url('/tallySimpan') }}" enctype="multipart/form-data" accept-charset="UTF-8">  
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                               <table style="table-layout:fixed" class="table" id="dynamic_field">  
                                   
 
                                </table>
+                               <table style="table-layout:fixed" class="table" id="coba"> 
 
-                               <input type="button" name="submit" id="submit" class="btn btn-primary form-control pull-right" value="Submit" />  
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally2" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally3" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally4" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally5" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally6" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally7" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally8" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally9" /></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally10" /></td>
+
+                                    <td><p style="font-weight: bold;">Berat Akhir: </p></td>
+
+                                   <td><input type="number" name="name[]" class="form-control name_list total" id="BeratAkhir" value="0" disabled/></td>
+
+                                    <td><input type="hidden" name="name[]" class="form-control name_list tally" id="tally11"></td>
+                               </table>
+                               
+
+
+                               <input type="submit" name="action" id="submit" class="btn btn-primary form-control pull-right" value="Submit" />  
                           </div>  
                      </form>  
                 </div>  
@@ -165,15 +198,33 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 @push('scripts')
+ <script type="text/javascript">
+    function validate() {
+        if (document.getElementById('ceklisbarang').checked) {
+            var jmlBarang = parseFloat(document.getElementById('jumlahbarang').value);
+            var tally1 = parseFloat(document.getElementById('tally1').value);
+            var totalBerat = jmlBarang * tally1;
+              $('#totalBerat').val(totalBerat);
+            alert(totalBerat);
+        } else {
+            alert("You didn't check it! Let me check it for you.");
+        }
+    }
+    </script>
+
 <script>
  $(document).ready(function(){
       var i = 0;
 
       $(document).on('click', '.btn_remove', function(){
            var button_id = $(this).attr("id");
+           var beratAja = parseFloat(document.getElementById("BeratAkhir").value);
+           var totalBerat = parseFloat(document.getElementById("totalBerat"+button_id).value);
+          var total = beratAja - totalBerat;
+          $('#BeratAkhir').val(total);
+
            $('#row'+button_id+'').remove();
       });
-
 
       $('.tally').on("keyup", function(){
       var tally1 = parseFloat($('#tally1').val()) || 0;
@@ -188,7 +239,11 @@
       var tally10 = parseFloat($('#tally10').val()) || 0;
       var totalBerat = tally1 + tally2 + tally3 + tally4 + tally5 + tally6 + tally7 + tally8 + tally9+ tally10;
       $('#totalBerat').val(totalBerat);
-      console.log(totalBerat);
+      
+      //var beratAkhir = totalBerat + totalBerat;
+      
+      //$('#BeratAkhir').val(beratAkhir);
+      //console.log(totalBerat);
       });
 
 
@@ -204,6 +259,8 @@
               var sembilan = document.getElementById("tally9").value;
               var sepuluh = document.getElementById("tally10").value;
               var totalBerat = document.getElementById("totalBerat").value;
+              
+              var beratAkhir = document.getElementById("BeratAkhir").value;
 
               if(satu == "" && dua == "" && tiga == "" && empat == "" && lima == "" && enam == "" && tujuh == "" && delapan == "" && sembilan == "" && sepuluh == "") {
                 alert('Kolom tidak boleh kosong semua');
@@ -222,9 +279,15 @@
               document.getElementById("tally10").value = "";
               document.getElementById("totalBerat").value = "";
 
+
            i++;  
+
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><input type="hidden" name="nomor" class="form-control name_list" />'+'<td><input type="text" name="name['+i+'][satu]" value="'+satu+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name['+i+'][dua]" value="'+dua+'" class="form-control name_list" disabled /> '+' </td>  <td><input type="text" name="name['+i+'][tiga]" value="'+tiga+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][empat]" value="'+empat+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][lima]" value="'+lima+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][enam]" value="'+enam+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][tujuh]" value="'+tujuh+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][delapan]" value="'+delapan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sembilan]" value="'+sembilan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sepuluh]" value="'+sepuluh+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][totalBerat]" value="'+totalBerat+'" class="form-control name_list" disabled/></td> <td><button type="button" name ="remove" class="btn btn-danger btn_remove" id="'+i+'" >X</button></td></tr>');
+            '<tr id="row'+i+'"><input type="hidden" name="nomor" class="form-control name_list" />'+'<td><input type="text" name="name['+i+'][satu]" value="'+satu+'" class="form-control name_list" disabled /> '+' </td><td><input type="text" name="name['+i+'][dua]" value="'+dua+'" class="form-control name_list" disabled /> '+' </td>  <td><input type="text" name="name['+i+'][tiga]" value="'+tiga+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][empat]" value="'+empat+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][lima]" value="'+lima+'" class="form-control name_list" disabled /></td> <td><input type="text" name="name['+i+'][enam]" value="'+enam+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][tujuh]" value="'+tujuh+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][delapan]" value="'+delapan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sembilan]" value="'+sembilan+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][sepuluh]" value="'+sepuluh+'" class="form-control name_list" disabled/></td> <td><input type="text" name="name['+i+'][totalBerat]" id="totalBerat'+i+'" value="'+totalBerat+'" class="form-control name_list" disabled/></td> <td><button type="button" name ="remove" class="btn btn-danger btn_remove" id="'+i+'" >X</button></td></tr>');
+
+          var beratAja = parseFloat(document.getElementById("BeratAkhir").value);
+          var total = beratAja + parseFloat(totalBerat);
+          $('#BeratAkhir').val(total);
 
       }); 
 

@@ -22,6 +22,8 @@ Route::get('admin/tambahpenjualanretail','LA\PenjualansController@tambahpenjuala
 Route::get('admin/stokRetail', 'LA\ItemsController@stokRetail');
 Route::get('admin/stokWholesale', 'LA\ItemsController@stokWholesale');
 Route::get('admin/tallyCoba', 'LA\BarangInsController@tallyCoba');
+Route::post('/tallySimpan','LA\BarangInsController@tallySimpan');
+
 
 /* ================== Homepage + Admin Routes ================== */
 
