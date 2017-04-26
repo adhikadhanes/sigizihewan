@@ -20,12 +20,8 @@ class CreateTalliesTable extends Migration
         Module::generate("Tallies", 'tallies', 'jenis_daging', 'fa-book', [
             ["jenis_daging", "Jenis Daging", "Dropdown", false, "", 0, 0, true, "@jenis"],
             ["merk_daging", "Merk Daging", "Dropdown", false, "", 0, 0, false, "@merks"],
-            ["berat", "Berat (KG)", "Decimal", false, "", 0, 11, false],
-            ["karton", "Karton", "Integer", false, "", 0, 11, false],
-            ["harga_kg", "Harga / KG", "Decimal", false, "", 0, 11, true],
-            ["tipe", "Type", "Dropdown", false, "", 0, 0, false, ["Penjualan"]],
-            ["penjualan", "Penjualan", "Dropdown", false, "", 0, 0, false, "@penjualans"],
-            ["pembelian", "Pembelian", "Dropdown", false, "", 0, 0, false, ["1","2","3"]],
+            ["berat", "Berat", "Integer", false, "0", 0, 11, false],
+            ["pembelian", "Pembelian", "Dropdown", false, "", 0, 0, false, "@pembelians"],
         ]);
 		
 		/*

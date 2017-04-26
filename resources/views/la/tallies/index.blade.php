@@ -62,10 +62,6 @@
 					@la_input($module, 'jenis_daging')
 					@la_input($module, 'merk_daging')
 					@la_input($module, 'berat')
-					@la_input($module, 'karton')
-					@la_input($module, 'harga_kg')
-					@la_input($module, 'tipe')
-					@la_input($module, 'penjualan')
 					@la_input($module, 'pembelian')
 					--}}
 				</div>
