@@ -166,7 +166,7 @@ class PenjualansController extends Controller
 		$penjualan->cara_penerimaan = $request->cara_penerimaan;
 		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
 		$penjualan->cara_pembayaran = $request->cara_pembayaran;
-		$penjualan->tgl_jatuh_tempo = 		$request->tgl_jatuh_tempo;
+		$penjualan->tgl_jatuh_tempo = $request->tgl_jatuh_tempo;
 
 		$penjualan->save();
 		$id_penjualan = $penjualan->id;

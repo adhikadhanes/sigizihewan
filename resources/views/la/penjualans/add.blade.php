@@ -86,9 +86,9 @@
 	<div class="box-header ">DAFTAR BARANG</div>
 	<div class="box-body ">
 
-                
-                          <div class="table-responsive">  
-                               <table class="table">  
+
+                          <div class="table-responsive">
+                               <table class="table">
                                     <tr>
                                     	<td>Jenis Daging</td>
                                     	<td>Merk Daging</td>
@@ -104,7 +104,7 @@
 
                                </table>
 
-                               <table class="table" id="dynamic_field">  
+                               <table class="table" id="dynamic_field">
 
                                   <tr>
                                       <td>Jenis Daging</td>
@@ -126,11 +126,11 @@
 
                                {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control pull-right']) !!}
 
-                          </div>  
-                          </div>  
-                          </div>  
-                          {!! Form::close() !!} 
-              
+                          </div>
+                          </div>
+                          </div>
+                          {!! Form::close() !!}
+
 
 
 
@@ -151,10 +151,10 @@
 
 				</div>
 			</div>
-			<div class="modal-footer">
+			<!-- <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
-			</div>
+			</div> -->
 			{!! Form::close() !!}
 		</div>
 	</div>
@@ -180,11 +180,11 @@
 
       var i=0;
 
-      $('#test').click(function(){  
-              var jd =  document.getElementById("jd").value;  
+      $('#test').click(function(){
+              var jd =  document.getElementById("jd").value;
               var md = document.getElementById("md").value;
 
-              var jdnama =  document.getElementById("jd").innerHTML;  
+              var jdnama =  document.getElementById("jd").innerHTML;
               var mdnama = document.getElementById("md").innerHTML;
 
 
@@ -204,35 +204,35 @@
 
            i++;
            $('#dynamic_field').append(
-            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="baris['+i+'][jenis_daging]" value="'+jd+'" placeholder="Jenis Daging" class="form-control" readonly/>'+'</td><td><input type="text" name="baris['+i+'][merk_daging]" value="'+md+'" placeholder="Merk Daging" class="form-control name_list" readonly/></td><td><input type="number" name="baris['+i+'][berat]" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][karton]" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][harga_kg]" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
-      }); 
+            '<tr id="row'+i+'"><input type="hidden" name="nomor" value="'+i+'" class="form-control name_list" /><td>'+'<input type="text" name="baris['+i+'][jenis_daging]" value="'+jd+'" placeholder="Jenis Daging" class="form-control" readonly/>'+'</td><td><input type="text" name="baris['+i+'][merk_daging]" value="'+md+'" placeholder="Merk Daging" class="form-control name_list" readonly/></td><td><input type="number" name="baris['+i+'][berat]" value="'+br+'"  placeholder="Berat (KG)" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][karton]" value="'+kr+'"  placeholder="Karton" class="form-control name_list" /></td><td><input type="number" name="baris['+i+'][harga_kg]" value="'+hk+'" placeholder="Harga / KG" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+      });
 
 
 
-      $('#submit').click(function(){            
-           $.ajax({  
-                url:"name.php",  
-                method:"POST",  
-                data:$('#add_name').serialize(),  
-                success:function(data)  
-                {  
-                     alert(data);  
-                     $('#add_name')[0].reset();  
-                }  
-           });  
+      $('#submit').click(function(){
+           $.ajax({
+                url:"name.php",
+                method:"POST",
+                data:$('#add_name').serialize(),
+                success:function(data)
+                {
+                     alert(data);
+                     $('#add_name')[0].reset();
+                }
+           });
       });
 
       $(function () {
           var np = $('select[name="nama_pembeli"]');
-          np.prop('disabled', false); 
-         
-          $("#nama_pembeli_retail").prop('disabled', false); 
+          np.prop('disabled', false);
+
+          $("#nama_pembeli_retail").prop('disabled', false);
 
           $('select[name="nama_pembeli"]').change(function () {
-              $("#nama_pembeli_retail").prop('disabled', true); 
+              $("#nama_pembeli_retail").prop('disabled', true);
           });
           $("#nama_pembeli_retail").keyup(function () {
-              np.prop('disabled', true); 
+              np.prop('disabled', true);
           });
 
       });

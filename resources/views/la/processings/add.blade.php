@@ -153,10 +153,10 @@
 
         </div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         {!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
-      </div>
+      </div> -->
       {!! Form::close() !!}
     </div>
   </div>

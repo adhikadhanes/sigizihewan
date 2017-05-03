@@ -25,7 +25,7 @@ class ProcessingsController extends Controller
 	public $show_action = true;
 	public $view_col = 'tgl_processing';
 	public $listing_cols = ['id', 'tgl_processing', 'jenis_barang_awal', 'merk_barang_awal', 'berat_perkiraan', 'carton_perkiraan', 'berat_aktual', 'carton_aktual', 'jenis_barang_akhir', 'merk_akhir_akhir', 'berat_perkiraan_akhr', 'berat_aktual_akhir'];
-	
+
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
@@ -37,7 +37,7 @@ class ProcessingsController extends Controller
 			$this->listing_cols = ModuleFields::listingColumnAccessScan('Processings', $this->listing_cols);
 		}
 	}
-	
+
 	/**
 	 * Display a listing of the Processings.
 	 *
@@ -46,7 +46,7 @@ class ProcessingsController extends Controller
 	public function index()
 	{
 		$module = Module::get('Processings');
-		
+
 		if(Module::hasAccess($module->id)) {
 			return View('la.processings.index', [
 				'show_actions' => $this->show_action,
@@ -77,23 +77,72 @@ class ProcessingsController extends Controller
 	public function store(Request $request)
 	{
 		if(Module::hasAccess("Processings", "create")) {
-		
+
 			$rules = Module::validateRules("Processings", $request);
-			
+
 			$validator = Validator::make($request->all(), $rules);
-			
+
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
-			
+
 			$insert_id = Module::insert("Processings", $request);
-			
+
 			return redirect()->route(config('laraadmin.adminRoute') . '.processings.index');
-			
+
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
 	}
+
+
+	public function storePenjualan(Request $request)
+	{
+
+		$penjualan = new Penjualan;
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		// $order_id = generateOrder();
+
+		$penjualan->order_id = $order_id;
+		$penjualan->tgl_penjualan = $request->tgl_penjualan;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->tanggal_pengiriman = $request->tanggal_pengiriman;
+		$penjualan->cara_penerimaan = $request->cara_penerimaan;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->cara_pembayaran = $request->cara_pembayaran;
+		$penjualan->tgl_jatuh_tempo = $request->tgl_jatuh_tempo;
+
+		$penjualan->save();
+		$id_penjualan = $penjualan->id;
+
+		$form = $_POST['baris'];
+
+		foreach ( $form as $form)
+			{
+				// here you have access to $diam['top'] and $diam['bottom']
+
+			$barang = new BarangOut;
+
+			$barang->id_penjualan = $id_penjualan;
+					$barang->jenis = $form['jenis_daging'];
+					$barang->merk = $form['merk_daging'];
+					$barang->berat_kg = $form['berat'];
+					$barang->karton = $form['karton'];
+					$barang->harga_kg = $form['harga_kg'];
+
+				$barang->save();
+
+			}
+
+			return redirect(config('laraadmin.adminRoute')."/");
+
+	}
+
+
+
 
 	/**
 	 * Display the specified processing.
@@ -104,12 +153,12 @@ class ProcessingsController extends Controller
 	public function show($id)
 	{
 		if(Module::hasAccess("Processings", "view")) {
-			
+
 			$processing = Processing::find($id);
 			if(isset($processing->id)) {
 				$module = Module::get('Processings');
 				$module->row = $processing;
-				
+
 				return view('la.processings.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
@@ -135,13 +184,13 @@ class ProcessingsController extends Controller
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("Processings", "edit")) {			
+		if(Module::hasAccess("Processings", "edit")) {
 			$processing = Processing::find($id);
-			if(isset($processing->id)) {	
+			if(isset($processing->id)) {
 				$module = Module::get('Processings');
-				
+
 				$module->row = $processing;
-				
+
 				return view('la.processings.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
@@ -167,19 +216,19 @@ class ProcessingsController extends Controller
 	public function update(Request $request, $id)
 	{
 		if(Module::hasAccess("Processings", "edit")) {
-			
+
 			$rules = Module::validateRules("Processings", $request, true);
-			
+
 			$validator = Validator::make($request->all(), $rules);
-			
+
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
-			
+
 			$insert_id = Module::updateRow("Processings", $request, $id);
-			
+
 			return redirect()->route(config('laraadmin.adminRoute') . '.processings.index');
-			
+
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -195,14 +244,14 @@ class ProcessingsController extends Controller
 	{
 		if(Module::hasAccess("Processings", "delete")) {
 			Processing::find($id)->delete();
-			
+
 			// Redirecting to index() method
 			return redirect()->route(config('laraadmin.adminRoute') . '.processings.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
 	}
-	
+
 	/**
 	 * Datatable Ajax fetch
 	 *
@@ -215,9 +264,9 @@ class ProcessingsController extends Controller
 		$data = $out->getData();
 
 		$fields_popup = ModuleFields::getModuleFields('Processings');
-		
+
 		for($i=0; $i < count($data->data); $i++) {
-			for ($j=0; $j < count($this->listing_cols); $j++) { 
+			for ($j=0; $j < count($this->listing_cols); $j++) {
 				$col = $this->listing_cols[$j];
 				if($fields_popup[$col] != null && starts_with($fields_popup[$col]->popup_vals, "@")) {
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
@@ -229,13 +278,13 @@ class ProcessingsController extends Controller
 				//    $data->data[$i][$j];
 				// }
 			}
-			
+
 			if($this->show_action) {
 				$output = '';
 				if(Module::hasAccess("Processings", "edit")) {
 					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/processings/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
-				
+
 				if(Module::hasAccess("Processings", "delete")) {
 					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.processings.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
