@@ -67,7 +67,7 @@
 <div class="box box-info box-solid">
   <div class="box-header ">DAFTAR BARANG</div>
   <div class="box-body "> 
-  JUMLAH BARANG: <input type="checkbox" name="jumlahbarang" id="ceklisbarang" onclick="validate()" /> <input type="text" name="jumlahbarang" id="jumlahbarang"/>
+  JUMLAH BARANG: <input type="text" name="jumlahbarang" id="jumlahbarang"/> <input type="checkbox" name="jumlahbarang" id="ceklisbarang" onclick="validate()" /> Berat Sama
   </div>
 
   <div id="container"/>
