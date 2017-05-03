@@ -45,7 +45,7 @@ class BarangInsController extends Controller
 	public function index()
 	{
 		$barangins = DB::table('barangins')
-		->select('pembelians.po_id as poid', 'jenis', 'merk', 'karton', 'harga_kg', 'berat_kg', 'tanggal_penerimaan')
+		->select('pembelians.po_id as poid', 'pembelians.id as is','jenis', 'merk', 'karton', 'harga_kg', 'berat_kg', 'tanggal_penerimaan')
 		->join('pembelians', 'pembelians.id', '=', 'barangins.po_id')
 		->get();
 		

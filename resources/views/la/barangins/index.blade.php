@@ -37,6 +37,7 @@
                 <th>Karton</th>
                 <th>Harga/Kg</th>
                 <th>Berat (Kg)</th>
+                <th>Tally</th>
             </tr>
         </thead>
         <tbody>
@@ -49,6 +50,7 @@
                 <td>{{ $brg->karton }}</td>
                 <td>{{ $brg->harga_kg }}</td>
                 <td>{{ $brg->berat_kg }}</td>
+                <td><a href="#masukkinlinksamaid{{ $brg->is }}" class="pull-right btn btn-sm btn-info" role="button">Tally</a></td>
             </tr>
 		@endforeach
         </tbody>
@@ -72,8 +74,12 @@ $(function () {
             search: "_INPUT_",
             searchPlaceholder: "Search"
         },
+
         "columnDefs": [
-            { "visible": false, "targets": 0 }
+            { 
+            "visible": false, 
+            "targets": 0 
+            }
         ],
         "order": [[ 2, 'asc' ]],
         "displayLength": 25,
@@ -85,7 +91,7 @@ $(function () {
             api.column(0, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
-                        '<tr class="group"><td colspan="6" style="background-color:rgb(200,200,200);">'+group+'</td></tr>'
+                        '<tr class="group"><td colspan="7" style="background-color:rgb(200,200,200);">'+group+'<a href="#" class="pull-right btn btn-sm btn-success" role="button">Confirm</a></td></tr>'
                     );
  
                     last = group;
