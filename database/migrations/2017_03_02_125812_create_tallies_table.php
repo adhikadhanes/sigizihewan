@@ -22,6 +22,7 @@ class CreateTalliesTable extends Migration
             ["merk_daging", "Merk Daging", "Dropdown", false, "", 0, 0, false, "@merks"],
             ["berat", "Berat", "Integer", false, "0", 0, 11, false],
             ["pembelian", "Pembelian", "Dropdown", false, "", 0, 0, false, "@pembelians"],
+            ["id_barang", "Id Barang", "Dropdown", false, "", 0, 0, false, "@barangins"],
         ]);
 		
 		/*

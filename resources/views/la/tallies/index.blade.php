@@ -63,6 +63,7 @@
 					@la_input($module, 'merk_daging')
 					@la_input($module, 'berat')
 					@la_input($module, 'pembelian')
+					@la_input($module, 'id_barang')
 					--}}
 				</div>
 			</div>
