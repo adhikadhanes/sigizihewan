@@ -18,17 +18,15 @@ class CreateProcessingsTable extends Migration
     public function up()
     {
         Module::generate("Processings", 'processings', 'tgl_processing', 'fa-gears', [
+            ["pcg_id", "IDPCG", "String", false, "", 0, 256, false],
             ["tgl_processing", "Tgl Processing", "Date", false, "", 0, 0, false],
-            ["jenis_barang_awal", "Jenis Barang Awal", "String", false, "", 0, 256, false],
-            ["merk_barang_awal", "Merk Barang Awal", "String", false, "", 0, 256, false],
-            ["berat_perkiraan", "Berat Perkiraan Awal", "Decimal", false, "", 0, 11, false],
-            ["carton_perkiraan", "CRT Perkiraan Awal", "Decimal", false, "", 0, 11, false],
-            ["berat_aktual", "Berat Aktual Awal", "Decimal", false, "", 0, 11, false],
-            ["carton_aktual", "CRT Aktual Awal", "Decimal", false, "", 0, 11, false],
-            ["jenis_barang_akhir", "Jenis Barang Akhir", "String", false, "", 0, 256, false],
-            ["merk_akhir_akhir", "Merk Barang Akhir", "String", false, "", 0, 256, false],
-            ["berat_perkiraan_akhr", "Berat Perkiraan Akhr", "Decimal", false, "", 0, 11, false],
-            ["berat_aktual_akhir", "Berat Aktual Akhir", "Decimal", false, "", 0, 11, false],
+            ["jenis_barang_awal", "Jenis Awal", "String", false, "", 0, 256, false],
+            ["merk_barang_awal", "Merk Awal", "String", false, "", 0, 256, false],
+            ["berat_perkiraan", "Berat Awal", "Decimal", false, "0", 0, 11, true],
+            ["carton_perkiraan", "Carton Awal", "Decimal", false, "0", 0, 11, true],
+            ["jenis_barang_akhir", "Jenis Akhir", "String", false, "", 0, 256, false],
+            ["merk_akhir_akhir", "Merk Akhir", "String", false, "", 0, 256, false],
+            ["berat_akhir", "Berat Akhir", "Decimal", false, "0", 0, 11, false],
         ]);
 		
 		/*
