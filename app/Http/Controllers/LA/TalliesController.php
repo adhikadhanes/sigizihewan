@@ -23,7 +23,7 @@ class TalliesController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'jenis_daging';
-	public $listing_cols = ['id', 'jenis_daging', 'merk_daging', 'berat', 'karton', 'harga_kg', 'tipe', 'penjualan', 'pembelian'];
+	public $listing_cols = ['id', 'jenis_daging', 'merk_daging', 'berat', 'pembelian', 'id_barang'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns

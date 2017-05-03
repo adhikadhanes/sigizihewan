@@ -6,7 +6,6 @@
 
 namespace App\Http\Controllers\LA;
 
-		// Field Access of Listing Columns
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -24,9 +23,10 @@ class HutangsController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'po_id';
-	public $listing_cols = ['id', 'po_id', 'tanggal_pembayaran', 'tanggal_penerimaan', 'nama_supplier', 'total_harga', 'cara_bayar', 'status'];
+	public $listing_cols = ['id', 'po_id', 'tanggal_pembayaran', 'tanggal_penerimaan', 'nama_supplier', 'total_harga', 'cara_bayar'];
 	
 	public function __construct() {
+		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 			$this->middleware(function ($request, $next) {
 				$this->listing_cols = ModuleFields::listingColumnAccessScan('Hutangs', $this->listing_cols);

@@ -17,48 +17,37 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
-use App\Models\BarangOut;
+use App\Models\DaftarBarang;
 
-class BarangOutsController extends Controller
+class DaftarBarangsController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'id_penjualan';
-	public $listing_cols = ['id', 'id_penjualan', 'jenis', 'merk', 'karton', 'harga_kg', 'berat_kg'];
+	public $view_col = 'po_id';
+	public $listing_cols = ['id', 'po_id', 'nama_supplier', 'tanggal_terima', 'jenis_barang', 'merk_daging', 'berat_pembelian', 'berat_aktual', 'jumlah_karton'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 			$this->middleware(function ($request, $next) {
-				$this->listing_cols = ModuleFields::listingColumnAccessScan('BarangOuts', $this->listing_cols);
+				$this->listing_cols = ModuleFields::listingColumnAccessScan('DaftarBarangs', $this->listing_cols);
 				return $next($request);
 			});
 		} else {
-			$this->listing_cols = ModuleFields::listingColumnAccessScan('BarangOuts', $this->listing_cols);
+			$this->listing_cols = ModuleFields::listingColumnAccessScan('DaftarBarangs', $this->listing_cols);
 		}
 	}
 	
 	/**
-	 * Display a listing of the BarangOuts.
+	 * Display a listing of the DaftarBarangs.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{
-		$barangouts = DB::table('barangouts')
-		->select('penjualans.order_id as soid', 'jenis', 'merk', 'karton', 'harga_kg', 'berat_kg', 'penjualans.created_at as created_at')
-		->join('penjualans', 'penjualans.id', '=', 'barangouts.id_penjualan')
-		->get();
-		
-		return view('la.barangouts.index', compact('barangouts'));
-
-	}
-
-	public function index_lama()
-	{
-		$module = Module::get('BarangOuts');
+		$module = Module::get('DaftarBarangs');
 		
 		if(Module::hasAccess($module->id)) {
-			return View('la.barangouts.index_lama', [
+			return View('la.daftarbarangs.index', [
 				'show_actions' => $this->show_action,
 				'listing_cols' => $this->listing_cols,
 				'module' => $module
@@ -69,7 +58,7 @@ class BarangOutsController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new barangout.
+	 * Show the form for creating a new daftarbarang.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -79,16 +68,16 @@ class BarangOutsController extends Controller
 	}
 
 	/**
-	 * Store a newly created barangout in database.
+	 * Store a newly created daftarbarang in database.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request)
 	{
-		if(Module::hasAccess("BarangOuts", "create")) {
+		if(Module::hasAccess("DaftarBarangs", "create")) {
 		
-			$rules = Module::validateRules("BarangOuts", $request);
+			$rules = Module::validateRules("DaftarBarangs", $request);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -96,9 +85,9 @@ class BarangOutsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
 			
-			$insert_id = Module::insert("BarangOuts", $request);
+			$insert_id = Module::insert("DaftarBarangs", $request);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.barangouts.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.daftarbarangs.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -106,30 +95,30 @@ class BarangOutsController extends Controller
 	}
 
 	/**
-	 * Display the specified barangout.
+	 * Display the specified daftarbarang.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		if(Module::hasAccess("BarangOuts", "view")) {
+		if(Module::hasAccess("DaftarBarangs", "view")) {
 			
-			$barangout = BarangOut::find($id);
-			if(isset($barangout->id)) {
-				$module = Module::get('BarangOuts');
-				$module->row = $barangout;
+			$daftarbarang = DaftarBarang::find($id);
+			if(isset($daftarbarang->id)) {
+				$module = Module::get('DaftarBarangs');
+				$module->row = $daftarbarang;
 				
-				return view('la.barangouts.show', [
+				return view('la.daftarbarangs.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
 					'no_header' => true,
 					'no_padding' => "no-padding"
-				])->with('barangout', $barangout);
+				])->with('daftarbarang', $daftarbarang);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("barangout"),
+					'record_name' => ucfirst("daftarbarang"),
 				]);
 			}
 		} else {
@@ -138,28 +127,28 @@ class BarangOutsController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified barangout.
+	 * Show the form for editing the specified daftarbarang.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("BarangOuts", "edit")) {			
-			$barangout = BarangOut::find($id);
-			if(isset($barangout->id)) {	
-				$module = Module::get('BarangOuts');
+		if(Module::hasAccess("DaftarBarangs", "edit")) {			
+			$daftarbarang = DaftarBarang::find($id);
+			if(isset($daftarbarang->id)) {	
+				$module = Module::get('DaftarBarangs');
 				
-				$module->row = $barangout;
+				$module->row = $daftarbarang;
 				
-				return view('la.barangouts.edit', [
+				return view('la.daftarbarangs.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
-				])->with('barangout', $barangout);
+				])->with('daftarbarang', $daftarbarang);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("barangout"),
+					'record_name' => ucfirst("daftarbarang"),
 				]);
 			}
 		} else {
@@ -168,7 +157,7 @@ class BarangOutsController extends Controller
 	}
 
 	/**
-	 * Update the specified barangout in storage.
+	 * Update the specified daftarbarang in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -176,9 +165,9 @@ class BarangOutsController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		if(Module::hasAccess("BarangOuts", "edit")) {
+		if(Module::hasAccess("DaftarBarangs", "edit")) {
 			
-			$rules = Module::validateRules("BarangOuts", $request, true);
+			$rules = Module::validateRules("DaftarBarangs", $request, true);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -186,9 +175,9 @@ class BarangOutsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
 			
-			$insert_id = Module::updateRow("BarangOuts", $request, $id);
+			$insert_id = Module::updateRow("DaftarBarangs", $request, $id);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.barangouts.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.daftarbarangs.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -196,18 +185,18 @@ class BarangOutsController extends Controller
 	}
 
 	/**
-	 * Remove the specified barangout from storage.
+	 * Remove the specified daftarbarang from storage.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id)
 	{
-		if(Module::hasAccess("BarangOuts", "delete")) {
-			BarangOut::find($id)->delete();
+		if(Module::hasAccess("DaftarBarangs", "delete")) {
+			DaftarBarang::find($id)->delete();
 			
 			// Redirecting to index() method
-			return redirect()->route(config('laraadmin.adminRoute') . '.barangouts.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.daftarbarangs.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -220,11 +209,11 @@ class BarangOutsController extends Controller
 	 */
 	public function dtajax()
 	{
-		$values = DB::table('barangouts')->select($this->listing_cols)->whereNull('deleted_at');
+		$values = DB::table('daftarbarangs')->select($this->listing_cols)->whereNull('deleted_at');
 		$out = Datatables::of($values)->make();
 		$data = $out->getData();
 
-		$fields_popup = ModuleFields::getModuleFields('BarangOuts');
+		$fields_popup = ModuleFields::getModuleFields('DaftarBarangs');
 		
 		for($i=0; $i < count($data->data); $i++) {
 			for ($j=0; $j < count($this->listing_cols); $j++) { 
@@ -233,7 +222,7 @@ class BarangOutsController extends Controller
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
 				}
 				if($col == $this->view_col) {
-					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/barangouts/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/daftarbarangs/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
 				}
 				// else if($col == "author") {
 				//    $data->data[$i][$j];
@@ -242,12 +231,12 @@ class BarangOutsController extends Controller
 			
 			if($this->show_action) {
 				$output = '';
-				if(Module::hasAccess("BarangOuts", "edit")) {
-					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/barangouts/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+				if(Module::hasAccess("DaftarBarangs", "edit")) {
+					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/daftarbarangs/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
 				
-				if(Module::hasAccess("BarangOuts", "delete")) {
-					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.barangouts.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+				if(Module::hasAccess("DaftarBarangs", "delete")) {
+					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.daftarbarangs.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
 					$output .= Form::close();
 				}

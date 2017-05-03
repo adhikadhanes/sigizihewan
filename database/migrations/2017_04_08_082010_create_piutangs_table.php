@@ -20,11 +20,10 @@ class CreatePiutangsTable extends Migration
         Module::generate("Piutangs", 'piutangs', 'tanggal_pembayaran', 'fa-money', [
             ["tanggal_pembayaran", "Tanggal Pembayaran", "Date", false, "", 0, 0, true],
             ["tanggal_pengiriman", "Tanggal Pengiriman", "Date", false, "", 0, 0, true],
-            ["nama_customer", "Nama Customer", "String", true, "", 0, 256, true],
             ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
             ["cara_bayar", "Cara Bayar", "Dropdown", false, "", 0, 0, true, ["Langsung","Tempo","Cicilan"]],
-            ["status", "Status", "Dropdown", false, "", 0, 0, true, ["Lunas","Belum Lunas"]],
             ["order_id", "IDSO", "Dropdown", false, "", 0, 0, true, "@penjualans"],
+            ["nama_customer", "Nama Customer", "Dropdown", false, "", 0, 0, false, "@relations"],
         ]);
 		
 		/*

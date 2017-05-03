@@ -1,7 +1,7 @@
 @extends('la.layouts.app')
 
 @section('htmlheader_title')
-	Hutang View
+	BarangKeluar View
 @endsection
 
 
@@ -15,7 +15,7 @@
 					<div class="profile-icon text-primary"><i class="fa {{ $module->fa_icon }}"></i></div>
 				</div>
 				<div class="col-md-9">
-					<h4 class="name">{{ $hutang->$view_col }}</h4>
+					<h4 class="name">{{ $barangkeluar->$view_col }}</h4>
 					<div class="row stats">
 						<div class="col-md-4"><i class="fa fa-facebook"></i> 234</div>
 						<div class="col-md-4"><i class="fa fa-twitter"></i> 12</div>
@@ -81,12 +81,12 @@
 			</div>
 		</div>
 		<div class="col-md-1 actions">
-			@la_access("Hutangs", "edit")
-				<a href="{{ url(config('laraadmin.adminRoute') . '/hutangs/'.$hutang->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			@la_access("BarangKeluars", "edit")
+				<a href="{{ url(config('laraadmin.adminRoute') . '/barangkeluars/'.$barangkeluar->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
 			
-			@la_access("Hutangs", "delete")
-				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.hutangs.destroy', $hutang->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			@la_access("BarangKeluars", "delete")
+				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.barangkeluars.destroy', $barangkeluar->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 				{{ Form::close() }}
 			@endla_access
@@ -94,7 +94,7 @@
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/hutangs') }}" data-toggle="tooltip" data-placement="right" title="Back to Hutangs"><i class="fa fa-chevron-left"></i></a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/barangkeluars') }}" data-toggle="tooltip" data-placement="right" title="Back to BarangKeluars"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="#tab-timeline" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
 	</ul>
@@ -107,12 +107,17 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
-						@la_display($module, 'po_id')
-						@la_display($module, 'tanggal_pembayaran')
-						@la_display($module, 'tanggal_penerimaan')
+						@la_display($module, 'order_id')
 						@la_display($module, 'nama_supplier')
-						@la_display($module, 'total_harga')
-						@la_display($module, 'cara_bayar')
+						@la_display($module, 'tanggal_terima')
+						@la_display($module, 'jenis_daging')
+						@la_display($module, 'merk_daging')
+						@la_display($module, 'berat_penjualan')
+						@la_display($module, 'berat_aktual')
+						@la_display($module, 'jumlah_karton')
+						@la_display($module, 'status_keluar')
+						@la_display($module, 'status_terkirim')
+						@la_display($module, 'tgl_baru')
 					</div>
 				</div>
 			</div>

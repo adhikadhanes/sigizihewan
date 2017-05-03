@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreatePembeliansTable extends Migration
+class CreateDaftarbarangsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,17 +17,15 @@ class CreatePembeliansTable extends Migration
      */
     public function up()
     {
-        Module::generate("Pembelians", 'pembelians', 'po_id', 'fa-inbox', [
+        Module::generate("Daftarbarangs", 'daftarbarangs', 'po_id', 'fa-archive', [
             ["po_id", "IDPO", "String", false, "", 0, 256, false],
-            ["tgl_pembelian", "Tanggal Pembelian", "Date", false, "", 0, 0, false],
-            ["nama_penjual", "Nama Penjual", "Dropdown", false, "", 0, 256, true, "@relations"],
-            ["tanggal_penerimaan", "Tgl Penerimaan", "Date", false, "", 0, 0, true],
-            ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
-            ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
-            ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
-            ["gdg_penerimaan", "Gudang Penerimaan", "Dropdown", false, "", 0, 0, true, "@gudangs"],
-            ["status", "Status Pembayaran", "Dropdown", false, "", 0, 0, false, ["Belum Lunas","Lunas"]],
-            ["status_penerimaan", "Status Penerimaan", "Dropdown", false, "", 0, 0, false, ["Belum Diterima","Diterima"]],
+            ["nama_supplier", "Nama Supplier", "Name", false, "", 0, 256, false],
+            ["tanggal_terima", "Tanggal Terima", "Date", false, "", 0, 0, false],
+            ["jenis_barang", "Jenis", "String", false, "", 0, 256, false],
+            ["merk_daging", "Merk", "String", false, "", 0, 256, false],
+            ["berat_pembelian", "Berat Pembelian", "Integer", false, "", 0, 11, false],
+            ["berat_aktual", "Berat Aktual", "Decimal", false, "", 0, 11, false],
+            ["jumlah_karton", "Jumlah Karton", "Integer", false, "", 0, 11, false],
         ]);
 		
 		/*
@@ -73,8 +71,8 @@ class CreatePembeliansTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('pembelians')) {
-            Schema::drop('pembelians');
+        if (Schema::hasTable('daftarbarangs')) {
+            Schema::drop('daftarbarangs');
         }
     }
 }

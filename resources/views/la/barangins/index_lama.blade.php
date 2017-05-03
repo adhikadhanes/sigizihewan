@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Hutangs")
-@section("contentheader_description", "Hutangs listing")
-@section("section", "Hutangs")
+@section("contentheader_title", "BarangIns")
+@section("contentheader_description", "BarangIns listing")
+@section("section", "BarangIns")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "Hutangs Listing")
+@section("htmlheader_title", "BarangIns Listing")
 
 @section("headerElems")
-@la_access("Hutangs", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Hutang</button>
+@la_access("BarangIns", "create")
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add BarangIn</button>
 @endla_access
 @endsection
 
@@ -23,7 +23,7 @@
         </ul>
     </div>
 @endif
-
+<!--barangin -->
 <div class="box box-success">
 	<!--<div class="box-header"></div>-->
 	<div class="box-body">
@@ -45,26 +45,26 @@
 	</div>
 </div>
 
-@la_access("Hutangs", "create")
+@la_access("BarangIns", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Hutang</h4>
+				<h4 class="modal-title" id="myModalLabel">Add BarangIn</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\HutangsController@store', 'id' => 'hutang-add-form']) !!}
+			{!! Form::open(['action' => 'LA\BarangInsController@store', 'id' => 'barangin-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
 					
 					{{--
 					@la_input($module, 'po_id')
-					@la_input($module, 'tanggal_pembayaran')
-					@la_input($module, 'tanggal_penerimaan')
-					@la_input($module, 'nama_supplier')
-					@la_input($module, 'total_harga')
-					@la_input($module, 'cara_bayar')
+					@la_input($module, 'jenis')
+					@la_input($module, 'merk')
+					@la_input($module, 'karton')
+					@la_input($module, 'harga_kg')
+					@la_input($module, 'berat_kg')
 					--}}
 				</div>
 			</div>
@@ -91,7 +91,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/hutang_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/barangin_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -101,7 +101,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#hutang-add-form").validate({
+	$("#barangin-add-form").validate({
 		
 	});
 });

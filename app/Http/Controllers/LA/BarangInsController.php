@@ -44,10 +44,21 @@ class BarangInsController extends Controller
 	 */
 	public function index()
 	{
+		$barangins = DB::table('barangins')
+		->select('pembelians.po_id as poid', 'barangins.id as is','jenis', 'merk', 'karton', 'harga_kg', 'berat_kg', 'tanggal_penerimaan')
+		->join('pembelians', 'pembelians.id', '=', 'barangins.po_id')
+		->get();
+		
+		return view('la.barangins.index', compact('barangins'));
+
+	}
+
+	public function index_lama()
+	{
 		$module = Module::get('BarangIns');
 		
 		if(Module::hasAccess($module->id)) {
-			return View('la.barangins.index', [
+			return View('la.barangins.index_lama', [
 				'show_actions' => $this->show_action,
 				'listing_cols' => $this->listing_cols,
 				'module' => $module

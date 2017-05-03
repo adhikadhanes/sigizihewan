@@ -27,14 +27,13 @@ use App\Models\Gudang;
 use App\Models\BarangOut;
 
 use App\Models\Merk;
-
-
+ 
 
 class PenjualansController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'order_id';
-	public $listing_cols = ['id', 'tgl_penjualan', 'nama_pembeli', 'nama_pembeli_retail', 'tanggal_pengiriman', 'cara_penerimaan', 'cara_pembayaran', 'tgl_jatuh_tempo', 'gudang_pengiriman', 'order_id','status','keterangan','total_harga'];
+	public $listing_cols = ['id','order_id', 'tgl_penjualan', 'nama_pembeli', 'tanggal_pengiriman', 'cara_penerimaan', 'cara_pembayaran', 'gudang_pengiriman', 'total_harga','status','status_pengiriman','keterangan'];
 	// public static $add_rules = array(
 	// 	'nama_pembeli' => 'required',
 	// 	'nama_pembeli_retail' => 'required'
@@ -60,6 +59,58 @@ class PenjualansController extends Controller
 		return view('la.penjualans.add', compact('relationList','jenisList', 'merkList','gudangList'));
 
 	}
+
+	public function tallyCoba()
+	{
+		return view('la.penjualans.addTally');
+	}
+
+	public function tallySimpan()
+	{
+
+		$penjualan = new Penjualan;
+		$number = (rand(1,10000));
+		$order_id = 'IDSO'.str_pad((int) $number,4,"0",STR_PAD_LEFT);
+		// $order_id = generateOrder();
+
+		$penjualan->order_id = $order_id;
+		$penjualan->tgl_penjualan = $request->tgl_penjualan;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->nama_pembeli = $request->nama_pembeli;
+		$penjualan->tanggal_pengiriman = $request->tanggal_pengiriman;
+		$penjualan->cara_penerimaan = $request->cara_penerimaan;
+		$penjualan->gudang_pengiriman = $request->gudang_pengiriman;
+		$penjualan->cara_pembayaran = $request->cara_pembayaran;
+		$penjualan->tgl_jatuh_tempo = 		$request->tgl_jatuh_tempo;
+
+		$penjualan->save();
+		$id_penjualan = $penjualan->id;
+
+		$form = $_POST['name'];
+
+		foreach ($form as $form) {
+			$berat = new Penjualan;
+
+			$berat->id_penjualan = $id_penjualan;
+	        $berat->satu = $form['satu'];
+	       	$berat->dua = $form['dua'];
+	        $berat->tiga = $form['tiga'];
+	        $berat->empat = $form['empat'];
+	        $berat->lima = $form['lima'];
+	        $berat->enam = $form['enam'];
+	        $berat->tujuh = $form['tujuh'];
+	        $berat->delapan = $form['delapan'];
+	        $berat->sembilan = $form['sembilan'];
+	        $berat->sepuluh = $form['sepuluh'];
+
+	      $berat->save();
+
+	      $totalBerats = $totalBerats + ($berat->satu + $berat->dua + $berat->tiga + $berat->empat + $berat->lima + $berat->enam + $berat->tujuh + $berat->delapan + $berat->sembilan + $berat->sepuluh);
+
+		}
+	}
+
 	public function tambahpenjualanretail()
 	{
 
@@ -173,6 +224,8 @@ class PenjualansController extends Controller
 
 		$form = $_POST['baris'];
 
+		$total_hargas = 0;
+
 		foreach ( $form as $form)
     	{
         // here you have access to $diam['top'] and $diam['bottom']
@@ -188,7 +241,18 @@ class PenjualansController extends Controller
 
 	      $barang->save();
 
+	      $total_hargas = $total_hargas + ($barang->berat_kg * $barang->harga_kg);
+	      
+
     	}
+
+
+    	$penjualan->total_harga = $total_hargas;
+
+    	DB::table('penjualans')
+            ->where('id', $id_penjualan)
+            ->update(['total_harga' => $total_hargas]);
+    	//$penjualan->save();
 
     	return redirect(config('laraadmin.adminRoute')."/");
 
@@ -226,6 +290,47 @@ class PenjualansController extends Controller
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
 	}
+
+	//menampilkan faktur penjualan
+
+	public function showfaktur($id)
+	{
+		$barangout = DB::table('BarangOuts')
+		->select('BarangOuts.id', 'id_penjualan', 'jenis.nama as jenis', 'merks.nama as merk', 'karton', 'harga_kg', 'berat_kg')
+		->join('jenis', 'jenis.id', '=', 'BarangOuts.jenis')
+		->join('merks', 'merks.id', '=', 'BarangOuts.merk')
+		->where('id_penjualan',$id)
+		->get();
+
+		$penjualan = Penjualan::find($id);
+		
+		if(isset($penjualan->nama_pembeli)){
+			$nama_pembeli = Relation::find($penjualan->nama_pembeli)->nama;
+		}else{
+			$nama_pembeli = $penjualan->nama_pembeli_retail;
+		}
+		return view('la.penjualans.faktur',compact('penjualan', 'barangout', 'nama_pembeli'));
+	}
+
+	public function showsuratjalan($id)
+	{
+		$barangout = DB::table('BarangOuts')
+		->select('BarangOuts.id', 'id_penjualan', 'jenis.nama as jenis', 'merks.nama as merk', 'karton', 'harga_kg', 'berat_kg')
+		->join('jenis', 'jenis.id', '=', 'BarangOuts.jenis')
+		->join('merks', 'merks.id', '=', 'BarangOuts.merk')
+		->where('id_penjualan',$id)
+		->get();
+
+		$penjualan = Penjualan::find($id);
+		
+		if(isset($penjualan->nama_pembeli)){
+			$nama_pembeli = Relation::find($penjualan->nama_pembeli)->nama;
+		}else{
+			$nama_pembeli = $penjualan->nama_pembeli_retail;
+		}
+		return view('la.penjualans.suratjalan',compact('penjualan', 'barangout', 'nama_pembeli'));
+	}
+
 
 	/**
 	 * Show the form for editing the specified penjualan.
@@ -347,4 +452,11 @@ class PenjualansController extends Controller
 		$out->setData($data);
 		return $out;
 	}
+
+	public function getJenis(Request $request) {
+		$jd = $request->jd;
+      return response()->json(array('nama'=> 'Allana'), 200);
+
+	}
+
 }

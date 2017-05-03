@@ -26,27 +26,34 @@
 
 			@la_access("Penjualans", "delete")
 				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.penjualans.destroy', $penjualan->id], 'method' => 'delete', 'style'=>'display:inline']) }}
-					<button class="btn btn-danger btn-large" type="submit"><i class="fa fa-times"></i></button>
-				<button type="button" class="btn btn-success pull-right" id="test" >Faktur Penjualan</button>
-                   <button type="button" class="btn btn-success pull-right" id="test" >Surat Jalan</button>
+					
+				
 				{{ Form::close() }}
 			@endla_access
+			<button class="btn btn-danger btn-large" type="submit"><i class="fa fa-times"></i></button>
+			<a href="showfaktur/{{ $penjualan->id }}" class="btn btn-info" role="button">Faktur Penjualan</a>
+			<a href="showsuratjalan/{{$penjualan->id}}" class="btn btn-info" role="button">Surat Jalan</a>
 
 					</div>
 					<div class="panel-body">
+						<div class="col-sm-12">
 						@la_display($module, 'order_id')
+						</div>
+						<div class="col-sm-6">
 						@la_display($module, 'tgl_penjualan')
 						@la_display($module, 'nama_pembeli')
-						@la_display($module, 'nama_pembeli_retail')
 						@la_display($module, 'tanggal_pengiriman')
+						</div>
+						<div class="col-sm-6">
 						@la_display($module, 'cara_penerimaan')
 						@la_display($module, 'cara_pembayaran')
 						@la_display($module, 'tgl_jatuh_tempo')
 						@la_display($module, 'gudang_pengiriman')
-						@la_display($module, 'status')
-						@la_display($module, 'keterangan')
-						@la_display($module, 'total_harga')
+						<!--la_display($module, 'status') -->
+						<!--la_display($module, 'keterangan') -->
+						<!--la_display($module, 'total_harga') -->
 
+						</div>
 					</div>
 				
 					<table class="table">

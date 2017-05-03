@@ -18,18 +18,18 @@ class CreatePenjualansTable extends Migration
     public function up()
     {
         Module::generate("Penjualans", 'penjualans', 'order_id', 'fa-money', [
-            ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
-            ["status", "Status", "Dropdown", false, "", 0, 0, true, ["Lunas","Belum Lunas"]],
-            ["keterangan", "Keterangan", "Textarea", false, "", 0, 0, false],
+            ["status_pengiriman", "Status Pengiriman", "Dropdown", false, "", 0, 0, false, ["Belum Terkirim","Terkirim"]],
             ["order_id", "IDSO", "String", false, "", 0, 256, false],
+            ["status", "Status Pembayaran", "Dropdown", false, "", 0, 0, true, ["Lunas","Belum Lunas"]],
             ["tgl_penjualan", "Tgl Penjualan", "Date", false, "", 0, 0, false],
             ["nama_pembeli", "Nama Pembeli", "Dropdown", false, "", 0, 256, false, "@relations"],
-            ["nama_pembeli_retail", "Nama Pembeli Retail", "Name", false, "", 0, 256, false],
             ["tanggal_pengiriman", "Tgl Pengiriman", "Date", false, "", 0, 0, true],
             ["cara_penerimaan", "Cara Penerimaan", "Dropdown", false, "", 0, 0, false, ["Pengiriman","Pengambilan"]],
             ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
             ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
             ["gudang_pengiriman", "Gudang Pengiriman", "Dropdown", false, "", 0, 0, false, "@gudangs"],
+            ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
+            ["keterangan", "Keterangan", "Textarea", false, "", 0, 0, false],
         ]);
 		
 		/*

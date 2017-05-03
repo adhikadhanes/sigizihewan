@@ -127,6 +127,7 @@
                                   </tr> -->
                                </table>
 
+
                                {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control pull-right']) !!}
 
                           </div>
@@ -191,6 +192,7 @@
               var jba = document.getElementById("jba").value;
               var mba = document.getElementById("mba").value;
               var bpa = document.getElementById("bpa").value;
+
 
               if(bp == "" || kpa == "") {
                 alert('Kolom Berat atau Karton Awal perlu diisi');
