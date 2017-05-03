@@ -110,11 +110,8 @@
 						@la_display($module, 'jenis_daging')
 						@la_display($module, 'merk_daging')
 						@la_display($module, 'berat')
-						@la_display($module, 'karton')
-						@la_display($module, 'harga_kg')
-						@la_display($module, 'tipe')
-						@la_display($module, 'penjualan')
 						@la_display($module, 'pembelian')
+						@la_display($module, 'id_barang')
 					</div>
 				</div>
 			</div>

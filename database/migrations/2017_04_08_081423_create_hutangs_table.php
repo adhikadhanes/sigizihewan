@@ -24,7 +24,6 @@ class CreateHutangsTable extends Migration
             ["nama_supplier", "Nama Supplier", "Dropdown", false, "", 0, 0, true, "@relations"],
             ["total_harga", "Total Harga", "Integer", false, "", 0, 11, true],
             ["cara_bayar", "Cara Bayar", "Dropdown", false, "", 0, 0, true, ["Langsung","Tempo","Cicilan"]],
-            ["status", "Status", "Dropdown", false, "", 0, 0, true, ["Lunas","Tidak Lunas"]],
         ]);
 		
 		/*

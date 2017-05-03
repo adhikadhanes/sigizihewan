@@ -95,8 +95,20 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Penjualans ================== */
 	Route::get('admin/tambahpenjualan','LA\PenjualansController@tambahpenjualan');
 
+	//route buat faktur
+	Route::get('admin/penjualans/showfaktur/{id}','LA\PenjualansController@showfaktur');
+
+	//route buat surat jalan
+	Route::get('admin/penjualans/showsuratjalan/{id}','LA\PenjualansController@showsuratjalan');
+
 	Route::resource(config('laraadmin.adminRoute') . '/penjualans', 'LA\PenjualansController');
 	Route::get(config('laraadmin.adminRoute') . '/penjualan_dt_ajax', 'LA\PenjualansController@dtajax');
+
+	/* ================== Pembelians ================== */
+	Route::get('admin/tambahpembelian','LA\PembeliansController@tambahpembelian');
+
+	Route::resource(config('laraadmin.adminRoute') . '/pembelians', 'LA\PembeliansController');
+	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
 
 
 	/* ================== Gudangs ================== */
@@ -127,6 +139,10 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 
 	Route::resource(config('laraadmin.adminRoute') . '/transferstocks', 'LA\TransferStocksController');
 	Route::get(config('laraadmin.adminRoute') . '/transferstock_dt_ajax', 'LA\TransferStocksController@dtajax');
+
+	/* ================== Pembelians ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/pembelians', 'LA\PembeliansController');
+	Route::get(config('laraadmin.adminRoute') . '/pembelian_dt_ajax', 'LA\PembeliansController@dtajax');
 
 
 	/* ================== DaftarBarangs ================== */

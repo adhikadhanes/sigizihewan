@@ -9,6 +9,7 @@
 @section("headerElems")
 @la_access("Pembelians", "create")
 	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Pembelian</button>
+		<a href="tambahpembelian" class="btn btn-info" role="button">Tambah Pembelian</a>
 @endla_access
 @endsection
 
@@ -39,7 +40,7 @@
 		</tr>
 		</thead>
 		<tbody>
-			
+
 		</tbody>
 		</table>
 	</div>
@@ -57,7 +58,7 @@
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
-					
+
 					{{--
 					@la_input($module, 'po_id')
 					@la_input($module, 'tgl_pembelian')
@@ -67,6 +68,8 @@
 					@la_input($module, 'cara_pembayaran')
 					@la_input($module, 'tgl_jatuh_tempo')
 					@la_input($module, 'gdg_penerimaan')
+					@la_input($module, 'status')
+					@la_input($module, 'status_penerimaan')
 					--}}
 				</div>
 			</div>
@@ -104,7 +107,7 @@ $(function () {
 		@endif
 	});
 	$("#pembelian-add-form").validate({
-		
+
 	});
 });
 </script>

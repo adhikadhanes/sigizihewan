@@ -17,7 +17,7 @@ class CreatePembeliansTable extends Migration
      */
     public function up()
     {
-        Module::generate("Pembelians", 'pembelians', 'so_id', 'fa-inbox', [
+        Module::generate("Pembelians", 'pembelians', 'po_id', 'fa-inbox', [
             ["po_id", "IDPO", "String", false, "", 0, 256, false],
             ["tgl_pembelian", "Tanggal Pembelian", "Date", false, "", 0, 0, false],
             ["nama_penjual", "Nama Penjual", "Dropdown", false, "", 0, 256, true, "@relations"],
@@ -26,6 +26,8 @@ class CreatePembeliansTable extends Migration
             ["cara_pembayaran", "Cara Pembayaran", "Dropdown", false, "", 0, 0, false, ["Langsung","Tempo","Cicilan"]],
             ["tgl_jatuh_tempo", "Tgl Jatuh Tempo", "Date", false, "", 0, 0, false],
             ["gdg_penerimaan", "Gudang Penerimaan", "Dropdown", false, "", 0, 0, true, "@gudangs"],
+            ["status", "Status Pembayaran", "Dropdown", false, "", 0, 0, false, ["Belum Lunas","Lunas"]],
+            ["status_penerimaan", "Status Penerimaan", "Dropdown", false, "", 0, 0, false, ["Belum Diterima","Diterima"]],
         ]);
 		
 		/*

@@ -23,7 +23,7 @@ class PiutangsController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'tanggal_pembayaran';
-	public $listing_cols = ['id', 'tanggal_pembayaran', 'tanggal_pengiriman', 'nama_customer', 'total_harga', 'cara_bayar', 'status', 'order_id'];
+	public $listing_cols = ['id', 'tanggal_pembayaran', 'tanggal_pengiriman', 'total_harga', 'cara_bayar', 'order_id', 'nama_customer'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns

@@ -61,11 +61,10 @@
 					{{--
 					@la_input($module, 'tanggal_pembayaran')
 					@la_input($module, 'tanggal_pengiriman')
-					@la_input($module, 'nama_customer')
 					@la_input($module, 'total_harga')
 					@la_input($module, 'cara_bayar')
-					@la_input($module, 'status')
 					@la_input($module, 'order_id')
+					@la_input($module, 'nama_customer')
 					--}}
 				</div>
 			</div>

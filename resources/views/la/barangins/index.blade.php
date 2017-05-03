@@ -23,60 +23,40 @@
         </ul>
     </div>
 @endif
-
+<!--barangin -->
 <div class="box box-success">
 	<!--<div class="box-header"></div>-->
 	<div class="box-body">
-		<table id="example1" class="table table-bordered">
-		<thead>
-		<tr class="success">
-			@foreach( $listing_cols as $col )
-			<th>{{ $module->fields[$col]['label'] or ucfirst($col) }}</th>
-			@endforeach
-			@if($show_actions)
-			<th>Actions</th>
-			@endif
-		</tr>
-		</thead>
-		<tbody>
-			
-		</tbody>
-		</table>
+		<table id="example" class="table table-bordered"">
+        <thead>           
+            <tr class="success">
+                <th>Tanggal</th>
+                <th>IDPO</th>
+                <th>Jenis</th>
+                <th>Merk</th>
+                <th>Karton</th>
+                <th>Harga/Kg</th>
+                <th>Berat (Kg)</th>
+                <th>Tally</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach( $barangins as $brg )
+            <tr>
+                <td>{{ $brg->tanggal_penerimaan }}</td>
+                <td>{{ $brg->poid }}</td>
+                <td>{{ $brg->jenis }}</td>
+                <td>{{ $brg->merk }}</td>
+                <td>{{ $brg->karton }}</td>
+                <td>{{ $brg->harga_kg }}</td>
+                <td>{{ $brg->berat_kg }}</td>
+                <td><a href="#masukkinlinksamaid{{ $brg->is }}" class="pull-right btn btn-sm btn-info" role="button">Tally</a></td>
+            </tr>
+		@endforeach
+        </tbody>
+    </table>
 	</div>
 </div>
-
-@la_access("BarangIns", "create")
-<div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add BarangIn</h4>
-			</div>
-			{!! Form::open(['action' => 'LA\BarangInsController@store', 'id' => 'barangin-add-form']) !!}
-			<div class="modal-body">
-				<div class="box-body">
-                    @la_form($module)
-					
-					{{--
-					@la_input($module, 'po_id')
-					@la_input($module, 'jenis')
-					@la_input($module, 'merk')
-					@la_input($module, 'karton')
-					@la_input($module, 'harga_kg')
-					@la_input($module, 'berat_kg')
-					--}}
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
-			</div>
-			{!! Form::close() !!}
-		</div>
-	</div>
-</div>
-@endla_access
 
 @endsection
 
@@ -88,22 +68,50 @@
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script>
 $(function () {
-	$("#example1").DataTable({
-		processing: true,
-        serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/barangin_dt_ajax') }}",
-		language: {
-			lengthMenu: "_MENU_",
-			search: "_INPUT_",
-			searchPlaceholder: "Search"
-		},
-		@if($show_actions)
-		columnDefs: [ { orderable: false, targets: [-1] }],
-		@endif
-	});
-	$("#barangin-add-form").validate({
-		
-	});
+    $("#example").DataTable({
+        language: {
+            lengthMenu: "_MENU_",
+            search: "_INPUT_",
+            searchPlaceholder: "Search"
+        },
+
+        "columnDefs": [
+            { 
+            "visible": false, 
+            "targets": 0 
+            }
+        ],
+        "order": [[ 2, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="7" style="background-color:rgb(200,200,200);">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    });
+    $("#item-add-form").validate({
+        
+    });
+    // Order by the grouping
+    $('#example tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    } );
 });
 </script>
 @endpush
