@@ -107,17 +107,15 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
+						@la_display($module, 'pcg_id')
 						@la_display($module, 'tgl_processing')
 						@la_display($module, 'jenis_barang_awal')
 						@la_display($module, 'merk_barang_awal')
 						@la_display($module, 'berat_perkiraan')
 						@la_display($module, 'carton_perkiraan')
-						@la_display($module, 'berat_aktual')
-						@la_display($module, 'carton_aktual')
 						@la_display($module, 'jenis_barang_akhir')
 						@la_display($module, 'merk_akhir_akhir')
-						@la_display($module, 'berat_perkiraan_akhr')
-						@la_display($module, 'berat_aktual_akhir')
+						@la_display($module, 'berat_akhir')
 					</div>
 				</div>
 			</div>

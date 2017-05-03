@@ -33,17 +33,15 @@
 					@la_form($module)
 					
 					{{--
+					@la_input($module, 'pcg_id')
 					@la_input($module, 'tgl_processing')
 					@la_input($module, 'jenis_barang_awal')
 					@la_input($module, 'merk_barang_awal')
 					@la_input($module, 'berat_perkiraan')
 					@la_input($module, 'carton_perkiraan')
-					@la_input($module, 'berat_aktual')
-					@la_input($module, 'carton_aktual')
 					@la_input($module, 'jenis_barang_akhir')
 					@la_input($module, 'merk_akhir_akhir')
-					@la_input($module, 'berat_perkiraan_akhr')
-					@la_input($module, 'berat_aktual_akhir')
+					@la_input($module, 'berat_akhir')
 					--}}
                     <br>
 					<div class="form-group">

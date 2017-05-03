@@ -21,10 +21,12 @@ class CreateItemsTable extends Migration
             ["jenis", "Jenis", "Dropdown", false, "", 0, 0, true, "@jenis"],
             ["merk", "Merk", "Dropdown", false, "", 0, 0, true, "@merks"],
             ["kg_carton", "KG / carton", "Decimal", false, "", 0, 11, false],
-            ["wholesale_kg", "Wholesale KG", "Decimal", false, "0", 0, 11, true],
-            ["wholesale_carton", "Wholesale Carton", "Integer", false, "0", 0, 11, true],
-            ["retail_kg", "Retail KG", "Decimal", false, "0", 0, 11, true],
-            ["tipe", "Tipe", "Dropdown", false, "", 0, 0, true, ["Wholesale","Retail"]],
+            ["wholesale_kg", "KG - CM", "Decimal", false, "0", 0, 11, true],
+            ["wholesale_carton", "Carton - CM", "Integer", false, "0", 0, 11, true],
+            ["wholesale_kg_ck", "KG - CK", "Decimal", false, "0", 0, 11, true],
+            ["wholesale_carton_ck", "Carton - CK", "Integer", false, "0", 0, 11, true],
+            ["retail_kg", "Retail KG - CM", "Decimal", false, "0", 0, 11, true],
+            ["retail_kg_ck", "Retail KG - CK", "Decimal", false, "0", 0, 11, true],
             ["nama_jenis", "Nama Jenis", "Name", false, "", 0, 256, false],
         ]);
 		

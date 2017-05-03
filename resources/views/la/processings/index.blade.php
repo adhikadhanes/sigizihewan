@@ -8,8 +8,7 @@
 
 @section("headerElems")
 @la_access("Processings", "create")
-	<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddModal">Add Processing</button> | 
-	<a href="tambahprocessing" class="btn btn-info" role="button">Tambah Processing</a>
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Processing</button>
 @endla_access
 @endsection
 
@@ -60,17 +59,15 @@
                     @la_form($module)
 					
 					{{--
+					@la_input($module, 'pcg_id')
 					@la_input($module, 'tgl_processing')
 					@la_input($module, 'jenis_barang_awal')
 					@la_input($module, 'merk_barang_awal')
 					@la_input($module, 'berat_perkiraan')
 					@la_input($module, 'carton_perkiraan')
-					@la_input($module, 'berat_aktual')
-					@la_input($module, 'carton_aktual')
 					@la_input($module, 'jenis_barang_akhir')
 					@la_input($module, 'merk_akhir_akhir')
-					@la_input($module, 'berat_perkiraan_akhr')
-					@la_input($module, 'berat_aktual_akhir')
+					@la_input($module, 'berat_akhir')
 					--}}
 				</div>
 			</div>
